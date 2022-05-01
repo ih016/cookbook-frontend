@@ -7,22 +7,33 @@ import { LoginComponent } from './login/login.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MenuComponent } from './menu/menu.component';
-import { MatIconModule } from '@angular/material/icon';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
+import { HeaderComponent } from './header/header.component';
+
+// REST AUTH
+import { AuthInterceptor } from 'angular-auth-oidc-client';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+// UI Components
+import { ButtonModule } from 'primeng/button';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DropdownModule } from 'primeng/dropdown';
+import { ToastModule } from 'primeng/toast';
+import { MenuModule } from 'primeng/menu';
+import { TabMenuModule } from 'primeng/tabmenu';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RecipesComponent,
-    MenuComponent,
     LoggedOutComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,13 +41,24 @@ import { LoggedOutComponent } from './logged-out/logged-out.component';
     AuthConfigModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule
+    ButtonModule,
+    RadioButtonModule,
+    SplitButtonModule,
+    InputTextModule,
+    InputTextareaModule,
+    InputNumberModule,
+    DropdownModule,
+    ToastModule,
+    MenuModule,
+    TabMenuModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,12 @@
+<div class="flex header">
+  <div class="show-mobile">
+    <button type="button" pButton icon="pi pi-bars" (click)="menu.toggle($event)" aria-haspopup="true" aria-controls="overlay_menu"></button>
+    <p-menu #menu [popup]="true" id="overlay_menu" [model]="menuOptions"></p-menu>
+  </div>
+  <div class="flex-initial flex align-items-center justify-content-center title" (click)="goHome()">
+    <img src="assets/images/logos/cb_large.png" alt="Logo Image" height="55" class="mb-3 logo">
+  </div>
+  <div class="hide-mobile">
+    <p-tabMenu [model]="menuOptions"></p-tabMenu>
+  </div>
+</div>

@@ -13,10 +13,7 @@ export class RecipesComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("init");
-    this.restService.get<Recipe[]>('recipe').then((recipes: Recipe[]) => {
-      console.log(recipes);
-      this.recipes = recipes;
-    })
+    this.restService.getAllRecipes().then((data) => {this.recipes = data; })
   }
 
 }

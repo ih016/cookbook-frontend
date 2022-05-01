@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 export interface Ingredient {
@@ -39,24 +38,66 @@ export interface Recipe {
 export class RestService {
   baseURL: string = environment.baseURL;
 
-  constructor(private http: HttpClient, private oidcSecurityService: OidcSecurityService) { }
+  constructor(private http: HttpClient) { }
 
   get<Type>(url: string): Promise<Type> {
     return new Promise((success) => {
-      //this.http.get<Type>(`${this.baseURL}/${url}`).subscribe((response: Type) => {
-      //  success(response);
-      //});
-      this.oidcSecurityService.getAccessToken().subscribe((token) => {
-        const httpOptions = {
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + token,
-          }),
-        };
-        this.http.get<Type>(`${this.baseURL}/${url}`, httpOptions).subscribe((response: Type) => {
-          success(response);
-        })
-      });
+      this.http.get<Type>(`${this.baseURL}/${url}`).subscribe((response: Type) => {
+        success(response);
+      })
     });
+  }
+  post<Type>(url: string, body: string): Promise<Type> {
+    return new Promise((success) => {
+      this.http.post<Type>(`${this.baseURL}/${url}`, body).subscribe((response: Type) => {
+        success(response);
+      })
+    });
+  }
+  put<Type>(url: string, body: string): Promise<Type> {
+    return new Promise((success) => {
+      this.http.put<Type>(`${this.baseURL}/${url}`, body).subscribe((response: Type) => {
+        success(response);
+      })
+    });
+  }
+  delete<Type>(url: string, body: string): Promise<Type> {
+    return new Promise((success) => {
+      this.http.delete<Type>(`${this.baseURL}/${url}`, {body: body}).subscribe((response: Type) => {
+        success(response);
+      })
+    });
+  }
+
+  // Recipes
+  getAllRecipes() {
+    return this.get<Recipe[]>('recipe')
+  }
+  getSingleRecipes(id: number) {
+    return this.get<Recipe>(`recipe/${id}`)
+  }
+  CreateRecipe(item: Recipe) {
+    return this.post<Recipe>('recipe', JSON.stringify(item))
+  }
+  UpdateRecipe(item: Recipe) {
+    return this.post<Recipe>('recipe', JSON.stringify(item))
+  }
+  DeleteRecipe(item: Recipe) {
+    return this.delete<Recipe>('recipe', JSON.stringify(item))
+  }
+
+  // Ingredients
+  getAllIngredients() {
+    return this.get<Ingredient[]>('/ingredients')
+  }
+  getSingleIngredient(id: number) {
+    return this.get<Ingredient[]>(`/ingredients/${id}`)
+  }
+  createIngredient(item: Ingredient) {
+    return this.post<Ingredient>('/ingredients', JSON.stringify(item))
+  }
+  deleteIngredient(item: Ingredient) {
+    return this.delete<Ingredient>('recipe', JSON.stringify(item))
   }
 }
 
