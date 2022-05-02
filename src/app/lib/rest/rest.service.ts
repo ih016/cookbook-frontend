@@ -19,17 +19,17 @@ export interface IngredientAmount {
   unit: string;
 }
 
-export interface Recipe {
-  id: number;
-  title: string;
-  description: string;
-  method: string;
-  preptime: number;
-  cooktime: number;
-  persons: number;
-  ingredients: Array<Ingredient>;
-  ingredientamounts: Array<IngredientAmount>;
-  tags: Array<Tag>;
+export class Recipe {
+  id: number = 0;
+  title: string = "";
+  description: string = "";
+  method: string = "";
+  preptime: number = 0;
+  cooktime: number = 0;
+  persons: number = 0;
+  ingredients: Array<Ingredient> = [];
+  ingredientamounts: Array<IngredientAmount> = [];
+  tags: Array<Tag> = [];
 }
 
 @Injectable({
@@ -73,7 +73,7 @@ export class RestService {
   getAllRecipes() {
     return this.get<Recipe[]>('recipe')
   }
-  getSingleRecipes(id: number) {
+  getSingleRecipe(id: number) {
     return this.get<Recipe>(`recipe/${id}`)
   }
   CreateRecipe(item: Recipe) {
@@ -88,16 +88,16 @@ export class RestService {
 
   // Ingredients
   getAllIngredients() {
-    return this.get<Ingredient[]>('/ingredients')
+    return this.get<Ingredient[]>('ingredients')
   }
   getSingleIngredient(id: number) {
-    return this.get<Ingredient[]>(`/ingredients/${id}`)
+    return this.get<Ingredient[]>(`ingredients/${id}`)
   }
   createIngredient(item: Ingredient) {
-    return this.post<Ingredient>('/ingredients', JSON.stringify(item))
+    return this.post<Ingredient>('ingredients', JSON.stringify(item))
   }
   deleteIngredient(item: Ingredient) {
-    return this.delete<Ingredient>('recipe', JSON.stringify(item))
+    return this.delete<Ingredient>('ingredients', JSON.stringify(item))
   }
 }
 

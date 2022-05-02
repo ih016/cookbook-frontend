@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe, RestService } from '../rest.service';
+import { Recipe, RestService } from '../lib/rest/rest.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipes',
@@ -8,12 +9,11 @@ import { Recipe, RestService } from '../rest.service';
 })
 export class RecipesComponent implements OnInit {
   recipes: Recipe[] = [];
+  image: string = 'chicken.jpg'
 
-  constructor(private restService: RestService) { }
+  constructor(public router: Router, private restService: RestService) { }
 
   ngOnInit(): void {
-    console.log("init");
     this.restService.getAllRecipes().then((data) => {this.recipes = data; })
   }
-
 }

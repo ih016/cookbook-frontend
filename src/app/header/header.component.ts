@@ -16,6 +16,12 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.menuOptions = [
+      { label: 'Recipes', routerLink: ['/app/recipes'] },
+      { label: 'Ingredients', routerLink: ['/app/ingredients'] },
+      { label: 'Shopping Lists', routerLink: ['/app/shopping'] },
+      { label: 'Mealplanner', routerLink: ['/app/planner['] },
+    ]
   }
 
   goHome() {

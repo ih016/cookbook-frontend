@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AuthConfigModule } from './auth/auth-config.module';
-import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './router/app-routing.module';
+import { AppComponent } from './app-component/app.component';
+import { AuthConfigModule } from './lib/auth/auth-config.module';
 import { RecipesComponent } from './recipes/recipes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -25,15 +24,22 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { MenuModule } from 'primeng/menu';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { SplashscreenComponent } from './splashscreen/splashscreen.component';
+import { CookbookComponent } from './cookbook/cookbook.component';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { IngredientsComponent } from './ingredients/ingredients.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     RecipesComponent,
     LoggedOutComponent,
     HeaderComponent,
+    SplashscreenComponent,
+    CookbookComponent,
+    RecipeDetailComponent,
+    IngredientsComponent,
   ],
   imports: [
     BrowserModule,

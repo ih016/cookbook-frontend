@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: 'https://cookbook-backend.hulsbus.be/v1/'
+  baseURL: 'https://cookbook-backend.hulsbus.be/v1'
 };
 
 /*
