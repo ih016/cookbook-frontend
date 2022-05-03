@@ -1,0 +1,26 @@
+<button pButton label="New" icon="pi pi-plus" class="p-button-outlined p-button-success mr-2" (click)="openDialog()"></button>
+<p-dialog header="New ingredient" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{ width: '50vw'}"
+  [modal]="true" [(visible)]="visible">
+  <ng-template pTemplate="header">
+    Create Ingredient
+  </ng-template>
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="name">Ingredient Name</label>
+        <input id="name" type="text" pInputText [(ngModel)]="ingredient.name" class="form-control" required minlength="4" #name="ngModel" autofocus />
+      </div>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+      
+        <div *ngIf="name.errors?.['required']">
+          Name is required.
+        </div>
+        <div *ngIf="name.errors?.['minlength']">
+          Name must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+  <ng-template pTemplate="footer">
+    <button pButton label="Cancel" icon="pi pi-cross" class="p-button-outlined" (click)="closeDialog()"></button>
+    <button pButton label="Create" icon="pi pi-check" class="p-button-outlined" (click)="createIngredient()" [disabled]="name.invalid"></button>
+  </ng-template>
+</p-dialog>

@@ -2,21 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-export interface Ingredient {
-  id: number;
-  name: string;
+export class Ingredient {
+  id: number = 0;
+  name: string = "";
 }
 
-export interface Tag {
-  id: number;
-  name: string;
+export class Tag {
+  id: number = 0;
+  name: string = "";
 }
 
-export interface IngredientAmount {
-  recipeid: number;
-  ingredientid: number;
-  amount: number;
-  unit: string;
+export class IngredientAmount {
+  recipeid: number = 0;
+  ingredientid: number = 0;
+  amount: number = 0;
+  unit: string = "";
 }
 
 export class Recipe {

@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
         responseType: 'code',
         silentRenew: true,
         useRefreshToken: true,
-        logLevel: LogLevel.Debug,
+        logLevel: LogLevel.Warn,
       },
     }),
   ],

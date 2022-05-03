@@ -6,6 +6,10 @@ import { LoggedOutComponent } from '../logged-out/logged-out.component';
 import { RecipesComponent } from '../recipes/recipes.component';
 import { SplashscreenComponent } from '../splashscreen/splashscreen.component';
 import { RecipeDetailComponent } from '../recipe-detail/recipe-detail.component';
+import { RecipeEditComponent } from '../recipe-edit/recipe-edit.component';
+import { IngredientsComponent } from '../ingredients/ingredients.component';
+import { ShoppingListComponent } from '../shopping-list/shopping-list.component';
+import { MealPlannerComponent } from '../meal-planner/meal-planner.component';
 
 const routes: Routes = [
   {
@@ -24,6 +28,22 @@ const routes: Routes = [
       {
         path: 'recipes/:id',
         component: RecipeDetailComponent,
+      },
+      {
+        path: 'recipes/:id/edit',
+        component: RecipeEditComponent,
+      },
+      {
+        path: 'ingredients',
+        component: IngredientsComponent,
+      },
+      {
+        path: 'shopping',
+        component: ShoppingListComponent,
+      },
+      {
+        path: 'planner',
+        component: MealPlannerComponent,
       },
     ],
   },

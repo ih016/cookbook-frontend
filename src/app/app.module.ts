@@ -1,3 +1,4 @@
+// Setup
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './router/app-routing.module';
@@ -6,8 +7,6 @@ import { AuthConfigModule } from './lib/auth/auth-config.module';
 import { RecipesComponent } from './recipes/recipes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { LoggedOutComponent } from './logged-out/logged-out.component';
-import { HeaderComponent } from './header/header.component';
 
 // REST AUTH
 import { AuthInterceptor } from 'angular-auth-oidc-client';
@@ -24,10 +23,20 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { MenuModule } from 'primeng/menu';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+
+// Components
+import { LoggedOutComponent } from './logged-out/logged-out.component';
+import { HeaderComponent } from './header/header.component';
 import { SplashscreenComponent } from './splashscreen/splashscreen.component';
 import { CookbookComponent } from './cookbook/cookbook.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { MealPlannerComponent } from './meal-planner/meal-planner.component';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { CreateIngredientComponent } from './create-ingredient/create-ingredient.component';
 
 
 @NgModule({
@@ -40,6 +49,10 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
     CookbookComponent,
     RecipeDetailComponent,
     IngredientsComponent,
+    ShoppingListComponent,
+    MealPlannerComponent,
+    RecipeEditComponent,
+    CreateIngredientComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +70,8 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
     ToastModule,
     MenuModule,
     TabMenuModule,
+    TableModule,
+    DialogModule,
   ],
   providers: [
     {
