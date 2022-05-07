@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  authority: '',
+  clientId: '',
+  baseURL: '',
+  backend: '',
 };
 
 /*
