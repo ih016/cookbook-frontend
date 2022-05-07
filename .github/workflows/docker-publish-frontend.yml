@@ -64,11 +64,6 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            - AUTHORITY=${{secrets.AUTHORITY}}
-            - CLIENTID=${{secrets.CLIENTID}}
-            - BASEURL=${{secrets.BASEURL}}
-            - BACKEND=${{secrets.BACKEND}}
 
       - name: Delete production env file
         if: always()

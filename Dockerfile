@@ -1,10 +1,5 @@
 FROM node:lts-alpine as build-stage
 
-ARG AUTHORITY
-ARG CLIENTID
-ARG BASEURL
-ARG BACKEND
-
 WORKDIR /app
 
 COPY package*.json ./
