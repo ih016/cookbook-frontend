@@ -30,7 +30,7 @@ import { EditorModule } from 'primeng/editor';
 import { ChipsModule } from 'primeng/chips';
 import { FileUploadModule } from 'primeng/fileupload';
 import { AvatarModule } from 'primeng/avatar';
-
+import { CardModule } from 'primeng/card';
 
 // Components
 import { AppComponent } from './app-component/app.component';
@@ -48,6 +48,7 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { MealPlannerComponent } from './meal-planner/meal-planner.component';
 import { CreateIngredientComponent } from './create-ingredient/create-ingredient.component';
 import { IngredientEditorComponent } from './ingredient-editor/ingredient-editor.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { IngredientEditorComponent } from './ingredient-editor/ingredient-editor
     RecipeCreateComponent,
     HomeComponent,
     LogoffComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,7 @@ import { IngredientEditorComponent } from './ingredient-editor/ingredient-editor
     ChipsModule,
     FileUploadModule,
     AvatarModule,
+    CardModule,
   ],
   providers: [
     {

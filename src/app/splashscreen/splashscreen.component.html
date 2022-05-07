@@ -1,4 +1,4 @@
-<div class="background">
+<div class="background" [ngStyle]="background">
     <div class="surface-card p-4 shadow-2 border-round w-full lg:w-2 splash">
         <div class="text-center mb-5">
             <img src="assets/images/logos/cb_large.png" alt="Logo Image" height="130" class="mb-3 logo">
@@ -9,13 +9,6 @@
             </button>
         </div>
     </div>
-    <div class="attribute">
-        Background by <a
-            href="https://unsplash.com/@toddquackenbush?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Todd
-            Quackenbush</a> on <a
-            href="https://unsplash.com">Unsplash</a>
+    <div class="attribute" [innerHTML]="images[imageNR].copyright">
     </div>
 </div>
-<!-- <iframe src="https://discord.com/widget?id=199851384944852992&theme=dark" width="350" height="500"
-    allowtransparency="true" frameborder="0"
-    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe> -->

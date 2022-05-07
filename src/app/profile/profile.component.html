@@ -1,0 +1,12 @@
+<div class="profile">
+  <p-card header="Profile">
+    <h3>Work in progress</h3>
+    Name: {{profile.userData.name}}
+    <br/>
+    Email: {{profile.userData.email}}
+    <br />
+    Verified: {{profile.userData.email_verified}}
+    <br />
+    Session expires: {{getDate(profile.userData.exp*1000)}}
+  </p-card>
+</div>

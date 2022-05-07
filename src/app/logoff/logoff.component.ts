@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-logoff',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logoff.component.scss']
 })
 export class LogoffComponent implements OnInit {
+  baseURL: string = environment.baseURL
 
   constructor() { }
 

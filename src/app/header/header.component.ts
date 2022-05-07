@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit {
     { label: 'Shopping Lists', routerLink: ['/app/shopping'] },
     { label: 'Mealplanner', routerLink: ['/app/planner'] },
     { separator: true },
-    { label: 'Logout', icon: "pi pi-sign-out", command: () => this.logoff() }
+    { label: 'Profile', routerLink: ['/app/profile'] },
+    { label: 'Logout', icon: "pi pi-sign-out", command: () => this.logoff() },
   ];
 
   bigMenuOptions: MenuItem[] = [
@@ -27,7 +28,9 @@ export class HeaderComponent implements OnInit {
     { label: 'Mealplanner', routerLink: ['/app/planner'] },
   ];
   userMenuItems: MenuItem[] = [
-    { label: 'Logout', icon: "pi pi-sign-out", command: () => this.logoff() }
+    { label: 'Profile', routerLink: ['/app/profile'] },
+    { separator: true },
+    { label: 'Logout', icon: "pi pi-sign-out", command: () => this.logoff() },
   ];
 
   constructor(private router: Router, private authService: AuthService) {

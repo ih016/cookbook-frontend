@@ -11,6 +11,7 @@ import { ShoppingListComponent } from '../shopping-list/shopping-list.component'
 import { MealPlannerComponent } from '../meal-planner/meal-planner.component';
 import { HomeComponent } from '../home/home.component';
 import { LogoffComponent } from '../logoff/logoff.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
       {
         path: 'planner',
         component: MealPlannerComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
       },
     ],
   },

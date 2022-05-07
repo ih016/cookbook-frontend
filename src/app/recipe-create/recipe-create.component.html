@@ -59,6 +59,6 @@
   </div>
 
   <ng-template pTemplate="footer">
-    <button pButton label="Cancel" icon="pi pi-cross" (click)="closeDialog()"></button>
-    <button pButton label="Create" icon="pi pi-check" (click)="createRecipe()" [disabled]="recipeTitle.invalid || recipeDescription.invalid || recipePreptime.invalid ||recipeCookTime.invalid || recipePersons.invalid"></button>
+    <button pButton class="p-button-outlined" label="Cancel" icon="pi pi-cross" (click)="closeDialog()"></button>
+    <button pButton class="p-button-outlined" label="Create" icon="pi pi-check" (click)="createRecipe()" [disabled]="recipeTitle.invalid || recipeDescription.invalid || recipePreptime.invalid ||recipeCookTime.invalid || recipePersons.invalid"></button>
   </ng-template>
