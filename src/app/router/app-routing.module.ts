@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../lib/auth/auth.guard';
 import { CookbookComponent } from '../cookbook/cookbook.component';
-import { LoggedOutComponent } from '../logged-out/logged-out.component';
 import { RecipesComponent } from '../recipes/recipes.component';
 import { SplashscreenComponent } from '../splashscreen/splashscreen.component';
 import { RecipeDetailComponent } from '../recipe-detail/recipe-detail.component';
@@ -10,6 +9,8 @@ import { RecipeEditComponent } from '../recipe-edit/recipe-edit.component';
 import { IngredientsComponent } from '../ingredients/ingredients.component';
 import { ShoppingListComponent } from '../shopping-list/shopping-list.component';
 import { MealPlannerComponent } from '../meal-planner/meal-planner.component';
+import { HomeComponent } from '../home/home.component';
+import { LogoffComponent } from '../logoff/logoff.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
     component: CookbookComponent,
     canActivate: [AuthGuard],
     children: [
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
       {
         path: 'recipes',
         component: RecipesComponent,
@@ -48,8 +53,8 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'logged-out',
-    component: LoggedOutComponent,
+    path: 'loggedout',
+    component: LogoffComponent,
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

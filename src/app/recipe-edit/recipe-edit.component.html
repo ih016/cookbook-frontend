@@ -1,1 +1,99 @@
-<p>recipe-edit works!</p>
+<div class="surface-ground px-4 py-4 md:px-6 lg:px-8">
+  <div class="flex flex-row flex-wrap">
+    <div class="flex align-items-center cancelButton">
+      <button pButton class="p-button-rounded p-button-text" icon="pi pi-times" (click)="cancelPopup=true"></button>
+    </div>
+    <div class="flex align-items-center saveButton">
+      <button pButton class="p-button-rounded p-button-text" icon="pi pi-check" (click)="saveRecipeUpdate()"></button>
+    </div>
+  </div>
+  <div class="grid grid-nogutter surface-section text-800">
+    <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
+      <section class="container">
+        <div class="field">
+          <label for="title">Recipe Title</label><br />
+          <input pInputText id="title" type="text" class="p-inputtext-lg" placeholder="Recipe title" [(ngModel)]="recipe.title" />
+        </div>
+        <div class="field">
+          <label for="description">Recipe Description</label><br/>
+          <textarea pInputTextarea id="description" [(ngModel)]="recipe.description"></textarea>
+        </div>
+        <div class="field">
+          <img src="assets/icons/knife1.svg" class="p-mr-5" style="height: 20px; margin-right: 7px"/>
+          <p-inputNumber class="p-inputnumber-sm" placeholder="Preparation time" [showButtons]="true" suffix=" Minutes" [(ngModel)]="recipe.preptime"></p-inputNumber>
+        </div>
+        <div class="field">
+          <img src="assets/icons/pot.svg" class="p-mr-5" style="height: 20px; margin-right: 5px" />
+          <p-inputNumber class="p-inputnumber-sm" placeholder="Cooking time" [showButtons]="true" suffix=" Minutes" [(ngModel)]="recipe.cooktime"></p-inputNumber>
+        </div>
+        <div class="field">
+          <i class="pi pi-user p-mr-5" style="margin-right: 10px"></i>
+          <p-inputNumber class="p-inputnumber-sm" placeholder="Amount of persons" [showButtons]="true" suffix=" Persons" [(ngModel)]="recipe.persons" ></p-inputNumber>
+        </div>
+        <!-- <div class="field">
+        {{ recipe.tags }}
+          <p-chips [(ngModel)]="recipe.tags">
+            <ng-template let-item pTemplate="item">
+              <div>
+                <span>{{item.value.name}}</span>
+              </div>
+            </ng-template>
+          </p-chips>
+        </div> -->
+      </section>
+    </div>
+    <div class="col-12 md:col-6 overflow-hidden coverImageContainer">
+      <img src="{{imgUrl}}" onerror="this.src='assets/images/placeholder.png';" alt="Image" class="md:ml-auto block md:h-full cover-image" style="max-height: 458px; clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)">
+      <button pButton icon="pi pi-upload" (click)="fileUploadToggle()" class="coverImageButton"></button>
+    </div>
+  </div>
+  {{recipe.ingredientamounts}}
+  <div class="grid">
+    <div class="col-12 lg:col-6">
+      <div class="p-3 h-full">
+        <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
+          <div class="text-900 font-medium text-xl mb-2">Ingredients</div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <app-ingredient-editor [ingredientamounts]="recipe.ingredientamounts" (updateIngredientAmounts)="updateIngredientAmounts($event)"></app-ingredient-editor>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 lg:col-6">
+      <div class="p-3 h-full">
+        <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
+          <div class="text-900 font-medium text-xl mb-2">Method</div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <p-editor [(ngModel)]="recipe.method" [style]="{'height':'320px'}"></p-editor>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog [(visible)]="fileUpload" [style]="{width: '450px'}" header="Confirm" [modal]="true">
+  <p-fileUpload name="multiplefiles" url="{{api}}/v1/recipe/{{recipe.id}}/upload" accept="image/*" [maxFileSize]="10000000" (onUpload)="onUploadSuccess()" (onError)="onUploadError()">
+  </p-fileUpload>
+</p-dialog>
+
+<p-dialog [(visible)]="cancelPopup" [style]="{width: '450px'}" header="Confirm" [modal]="true">
+  <div class="confirmation-content">
+    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+    <span>Are you sure you want to cancel?</span>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton label="No" icon="pi pi-times" class="p-button-text" (click)="cancelPopup = false"></button>
+    <button pButton label="Yes" icon="pi pi-check" class="p-button-text" [routerLink] = "['/app/recipes/'+recipe.id]"></button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="confirmPopup" [style]="{width: '450px'}" header="Confirm" [modal]="true">
+  <div class="confirmation-content">
+    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+    <span>There are no ingredients or method specified. Are you sure you want to save this?</span>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton label="No" icon="pi pi-times" class="p-button-text" (click)="cancelPopup = false"></button>
+    <button pButton label="Yes" icon="pi pi-check" class="p-button-text" (click)="uploadRecipe()"></button>
+  </ng-template>
+</p-dialog>

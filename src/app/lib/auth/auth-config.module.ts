@@ -6,12 +6,12 @@ import { environment } from 'src/environments/environment';
   imports: [
     AuthModule.forRoot({
       config: {
-        authority: 'https://auth.hulsbus.be',
-        redirectUrl: 'http://localhost:4200/oidc/callback',
-        postLoginRoute: '/app/recipes',
-        secureRoutes: [environment.baseURL],
-        postLogoutRedirectUri: '/',
-        clientId: 'cookbook',
+        authority: `${environment.authority}`,
+        redirectUrl: `${environment.baseURL}/oidc/callback`,
+        postLoginRoute: '/app/home',
+        secureRoutes: [environment.backend],
+        postLogoutRedirectUri: '/loggedout',
+        clientId: `${environment.clientId}`,
         scope: 'openid profile email offline_access',
         responseType: 'code',
         silentRenew: true,

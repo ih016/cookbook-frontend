@@ -1,6 +1,5 @@
 <div>
-  <p-table #ingredientsTable [value]="ingredients" dataKey="id" [paginator]="true" [rows]="10" [globalFilterFields]="['id','name']" [(selection)]="selectedIngredients" filterDisplay="menu" [loading]="loading" responsiveLayout="scroll"
-    [globalFilterFields]="['id','name']" dataKey="id">
+  <p-table #ingredientsTable [value]="ingredients" dataKey="id" [paginator]="true" [rows]="10" [globalFilterFields]="['id','name']" [(selection)]="selectedIngredients" filterDisplay="menu" [loading]="loading" responsiveLayout="scroll">
     <ng-template pTemplate="caption">
       <div class="flex justify-content-between">
         <span>
@@ -10,7 +9,7 @@
         </span>
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
-          <Input type="text" pInputText v-model="filters['global'].value" placeholder="Keyword Search" />
+        <Input type="text" pInputText (input)="ingredientsTable.filterGlobal(getEventValue($event), 'contains')" placeholder="Keyword Search" />
         </span>
       </div>
     </ng-template>
@@ -29,14 +28,14 @@
           <div class="flex justify-content-between align-items-center">
             ID
             <p-sortIcon field="id"></p-sortIcon>
-            <p-columnFilter type="text" field="id" display="menu" class="ml-auto"></p-columnFilter>
+            <p-columnFilter type="text" field="id" display="menu" class="ml-auto" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false"></p-columnFilter>
           </div>
         </th>
         <th pSortableColumn="name">
           <div class="flex justify-content-between align-items-center">
             Name
             <p-sortIcon field="name"></p-sortIcon>
-            <p-columnFilter type="text" field="name" display="menu" class="ml-auto"></p-columnFilter>
+            <p-columnFilter type="text" field="name" display="menu" class="ml-auto" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false"></p-columnFilter>
           </div>
         </th>
         <th>

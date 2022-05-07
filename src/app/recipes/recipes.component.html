@@ -1,8 +1,17 @@
-<div class="container">
-  <div class="grid">
-    <div class="card" *ngFor="let recipe of recipes" routerLink="/app/recipes/{{recipe.id}}">
-      <img alt="Header image" src="assets/images/placeholder/{{image}}">
-      <span class="title">{{ recipe.title }}</span>
+<div class="surface-ground px-4 py-4 md:px-6 lg:px-8">
+  <div class="text-3xl font-medium text-900 header">
+    <span class="title">Recipes</span>
+    <span class="buttons">
+      <app-recipe-create></app-recipe-create>
+    </span>
+  </div>
+  <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+  <div class="container">
+    <div class="grid">
+      <div class="card" *ngFor="let recipe of recipes" routerLink="/app/recipes/{{recipe.id}}">
+        <img alt="Header image" src="{{api}}/images/{{recipe.id}}/cover.jpg" onerror="this.src='assets/images/placeholder.png';" style="max-height: 228.17px">
+        <span class="title">{{ recipe.title }}</span>
+      </div>
     </div>
   </div>
 </div>

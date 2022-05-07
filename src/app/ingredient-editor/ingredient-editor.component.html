@@ -1,0 +1,90 @@
+<p-table #ingredientAmounts [value]="ingredientamounts" dataKey="ingredientid" [(selection)]="selectedIngredients" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,25]" responsiveLayout="scroll">
+  <ng-template pTemplate="caption">
+    <div class="table-header flex flex-column md:flex-row md:justiify-content-between">
+      <button pButton label="New" icon="pi pi-plus" class="p-button-outlined p-button-success mr-2" (click)="openNew()"></button>
+      <button pButton label="Delete" icon="pi pi-trash" class="p-button-outlined p-button-danger" (click)="confirmDeleteSelected()" [disabled]="!selectedIngredients || !selectedIngredients.length"></button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 3rem">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th>Name</th>
+      <th>Amount</th>
+      <th>Unit</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-ingredientamount>
+    <tr class="p-selectable-row">
+      <td>
+        <p-tableCheckbox [value]="ingredientamount"></p-tableCheckbox>
+      </td>
+      <td>{{getIngredientName(ingredientamount)}}</td>
+      <td>{{ingredientamount.amount}}</td>
+      <td>{{ingredientamount.unit}}</td>
+      <td style="text-align: center">
+        <button pButton icon="pi pi-pencil" class="p-button-outlined p-button-rounded p-button-text" (click)="editIngredient(ingredientamount)"></button>
+        <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-text" (click)="confirmDeleteIngredient(ingredientamount)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog [(visible)]="ingredientDialog" [style]="{'width': '450px'}" header="Ingredient Details" [modal]="true" class="p-fluid">
+    <label for="ingredientSelect">Ingredient</label>
+    <p-dropdown id="ingredientSelect" appendTo="body" [options]="ingredients" optionLabel="name" optionValue="id" placeholder="Select ingredient" [(ngModel)]="ingredient.ingredientid" #ingredientSelect="ngModel"></p-dropdown>
+    <div *ngIf="ingredientSelect.invalid && (ingredientSelect.dirty || ingredientSelect.touched)" class="alert">
+    
+      <div *ngIf="ingredientSelect.errors?.['required']">
+        Ingredient is required.
+      </div>
+    </div>
+
+    <label for="amount">Amount</label>
+    <p-inputNumber id="amount" [showButtons]="true" [(ngModel)]="ingredient.amount" class="form-control" #amount="ngModel"></p-inputNumber>
+    <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="alert">
+    
+      <div *ngIf="amount.errors?.['required']">
+        Amount is required.
+      </div>
+    </div>
+
+    <label for="unit">Unit</label>
+    <input type="text" pInputText id="unit" [(ngModel)]="ingredient.unit"c lass="form-control" required minlength="4" #unit="ngModel"/>
+    <div *ngIf="unit.invalid && (unit.dirty || unit.touched)" class="alert">
+    
+      <div *ngIf="unit.errors?.['required']">
+        Unit is required.
+      </div>
+    </div>
+
+  <ng-template pTemplate="footer">
+    <app-create-ingredient (createdIngredient)="getIngredients()"></app-create-ingredient>
+    <button pButton label="Cancel" icon="pi pi-times" class="p-button-outlined p-button-text" (click)="hideDialog()"></button>
+    <button pButton label="Save" icon="pi pi-check" class="p-button-outlined p-button-text" (click)="saveIngredient()" [disabled]="ingredientSelect.invalid || amount.invalid || unit.invalid"></button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="deleteIngredientDialog" [style]="{width: '450px'}" header="Confirm" [modal]="true">
+  <div class="confirmation-content">
+    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+    <span v-if="ingredient">Are you sure you want to delete <b>{{getIngredientName(ingredient)}}</b>?</span>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton label="No" icon="pi pi-times" class="p-button-text" (click)="deleteIngredientDialog = false"></button>
+    <button pButton label="Yes" icon="pi pi-check" class="p-button-text" (click)="deleteIngredient()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="deleteIngredientsDialog" [style]="{width: '450px'}" header="Confirm" [modal]="true">
+  <div class="confirmation-content">
+    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+    <span v-if="selectedIngredients">Are you sure you want to delete the selected ingredients?</span>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton label="No" icon="pi pi-times" class="p-button-outlined p-button-text" (click)="deleteIngredientsDialog = false"></button>
+    <button pButton label="Yes" icon="pi pi-check" class="p-button-outlined p-button-text" (click)="deleteSelectedIngredients()"></button>
+  </ng-template>
+</p-dialog>

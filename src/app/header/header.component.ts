@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from '../lib/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,23 +11,34 @@ import { MenuItem } from 'primeng/api';
 
 export class HeaderComponent implements OnInit {
 
-  menuOptions: MenuItem[];
+  mobileMenuOptions: MenuItem[] = [
+    { label: 'Recipes', routerLink: ['/app/recipes'] },
+    { label: 'Ingredients', routerLink: ['/app/ingredients'] },
+    { label: 'Shopping Lists', routerLink: ['/app/shopping'] },
+    { label: 'Mealplanner', routerLink: ['/app/planner'] },
+    { separator: true },
+    { label: 'Logout', icon: "pi pi-sign-out", command: () => this.logoff() }
+  ];
 
-  constructor() {
-    this.menuOptions = []
+  bigMenuOptions: MenuItem[] = [
+    { label: 'Recipes', routerLink: ['/app/recipes'] },
+    { label: 'Ingredients', routerLink: ['/app/ingredients'] },
+    { label: 'Shopping Lists', routerLink: ['/app/shopping'] },
+    { label: 'Mealplanner', routerLink: ['/app/planner'] },
+  ];
+  userMenuItems: MenuItem[] = [
+    { label: 'Logout', icon: "pi pi-sign-out", command: () => this.logoff() }
+  ];
+
+  constructor(private router: Router, private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.menuOptions = [
-      { label: 'Recipes', routerLink: ['/app/recipes'] },
-      { label: 'Ingredients', routerLink: ['/app/ingredients'] },
-      { label: 'Shopping Lists', routerLink: ['/app/shopping'] },
-      { label: 'Mealplanner', routerLink: ['/app/planner'] },
-    ]
   }
 
-  goHome() {
-    
+  logoff() {
+    this.authService.logout()
+    this.router.navigate(['loggedout']);
   }
 
 }

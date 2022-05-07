@@ -22,8 +22,17 @@ export class IngredientsComponent implements OnInit {
     this.getIngredients()
   }
 
+  // applyFilterGlobal($event: Event, stringVal: string) {
+  //   @ViewChild('ingredientsTable') ingredientsTable: Table | undefined;
+  //   this.ingredientsTable!.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
+  // }
+
+  getEventValue($event: any): string {
+    return $event.target.value;
+  } 
+
   getIngredients() {
-    this.restService.getAllIngredients().then((data) => { this.ingredients = data; this.loading = false })
+    this.restService.GetAllIngredients().then((data) => { this.ingredients = data; this.loading = false })
   }
 
   clearFilter(table: any) {
@@ -39,7 +48,7 @@ export class IngredientsComponent implements OnInit {
     this.deleteIngredientsDialog = true;
   }
   deleteIngredient() {
-    this.restService.deleteIngredient(this.ingredient).then((data) => this.updateSuccess(data)).catch((data) => this.updateFailed(data));
+    this.restService.DeleteIngredient(this.ingredient).then((data) => this.updateSuccess(data)).catch((data) => this.updateFailed(data));
   }
   updateSuccess(data: Ingredient) {
     this.messageService.add({ severity: 'success', summary: 'Update successful', detail: data.name });

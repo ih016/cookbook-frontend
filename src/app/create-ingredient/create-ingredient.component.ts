@@ -32,7 +32,7 @@ export class CreateIngredientComponent implements OnInit {
 
   createIngredient() {
     this.visible = false;
-    this.restService.createIngredient(this.ingredient)
+    this.restService.CreateIngredient(this.ingredient)
     .then((data) => this.createSuccess(data))
     .catch((data) => this.createFailed(data));
     this.ingredient.name = ""

@@ -36,7 +36,7 @@ export class Recipe {
   providedIn: 'root'
 })
 export class RestService {
-  baseURL: string = environment.baseURL;
+  baseURL: string = environment.backend;
 
   constructor(private http: HttpClient) { }
 
@@ -70,34 +70,37 @@ export class RestService {
   }
 
   // Recipes
-  getAllRecipes() {
-    return this.get<Recipe[]>('recipe')
+  GetAllRecipes() {
+    return this.get<Recipe[]>('v1/recipe')
   }
-  getSingleRecipe(id: number) {
-    return this.get<Recipe>(`recipe/${id}`)
+  GetSingleRecipe(id: number) {
+    return this.get<Recipe>(`v1/recipe/${id}`)
+  }
+  GetCoverImage(id: number) {
+    return this.get<File>(`images/${id}/cover.jpg`)
   }
   CreateRecipe(item: Recipe) {
-    return this.post<Recipe>('recipe', JSON.stringify(item))
+    return this.post<Recipe>('v1/recipe', JSON.stringify(item))
   }
   UpdateRecipe(item: Recipe) {
-    return this.post<Recipe>('recipe', JSON.stringify(item))
+    return this.put<Recipe>('v1/recipe', JSON.stringify(item))
   }
   DeleteRecipe(item: Recipe) {
-    return this.delete<Recipe>('recipe', JSON.stringify(item))
+    return this.delete<Recipe>('v1/recipe', JSON.stringify(item))
   }
 
   // Ingredients
-  getAllIngredients() {
-    return this.get<Ingredient[]>('ingredients')
+  GetAllIngredients() {
+    return this.get<Ingredient[]>('v1/ingredients')
   }
-  getSingleIngredient(id: number) {
-    return this.get<Ingredient[]>(`ingredients/${id}`)
+  GetSingleIngredient(id: number) {
+    return this.get<Ingredient[]>(`v1/ingredients/${id}`)
   }
-  createIngredient(item: Ingredient) {
-    return this.post<Ingredient>('ingredients', JSON.stringify(item))
+  CreateIngredient(item: Ingredient) {
+    return this.post<Ingredient>('v1/ingredients', JSON.stringify(item))
   }
-  deleteIngredient(item: Ingredient) {
-    return this.delete<Ingredient>('ingredients', JSON.stringify(item))
+  DeleteIngredient(item: Ingredient) {
+    return this.delete<Ingredient>('v1/ingredients', JSON.stringify(item))
   }
 }
 

@@ -1,6 +1,7 @@
 @media only screen and (max-width: 620px) {
   .show-mobile {
     display: block;
+    width: 100%;
   }
 
   .hide-mobile {
@@ -19,23 +20,25 @@
 }
 
 .header {
+  z-index: 10;
+  width: 100%;
   height: 55px;
   box-shadow: 0px 1px 5px 0px;
-  width: 100%;
-  z-index: 10;
-  padding-top: 5px;
   padding-left: 5px;
+  padding-right: 5px;
   background-color: white;
 }
 
-.title {
-  margin-right: 5px;
-  margin-bottom: 5px;
+.mobileMenu {
+  margin-left: auto;
+}
+
+.menu {
+  margin-right: auto;
 }
 
 .logo {
-  position: relative;
-  top: 6px;
+  max-height: 55px;
 }
 
 .nav {
