@@ -21,7 +21,6 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -33,15 +32,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Make envfile
-        run: |
-          echo $ENV_FILE >> src/environments/environment.prod.ts
-          cat src/environments/environment.prod.ts
-        shell: bash
-        env:
-          ENV_FILE: ${{secrets.ANGULAR_ENVIRONMENT}}
-
 
       # Workaround: https://github.com/docker/build-push-action/issues/461
       - name: Setup Docker buildx
@@ -74,6 +64,11 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            - AUTHORITY=${{secrets.AUTHORITY}}
+            - CLIENTID=${{secrets.CLIENTID}}
+            - BASEURL=${{secrets.BASEURL}}
+            - BACKEND=${{secrets.BACKEND}}
 
       - name: Delete production env file
         if: always()
