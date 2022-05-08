@@ -81,9 +81,7 @@ export class IngredientEditorComponent implements OnInit {
   }
 
   deleteSelectedIngredients() {
-    console.log(this.selectedIngredients)
     let newArray = this.ingredientamounts.filter((object: IngredientAmount) => !this.selectedIngredients.includes(object));
-    console.log(newArray);
     this.updateIngredientAmounts.emit(newArray);
     this.deleteIngredientsDialog = false;
     this.selectedIngredients = [];

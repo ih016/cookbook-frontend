@@ -31,7 +31,6 @@ export class SplashscreenComponent {
   constructor(private authService: AuthService, private oidcSecurityService: OidcSecurityService,) { }
 
   ngOnInit() {
-    console.log(this.background)
     this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
       /*...*/
     });

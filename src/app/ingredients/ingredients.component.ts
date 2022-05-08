@@ -22,11 +22,6 @@ export class IngredientsComponent implements OnInit {
     this.getIngredients()
   }
 
-  // applyFilterGlobal($event: Event, stringVal: string) {
-  //   @ViewChild('ingredientsTable') ingredientsTable: Table | undefined;
-  //   this.ingredientsTable!.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
-  // }
-
   getEventValue($event: any): string {
     return $event.target.value;
   } 
@@ -48,13 +43,22 @@ export class IngredientsComponent implements OnInit {
     this.deleteIngredientsDialog = true;
   }
   deleteIngredient() {
-    this.restService.DeleteIngredient(this.ingredient).then((data) => this.updateSuccess(data)).catch((data) => this.updateFailed(data));
+    this.restService.DeleteIngredient(this.ingredient).then(() => this.updateSuccess()).catch(() => this.updateFailed());
+    this.deleteIngredientDialog = false;
+    this.getIngredients()
   }
-  updateSuccess(data: Ingredient) {
-    this.messageService.add({ severity: 'success', summary: 'Update successful', detail: data.name });
+  deleteIngredients() {
+    for (let i = 0; i < this.selectedIngredients.length; i++) {
+      this.restService.DeleteIngredient(this.selectedIngredients[i]).then(() => this.updateSuccess()).catch(() => this.updateFailed());
+    }
+    this.deleteIngredientsDialog = false;
+    this.getIngredients()
   }
-  updateFailed(data: Ingredient) {
-    this.messageService.add({ severity: 'error', summary: 'Update failed', detail: data.name });
+  updateSuccess() {
+    this.messageService.add({ severity: 'success', summary: 'Update successful' });
+  }
+  updateFailed() {
+    this.messageService.add({ severity: 'error', summary: 'Update failed' });
   }
 
 }

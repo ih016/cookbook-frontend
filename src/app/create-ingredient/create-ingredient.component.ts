@@ -36,11 +36,11 @@ export class CreateIngredientComponent implements OnInit {
     .then((data) => this.createSuccess(data))
     .catch((data) => this.createFailed(data));
     this.ingredient.name = ""
-    this.createdIngredient.emit(true);
   }
-
+  
   createSuccess(data: Ingredient) {
     this.messageService.add({ severity: 'success', summary: 'Created Ingredient', detail: data.name });
+    this.createdIngredient.emit(true);
   }
 
   createFailed(data: Ingredient) {

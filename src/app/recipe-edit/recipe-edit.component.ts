@@ -17,21 +17,24 @@ export class RecipeEditComponent implements OnInit, OnChanges {
   fileUpload: boolean = false;
   api: string = environment.backend;
   imgUrl: string = "";
-  tick!: number;
 
   constructor(private restService: RestService, private messageService: MessageService, private router: Router, private activatedRoute: ActivatedRoute) {
+    this.getImgURL()
     activatedRoute.params.subscribe(params => {
-      this.imgUrl = `${this.api}/images/${ params['id'] }/cover.jpg?d=${this.tick}`;
       this.restService.GetSingleRecipe(params['id']).then((data) => { this.recipe = data; });
     })
   }
 
   ngOnInit(): void {
-    this.tick = Date.now()
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
+  }
+
+  getImgURL() {
+    this.activatedRoute.params.subscribe(params => {
+      this.imgUrl = `${this.api}/images/${params['id']}/cover.jpg?d=${(new Date()).getTime()}`;
+    })
   }
 
   updateIngredientAmounts(ingredientamounts: IngredientAmount[]) {
@@ -60,11 +63,11 @@ export class RecipeEditComponent implements OnInit, OnChanges {
   }
 
   onUploadSuccess() {
+    this.getImgURL()
     this.fileUploadToggle()
     this.messageService.add({
       severity: 'success', summary: 'Success', detail: 'Cover image uploaded', life: 3000,
     });
-    this.tick = Date.now()
   }
 
   onUploadError() {
