@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RestService, Ingredient, IngredientAmount } from '../lib/rest/rest.service';
-import { FormBuilder } from "@angular/forms";
+import { UntypedFormBuilder } from "@angular/forms";
 
 @Component({
   selector: 'app-ingredient-editor',
@@ -20,7 +20,7 @@ export class IngredientEditorComponent implements OnInit {
   deleteIngredientsDialog: boolean = false;
   selectedIngredients: IngredientAmount[] = [];
 
-  constructor(public fb: FormBuilder, private restService: RestService) { }
+  constructor(public fb: UntypedFormBuilder, private restService: RestService) { }
 
   ngOnInit(): void {
     this.getIngredients()

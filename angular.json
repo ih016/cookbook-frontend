@@ -116,5 +116,7 @@
       }
     }
   },
-  "defaultProject": "cookbook-frontend"
+  "cli": {
+    "analytics": false
+  }
 }
