@@ -19,9 +19,8 @@ export class RecipeEditComponent implements OnInit, OnChanges {
   imgUrl: string = "";
 
   constructor(private restService: RestService, private messageService: MessageService, private router: Router, private activatedRoute: ActivatedRoute) {
-    this.getImgURL()
     activatedRoute.params.subscribe(params => {
-      this.restService.GetSingleRecipe(params['id']).then((data) => { this.recipe = data; });
+      this.restService.GetSingleRecipe(params['id']).then((data) => { this.recipe = data; this.getImgURL(); });
     })
   }
 
@@ -33,7 +32,7 @@ export class RecipeEditComponent implements OnInit, OnChanges {
 
   getImgURL() {
     this.activatedRoute.params.subscribe(params => {
-      this.imgUrl = `${this.api}/images/${params['id']}/cover.jpg?d=${(new Date()).getTime()}`;
+      this.imgUrl = `${environment.cdn}/img/${this.recipe.ImageName}.jpg?d=${(new Date()).getTime()}`;
     })
   }
 
@@ -80,7 +79,7 @@ export class RecipeEditComponent implements OnInit, OnChanges {
     this.messageService.add({
       severity: 'success', summary: 'Update successful', detail: 'Recipe updated', life: 3000,
     });
-    this.router.navigate(['app','recipes', this.recipe.id]);
+    this.router.navigate(['app','recipes', this.recipe.ID]);
   }
 
   saveFailed() {

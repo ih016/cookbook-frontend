@@ -3,7 +3,7 @@
   <div class="p-fluid">
     <div class="p-field">
       <label for="recipeTitle">Title</label>
-      <input pInputTextarea #recipeTitle="ngModel" class="form-control" required type="text" id="recipeTitle" type="text" [(ngModel)]="recipe.title" />
+      <input pInputTextarea #recipeTitle="ngModel" class="form-control" required type="text" id="recipeTitle" type="text" [(ngModel)]="recipe.RecipeName" />
       <div *ngIf="recipeTitle.invalid && (recipeTitle.dirty || recipeTitle.touched)" class="alert">
       
         <div *ngIf="recipeTitle.errors?.['required']">
@@ -15,7 +15,7 @@
     <div class="p-field">
       <label for="recipeDescription">Description</label>
       <br />
-      <textarea pInputTextarea #recipeDescription="ngModel" class="form-control" required id="recipeDescription" type="text" [(ngModel)]="recipe.description"></textarea>
+      <textarea pInputTextarea #recipeDescription="ngModel" class="form-control" required id="recipeDescription" type="text" [(ngModel)]="recipe.Description"></textarea>
       <div *ngIf="recipeDescription.invalid && (recipeDescription.dirty || recipeDescription.touched)" class="alert">
       
         <div *ngIf="recipeDescription.errors?.['required']">
@@ -25,19 +25,8 @@
     </div>
 
     <div class="p-field">
-      <label for="recipePreptime">Preparation duration in minutes</label>
-      <p-inputNumber #recipePreptime="ngModel" class="form-control" id="recipePreptime" [(ngModel)]="recipe.preptime" mode="decimal" [min]="0" [showButtons]="true"></p-inputNumber>
-      <div *ngIf="recipePreptime.invalid && (recipePreptime.dirty || recipePreptime.touched)" class="alert">
-      
-        <div *ngIf="recipePreptime.errors?.['required']">
-          Preparation time is required.
-        </div>
-      </div>
-    </div>
-
-    <div class="p-field">
       <label for="recipeCookTime">Cooking duration in minutes</label>
-      <p-inputNumber #recipeCookTime="ngModel" class="form-control"  id="recipeCookTime" [(ngModel)]="recipe.cooktime" mode="decimal" [min]="0" [showButtons]="true"></p-inputNumber>
+      <p-inputNumber #recipeCookTime="ngModel" class="form-control"  id="recipeCookTime" [(ngModel)]="recipe.CookTime" mode="decimal" [min]="0" [showButtons]="true"></p-inputNumber>
       <div *ngIf="recipeCookTime.invalid && (recipeCookTime.dirty || recipeCookTime.touched)" class="alert">
       
         <div *ngIf="recipeCookTime.errors?.['required']">
@@ -47,8 +36,8 @@
     </div>
 
     <div class="p-field">
-      <label for="recipePersons">Amount of persons</label>
-      <p-inputNumber #recipePersons="ngModel" class="form-control" id="recipePersons" [(ngModel)]="recipe.persons" mode="decimal" [min]="0" [showButtons]="true"></p-inputNumber>
+      <label for="recipePersons">Servings</label>
+      <p-inputNumber #recipePersons="ngModel" class="form-control" id="recipePersons" [(ngModel)]="recipe.ServingCount" mode="decimal" [min]="0" [showButtons]="true"></p-inputNumber>
       <div *ngIf="recipePersons.invalid && (recipePersons.dirty || recipePersons.touched)" class="alert">
       
         <div *ngIf="recipePersons.errors?.['required']">
@@ -60,5 +49,5 @@
 
   <ng-template pTemplate="footer">
     <button pButton class="p-button-outlined" label="Cancel" icon="pi pi-cross" (click)="closeDialog()"></button>
-    <button pButton class="p-button-outlined" label="Create" icon="pi pi-check" (click)="createRecipe()" [disabled]="recipeTitle.invalid || recipeDescription.invalid || recipePreptime.invalid ||recipeCookTime.invalid || recipePersons.invalid"></button>
+    <button pButton class="p-button-outlined" label="Create" icon="pi pi-check" (click)="createRecipe()" [disabled]="recipeTitle.invalid || recipeDescription.invalid ||recipeCookTime.invalid || recipePersons.invalid"></button>
   </ng-template>

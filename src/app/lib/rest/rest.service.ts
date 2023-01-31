@@ -23,6 +23,7 @@ export class Recipe {
   ID: number = 0;
   RecipeName: string = "";
   Description: string = "";
+  method: string = "";
   CookTime: number = 0;
   DifficultyLevel: number = 0;
   ServingCount: number = 0;

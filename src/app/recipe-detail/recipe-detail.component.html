@@ -4,26 +4,18 @@
       <button pButton class="p-button-rounded p-button-text" icon="pi pi-arrow-left" [routerLink] = "['/app/recipes']"></button>
     </div>
     <div class="flex align-items-center  editButton">
-      <button pButton class="p-button-rounded p-button-text" icon="pi pi-pencil" [routerLink] = "['/app/recipes/'+recipe.id+'/edit']"></button>
+      <button pButton class="p-button-rounded p-button-text" icon="pi pi-pencil" [routerLink] = "['/app/recipes/'+recipe.ID+'/edit']"></button>
     </div>
   </div>
   <div class="grid grid-nogutter surface-section text-800">
     <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
       <section>
-        <span class="block text-6xl font-bold mb-1">{{ recipe.title }}</span>
-        <p class="mt-0 mb-4 text-700 line-height-3">{{ recipe.description }}</p>
+        <span class="block text-6xl font-bold mb-1">{{ recipe.RecipeName }}</span>
+        <p class="mt-0 mb-4 text-700 line-height-3">{{ recipe.Description }}</p>
         <div class="p-grid p-formgrid p-fluid mt-0 mb-4 text-700 line-height-3">
           <span class="p-col-1">
-            <img src="assets/icons/knife1.svg" class="p-mr-5" style="height: 20px" />
-            {{ recipe.preptime }} Minutes
-          </span>
-          <span class="p-col-1">
-            <img src="assets/icons/pot.svg" class="p-mr-5" style="height: 20px" />
-            {{ recipe.cooktime }} Minutes
-          </span>
-          <span class="p-col-1">
             <i class="pi pi-clock p-mr-5"></i>
-            {{ recipe.preptime+recipe.cooktime }} Minutes
+            {{ recipe.CookTime }} Minutes
           </span>
         </div>
       </section>

@@ -27,7 +27,7 @@ export class RecipeCreateComponent implements OnInit {
     this.visible = false
   }
   createRecipe() {
-    this.restService.CreateRecipe(this.recipe).then((data: Recipe) => this.onUploadSuccess(data.id), this.onUploadError)
+    this.restService.CreateRecipe(this.recipe).then((data: Recipe) => this.onUploadSuccess(data.ID), this.onUploadError)
   }
 
   onUploadSuccess(id: number) {

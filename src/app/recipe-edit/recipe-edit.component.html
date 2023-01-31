@@ -11,24 +11,20 @@
     <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
       <section class="container">
         <div class="field">
-          <label for="title">Recipe Title</label><br />
-          <input pInputText id="title" type="text" class="p-inputtext-lg" placeholder="Recipe title" [(ngModel)]="recipe.title" />
+          <label for="title">Recipe Name</label><br />
+          <input pInputText id="title" type="text" class="p-inputtext-lg" placeholder="Recipe title" [(ngModel)]="recipe.RecipeName" />
         </div>
         <div class="field">
           <label for="description">Recipe Description</label><br/>
-          <textarea pInputTextarea id="description" [(ngModel)]="recipe.description"></textarea>
-        </div>
-        <div class="field">
-          <img src="assets/icons/knife1.svg" class="p-mr-5" style="height: 20px; margin-right: 7px"/>
-          <p-inputNumber class="p-inputnumber-sm" placeholder="Preparation time" [showButtons]="true" suffix=" Minutes" [(ngModel)]="recipe.preptime"></p-inputNumber>
+          <textarea pInputTextarea id="description" [(ngModel)]="recipe.Description"></textarea>
         </div>
         <div class="field">
           <img src="assets/icons/pot.svg" class="p-mr-5" style="height: 20px; margin-right: 5px" />
-          <p-inputNumber class="p-inputnumber-sm" placeholder="Cooking time" [showButtons]="true" suffix=" Minutes" [(ngModel)]="recipe.cooktime"></p-inputNumber>
+          <p-inputNumber class="p-inputnumber-sm" placeholder="Cooking time" [showButtons]="true" suffix=" Minutes" [(ngModel)]="recipe.CookTime"></p-inputNumber>
         </div>
         <div class="field">
           <i class="pi pi-user p-mr-5" style="margin-right: 10px"></i>
-          <p-inputNumber class="p-inputnumber-sm" placeholder="Amount of persons" [showButtons]="true" suffix=" Persons" [(ngModel)]="recipe.persons" ></p-inputNumber>
+          <p-inputNumber class="p-inputnumber-sm" placeholder="Servings" [showButtons]="true" suffix=" Persons" [(ngModel)]="recipe.ServingCount" ></p-inputNumber>
         </div>
         <!-- <div class="field">
         {{ recipe.tags }}
@@ -71,7 +67,7 @@
 </div>
 
 <p-dialog [(visible)]="fileUpload" [style]="{width: '450px'}" header="Confirm" [modal]="true">
-  <p-fileUpload name="multiplefiles" url="{{api}}/v1/recipe/{{recipe.id}}/upload" accept="image/*" [maxFileSize]="10000000" (onUpload)="onUploadSuccess()" (onError)="onUploadError()">
+  <p-fileUpload name="multiplefiles" url="{{api}}/v1/recipe/{{recipe.ID}}/upload" accept="image/*" [maxFileSize]="10000000" (onUpload)="onUploadSuccess()" (onError)="onUploadError()">
   </p-fileUpload>
 </p-dialog>
 
@@ -82,7 +78,7 @@
   </div>
   <ng-template pTemplate="footer">
     <button pButton label="No" icon="pi pi-times" class="p-button-text" (click)="cancelPopup = false"></button>
-    <button pButton label="Yes" icon="pi pi-check" class="p-button-text" [routerLink] = "['/app/recipes/'+recipe.id]"></button>
+    <button pButton label="Yes" icon="pi pi-check" class="p-button-text" [routerLink] = "['/app/recipes/'+recipe.ID]"></button>
   </ng-template>
 </p-dialog>
 

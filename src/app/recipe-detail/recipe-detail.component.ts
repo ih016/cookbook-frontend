@@ -14,8 +14,8 @@ export class RecipeDetailComponent implements OnInit {
 
   constructor(private restService: RestService, private activatedRoute: ActivatedRoute) {
     activatedRoute.params.subscribe(params => {
-      this.imgUrl = `${environment.backend}/images/${params['id']}/cover.jpg`;
-      this.restService.GetSingleRecipe(params['id']).then((data) => { this.recipe = data; });
+      this.restService.GetSingleRecipe(params['id']).then((data) => { this.recipe = data; this.getImage();});
+
     })
   }
 
@@ -23,7 +23,11 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   getIngredientName(id: number) {
-    return this.recipe.ingredients.find(x => x.id === id)!.name
+    return this.recipe.Ingredients.find(x => x.id === id)!.name
+  }
+
+  getImage() {
+    this.imgUrl = `${environment.cdn}/img/${this.recipe.ImageName}.jpg`;
   }
 
 }

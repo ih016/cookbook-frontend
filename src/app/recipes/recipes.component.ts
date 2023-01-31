@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class RecipesComponent implements OnInit {
   recipes: Recipe[] = [];
   api: string = environment.backend
+  cdn: string = environment.cdn
 
   constructor(public router: Router, private restService: RestService) { }
 
