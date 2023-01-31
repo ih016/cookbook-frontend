@@ -20,16 +20,17 @@ export class IngredientAmount {
 }
 
 export class Recipe {
-  id: number = 0;
-  title: string = "";
-  description: string = "";
-  method: string = "";
-  preptime: number = 0;
-  cooktime: number = 0;
-  persons: number = 0;
-  ingredients: Array<Ingredient> = [];
+  ID: number = 0;
+  RecipeName: string = "";
+  Description: string = "";
+  CookTime: number = 0;
+  DifficultyLevel: number = 0;
+  ServingCount: number = 0;
+  Ingredients: Array<Ingredient> = [];
   ingredientamounts: Array<IngredientAmount> = [];
-  tags: Array<Tag> = [];
+  Tags: Array<Tag> = [];
+  Categories: Array<string> = [];
+  ImageName: string = "";
 }
 
 @Injectable({
