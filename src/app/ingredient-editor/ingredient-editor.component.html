@@ -7,7 +7,7 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th style="width: 3rem">
+      <th id="table-header" style="width: 3rem">
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
       <th id="ingredient-name">Name</th>
@@ -22,8 +22,8 @@
         <p-tableCheckbox [value]="ingredientamount"></p-tableCheckbox>
       </td>
       <td>{{getIngredientName(ingredientamount)}}</td>
-      <td>{{ingredientamount.amount}}</td>
-      <td>{{ingredientamount.unit}}</td>
+      <td>{{ingredientamount.Quantity}}</td>
+      <td>{{ingredientamount.Unit}}</td>
       <td style="text-align: center">
         <button pButton icon="pi pi-pencil" class="p-button-outlined p-button-rounded p-button-text" (click)="editIngredient(ingredientamount)"></button>
         <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-text" (click)="confirmDeleteIngredient(ingredientamount)"></button>
@@ -34,7 +34,7 @@
 
 <p-dialog [(visible)]="ingredientDialog" [style]="{'width': '450px'}" header="Ingredient Details" [modal]="true" class="p-fluid">
     <label for="ingredientSelect">Ingredient</label>
-    <p-dropdown id="ingredientSelect" appendTo="body" [options]="ingredients" optionLabel="name" optionValue="id" placeholder="Select ingredient" [(ngModel)]="ingredient.ingredientid" #ingredientSelect="ngModel"></p-dropdown>
+    <p-dropdown id="ingredientSelect" appendTo="body" [options]="ingredients" optionLabel="IngredientName" optionValue="id" placeholder="Select ingredient" [(ngModel)]="ingredient.IngredientID" #ingredientSelect="ngModel"></p-dropdown>
     <div *ngIf="ingredientSelect.invalid && (ingredientSelect.dirty || ingredientSelect.touched)" class="alert">
     
       <div *ngIf="ingredientSelect.errors?.['required']">
@@ -43,7 +43,7 @@
     </div>
 
     <label for="amount">Amount</label>
-    <p-inputNumber id="amount" [showButtons]="true" [(ngModel)]="ingredient.amount" class="form-control" #amount="ngModel"></p-inputNumber>
+    <p-inputNumber id="amount" [showButtons]="true" [(ngModel)]="ingredient.Quantity" class="form-control" #amount="ngModel"></p-inputNumber>
     <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="alert">
     
       <div *ngIf="amount.errors?.['required']">
@@ -52,7 +52,7 @@
     </div>
 
     <label for="unit">Unit</label>
-    <input type="text" pInputText id="unit" [(ngModel)]="ingredient.unit"c lass="form-control" required minlength="4" #unit="ngModel"/>
+    <input type="text" pInputText id="unit" [(ngModel)]="ingredient.Unit"c lass="form-control" required minlength="4" #unit="ngModel"/>
     <div *ngIf="unit.invalid && (unit.dirty || unit.touched)" class="alert">
     
       <div *ngIf="unit.errors?.['required']">

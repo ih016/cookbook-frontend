@@ -24,7 +24,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   getIngredientName(id: number) {
-    return this.recipe.Ingredients.find(x => x.id === id)!.name
+    return this.recipe.Ingredients.find(x => x.id === id)!.IngredientName
   }
 
   getImage() {

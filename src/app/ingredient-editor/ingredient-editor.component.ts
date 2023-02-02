@@ -30,14 +30,14 @@ export class IngredientEditorComponent implements OnInit {
   }
 
   getIngredientName(data: IngredientAmount) {
-    return this.ingredients.find(x => x.id === data.ingredientid)?.name
+    return this.ingredients.find(x => x.id === data.IngredientID)?.IngredientName
   }
 
   openNew() {
-    this.ingredient.ingredientid = 0;
-    this.ingredient.recipeid = 0;
-    this.ingredient.amount = 0;
-    this.ingredient.unit = '';
+    this.ingredient.IngredientID = 0;
+    this.ingredient.RecipeID = 0;
+    this.ingredient.Quantity = 0;
+    this.ingredient.Unit = '';
     this.submitted = false;
     this.ingredientDialog = true;
   }
@@ -64,7 +64,7 @@ export class IngredientEditorComponent implements OnInit {
   saveIngredient() {
     this.submitted = true;
     const i = this.ingredientamounts.findIndex(
-      (x: IngredientAmount) => x.ingredientid === this.ingredient.ingredientid,
+      (x: IngredientAmount) => x.IngredientID === this.ingredient.IngredientID,
     );
     if (i > -1) this.ingredientamounts[i] = this.ingredient;
     else this.ingredientamounts.push(this.ingredient);
@@ -74,7 +74,7 @@ export class IngredientEditorComponent implements OnInit {
   }
 
   deleteIngredient() {
-    this.updateIngredientAmounts.emit(this.ingredientamounts.filter((object: IngredientAmount) => object['ingredientid'] !== this.ingredient.ingredientid));
+    this.updateIngredientAmounts.emit(this.ingredientamounts.filter((object: IngredientAmount) => object['IngredientID'] !== this.ingredient.IngredientID));
     this.deleteIngredientDialog = false;
     this.ingredient = new IngredientAmount;
   }

@@ -2,25 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-export class Ingredient {
-  id: number = 0;
-  name: string = "";
-}
-
-export class Tag {
-  id: number = 0;
-  name: string = "";
-}
-
-export class IngredientAmount {
-  recipeid: number = 0;
-  ingredientid: number = 0;
-  amount: number = 0;
-  unit: string = "";
-}
-
 export class Recipe {
   ID: number = 0;
+  CreatedAt: Date = new Date();
+  UpdatedAt: Date = new Date();
+  DeletedAt: Date = new Date();
   RecipeName: string = "";
   Description: string = "";
   method: string = "";
@@ -28,10 +14,51 @@ export class Recipe {
   DifficultyLevel: number = 0;
   ServingCount: number = 0;
   Ingredients: Array<Ingredient> = [];
-  ingredientamounts: Array<IngredientAmount> = [];
+  IngredientAmounts: Array<IngredientAmount> = [];
   Tags: Array<Tag> = [];
   Categories: Array<string> = [];
   ImageName: string = "";
+}
+
+export class Ingredient {
+  id: number = 0;
+  CreatedAt: Date = new Date();
+  UpdatedAt: Date = new Date();
+  DeletedAt: Date = new Date();
+  IngredientName: string = "";
+}
+
+export class Instruction {
+  id: number = 0;
+  CreatedAt: Date = new Date();
+  UpdatedAt: Date = new Date();
+  DeletedAt: Date = new Date();
+  RecipeID: number = 0;
+  StepNumber: number = 0;
+  Description: string = "";
+}
+
+export class Tag {
+  id: number = 0;
+  CreatedAt: Date = new Date();
+  UpdatedAt: Date = new Date();
+  DeletedAt: Date = new Date();
+  TagName: string = "";
+}
+
+export class Category {
+  id: number = 0;
+  CreatedAt: Date = new Date();
+  UpdatedAt: Date = new Date();
+  DeletedAt: Date = new Date();
+  CategoryName: string = "";
+}
+
+export class IngredientAmount {
+  RecipeID: number = 0;
+  IngredientID: number = 0;
+  Quantity: number = 0;
+  Unit: string = "";
 }
 
 @Injectable({

@@ -35,16 +35,16 @@
           <table>
             <th id="table" style='display:none;'></th>
             <caption style='display:none;'>ingredients table</caption>
-            <div *ngFor="let ingredient of recipe.ingredientamounts">
+            <div *ngFor="let ingredient of recipe.IngredientAmounts">
               <tr>
                 <td class="name">
-                  {{ getIngredientName(ingredient.ingredientid) }}
+                  {{ getIngredientName(ingredient.IngredientID) }}
                 </td>
                 <td class="amount">
-                  {{ ingredient.amount }}
+                  {{ ingredient.Quantity }}
                 </td>
                 <td class="unit">
-                  {{ ingredient.unit }}
+                  {{ ingredient.Unit }}
                 </td>
               </tr>
             </div>

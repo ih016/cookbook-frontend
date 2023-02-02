@@ -27,7 +27,7 @@ export class CreateIngredientComponent implements OnInit {
 
   closeDialog() {
     this.visible = false;
-    this.ingredient.name = ""
+    this.ingredient.IngredientName = ""
   }
 
   createIngredient() {
@@ -35,15 +35,15 @@ export class CreateIngredientComponent implements OnInit {
     this.restService.CreateIngredient(this.ingredient)
     .then((data) => this.createSuccess(data))
     .catch((data) => this.createFailed(data));
-    this.ingredient.name = ""
+    this.ingredient.IngredientName = ""
   }
   
   createSuccess(data: Ingredient) {
-    this.messageService.add({ severity: 'success', summary: 'Created Ingredient', detail: data.name });
+    this.messageService.add({ severity: 'success', summary: 'Created Ingredient', detail: data.IngredientName });
     this.createdIngredient.emit(true);
   }
 
   createFailed(data: Ingredient) {
-    this.messageService.add({ severity: 'error', summary: 'Create failed', detail: data.name });
+    this.messageService.add({ severity: 'error', summary: 'Create failed', detail: data.IngredientName });
   }
 }

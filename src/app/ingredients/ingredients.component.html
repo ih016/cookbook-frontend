@@ -52,11 +52,11 @@
         </td>
         <td>
           <span class="p-column-title">ID</span>
-          {{ingredient.id}}
+          {{ingredient.ID}}
         </td>
         <td>
           <span class="p-column-title">Name</span>
-          {{ingredient.name}}
+          {{ingredient.IngredientName}}
         </td>
         <td style="min-width:3rem;max-width:3rem">
           <Button pButton type="button" icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-text" (click)="confirmDeleteIngredient(ingredient)"></Button>
@@ -71,7 +71,7 @@
       <span *ngIf="ingredient">
         Are you sure you want to delete
         <b>
-          {{ ingredient.name }}
+          {{ ingredient.IngredientName }}
         </b>?
       </span>
     </div>

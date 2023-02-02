@@ -39,7 +39,7 @@ export class RecipeEditComponent implements OnInit, OnChanges {
   }
 
   updateIngredientAmounts(ingredientamounts: IngredientAmount[]) {
-    this.recipe.ingredientamounts = ingredientamounts;
+    this.recipe.IngredientAmounts = ingredientamounts;
   }
 
   cancelRecipeUpdate() {
@@ -50,7 +50,7 @@ export class RecipeEditComponent implements OnInit, OnChanges {
     this.fileUpload = !this.fileUpload;
   }
   saveRecipeUpdate() {
-    if (this.recipe.ingredientamounts.length == 0 || this.recipe.method.length == 0) {
+    if (this.recipe.IngredientAmounts.length == 0 || this.recipe.method.length == 0) {
       this.confirmPopup = true;
     } else {
       this.uploadRecipe();
