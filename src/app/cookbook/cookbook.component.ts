@@ -9,9 +9,12 @@ import { MessageService } from 'primeng/api';
 })
 export class CookbookComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    // This is intentionally empty
+  }
 
   ngOnInit(): void {
+     // This is intentionally empty
   }
 
 }

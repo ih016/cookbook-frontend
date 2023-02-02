@@ -6,7 +6,6 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-recipe-create',
   templateUrl: './recipe-create.component.html',
-  styleUrls: ['./recipe-create.component.scss']
 })
 export class RecipeCreateComponent implements OnInit {
 
@@ -18,6 +17,7 @@ export class RecipeCreateComponent implements OnInit {
   constructor(private restService: RestService, private router: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
+    // This is intentionally empty
   }
 
   openDialog() {

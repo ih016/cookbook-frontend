@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingListComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    // This is intentionally empty
+  }
 
   ngOnInit(): void {
+    // This is intentionally empty
   }
 
 }

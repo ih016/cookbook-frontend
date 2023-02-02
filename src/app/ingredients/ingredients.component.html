@@ -21,24 +21,24 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th style="width: 3rem">
+        <th id="ingredient-checkbox" style="width: 3rem">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th pSortableColumn="id">
+        <th id="ingredient-id" pSortableColumn="id">
           <div class="flex justify-content-between align-items-center">
             ID
             <p-sortIcon field="id"></p-sortIcon>
             <p-columnFilter type="text" field="id" display="menu" class="ml-auto" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false"></p-columnFilter>
           </div>
         </th>
-        <th pSortableColumn="name">
+        <th id="ingredient-name" pSortableColumn="name">
           <div class="flex justify-content-between align-items-center">
             Name
             <p-sortIcon field="name"></p-sortIcon>
             <p-columnFilter type="text" field="name" display="menu" class="ml-auto" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false"></p-columnFilter>
           </div>
         </th>
-        <th>
+        <th id="ingredient-action">
           <div class="flex justify-content-between align-items-center">
             Action
           </div>

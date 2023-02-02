@@ -5,7 +5,6 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-ingredients',
   templateUrl: './ingredients.component.html',
-  styleUrls: ['./ingredients.component.scss'],
 })
 export class IngredientsComponent implements OnInit {
   ingredient: Ingredient = new Ingredient();
@@ -48,8 +47,8 @@ export class IngredientsComponent implements OnInit {
     this.getIngredients()
   }
   deleteIngredients() {
-    for (let i = 0; i < this.selectedIngredients.length; i++) {
-      this.restService.DeleteIngredient(this.selectedIngredients[i]).then(() => this.updateSuccess()).catch(() => this.updateFailed());
+    for (let ingredient of this.selectedIngredients) {
+      this.restService.DeleteIngredient(ingredient).then(() => this.updateSuccess()).catch(() => this.updateFailed());
     }
     this.deleteIngredientsDialog = false;
     this.getIngredients()

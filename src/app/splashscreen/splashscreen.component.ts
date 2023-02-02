@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../lib/auth/auth.service';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
-interface splashfiles {
+interface SplashFiles {
   filename: string
   copyright: string
 }
@@ -16,7 +16,7 @@ interface splashfiles {
 export class SplashscreenComponent {
 
   loginValid: boolean = true
-  images: Array<splashfiles> = [
+  images: Array<SplashFiles> = [
     { filename: '1.jpg', copyright: 'Background by <a href="https://unsplash.com/@toddquackenbush?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Todd Quackenbush</a> on <a href="https://unsplash.com">Unsplash</a>'},
     { filename: '2.jpg', copyright: 'Background by <a href="https://unsplash.com/@jaywennington?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jay Wennington</a> on <a href="https://unsplash.com">Unsplash</a>' },
     { filename: '3.jpg', copyright: 'Background by <a href="https://unsplash.com/@mvdheuvel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Maarten van den Heuvel</a> on <a href="https://unsplash.com">Unsplash</a>' },

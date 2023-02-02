@@ -5,7 +5,6 @@ import { UntypedFormBuilder } from "@angular/forms";
 @Component({
   selector: 'app-ingredient-editor',
   templateUrl: './ingredient-editor.component.html',
-  styleUrls: ['./ingredient-editor.component.scss']
 })
 export class IngredientEditorComponent implements OnInit {
 

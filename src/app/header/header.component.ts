@@ -37,6 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // This is intentionally empty
   }
 
   logoff() {

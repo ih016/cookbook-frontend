@@ -20,6 +20,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // This is intentionally empty
   }
 
   getIngredientName(id: number) {

@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // This is intentionally empty
   }
 
   getDate(time: number) {
