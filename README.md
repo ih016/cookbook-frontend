@@ -1,4 +1,4 @@
-[![Frontend build](https://github.com/ihulsbus/cookbook-frontend/actions/workflows/docker-publish-frontend.yml/badge.svg?branch=master)](https://github.com/ihulsbus/cookbook-frontend/actions/workflows/docker-publish-frontend.yml)
+[![Sonar scan](https://github.com/ihulsbus/cookbook-frontend/actions/workflows/sonar-scan.yml/badge.svg?branch=master)](https://github.com/ihulsbus/cookbook-frontend/actions/workflows/sonar-scan.yml)
 # Cookbook Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
