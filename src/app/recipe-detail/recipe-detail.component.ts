@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe, RestService } from '../lib/rest/rest.service';
+import { IngredientAmount, Instruction, Recipe, RestService } from '../lib/rest/rest.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -11,11 +11,13 @@ import { environment } from 'src/environments/environment';
 export class RecipeDetailComponent implements OnInit {
   recipe: Recipe = new Recipe();
   imgUrl: string = "";
+  amounts: Array<IngredientAmount> = [];
+  instructions: Instruction = new Instruction();
 
   constructor(private restService: RestService, private activatedRoute: ActivatedRoute) {
     activatedRoute.params.subscribe(params => {
       this.restService.GetSingleRecipe(params['id']).then((data) => { this.recipe = data; this.getImage();});
-
+      this.restService.GetInstructions(params['id']).then((data) => { this.instructions = data})
     })
   }
 
@@ -24,7 +26,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   getIngredientName(id: number) {
-    return this.recipe.Ingredients.find(x => x.id === id)!.IngredientName
+    return this.recipe.Ingredients?.find(x => x.id === id)!.IngredientName
   }
 
   getImage() {

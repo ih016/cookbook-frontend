@@ -52,7 +52,7 @@
     </div>
 
     <label for="unit">Unit</label>
-    <input type="text" pInputText id="unit" [(ngModel)]="ingredient.Unit"c lass="form-control" required minlength="4" #unit="ngModel"/>
+    <input type="number" pInputNumber id="unit" [(ngModel)]="ingredient.UnitID"c lass="form-control" required minlength="4" #unit="ngModel"/>
     <div *ngIf="unit.invalid && (unit.dirty || unit.touched)" class="alert">
     
       <div *ngIf="unit.errors?.['required']">

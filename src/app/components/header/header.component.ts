@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { AuthService } from '../lib/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +17,6 @@ export class HeaderComponent implements OnInit {
     { label: 'Mealplanner', routerLink: ['/app/planner'] },
     { separator: true },
     { label: 'Profile', routerLink: ['/app/profile'] },
-    { label: 'Logout', icon: "pi pi-sign-out", command: () => this.logoff() },
   ];
 
   bigMenuOptions: MenuItem[] = [
@@ -30,19 +28,13 @@ export class HeaderComponent implements OnInit {
   userMenuItems: MenuItem[] = [
     { label: 'Profile', routerLink: ['/app/profile'] },
     { separator: true },
-    { label: 'Logout', icon: "pi pi-sign-out", command: () => this.logoff() },
   ];
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
     // This is intentionally empty
-  }
-
-  logoff() {
-    this.authService.logout()
-    this.router.navigate(['loggedout']);
   }
 
 }

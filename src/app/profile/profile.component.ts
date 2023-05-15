@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDataResult, OidcSecurityService } from 'angular-auth-oidc-client';
 
 
 @Component({
@@ -8,11 +7,8 @@ import { UserDataResult, OidcSecurityService } from 'angular-auth-oidc-client';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  profile!: UserDataResult
 
-  constructor(private oidcSecurityService: OidcSecurityService) {
-    this.oidcSecurityService.userData$.subscribe((data) => this.profile = data);
-  }
+  constructor() {}
 
   ngOnInit(): void {
     // This is intentionally empty

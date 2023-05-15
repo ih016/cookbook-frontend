@@ -1,6 +1,6 @@
 import { Component, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RestService, IngredientAmount, Recipe } from '../lib/rest/rest.service';
+import { RestService, IngredientAmount, Recipe, Instruction } from '../lib/rest/rest.service';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 
@@ -17,6 +17,8 @@ export class RecipeEditComponent implements OnInit, OnChanges {
   fileUpload: boolean = false;
   api: string = environment.backend;
   imgUrl: string = "";
+  amounts: Array<IngredientAmount> = [];
+  instructions: Array<Instruction> = [];
 
   constructor(private restService: RestService, private messageService: MessageService, private router: Router, private activatedRoute: ActivatedRoute) {
     activatedRoute.params.subscribe(params => {
@@ -39,7 +41,7 @@ export class RecipeEditComponent implements OnInit, OnChanges {
   }
 
   updateIngredientAmounts(ingredientamounts: IngredientAmount[]) {
-    this.recipe.IngredientAmounts = ingredientamounts;
+    this.amounts = ingredientamounts;
   }
 
   cancelRecipeUpdate() {
@@ -50,7 +52,7 @@ export class RecipeEditComponent implements OnInit, OnChanges {
     this.fileUpload = !this.fileUpload;
   }
   saveRecipeUpdate() {
-    if (this.recipe.IngredientAmounts.length == 0 || this.recipe.method.length == 0) {
+    if (this.amounts.length == 0 || this.instructions.length == 0) {
       this.confirmPopup = true;
     } else {
       this.uploadRecipe();

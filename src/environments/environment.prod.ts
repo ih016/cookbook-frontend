@@ -1,8 +1,13 @@
 export const environment = {
-  authority: 'https://auth.hulsbus.be',
-  clientId: 'cookbook',
   baseURL: 'https://cookbook.hulsbus.be',
   backend: 'https://cookbook-backend.hulsbus.be',
   cdn: 'https://cbhbe.ams3.cdn.digitaloceanspaces.com',
   production: true,
+  auth0: {
+    domain: 'cbhbe-dev.eu.auth0.com',
+    clientId: 'c7eQwqHQJRjdkX0QXjEav5XP6ILGhuIy',
+    redirectUri: window.location.origin,
+    audience: 'cbbhbeapi',
+  },
 };
+

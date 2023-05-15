@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { RestService, Ingredient, IngredientAmount } from '../lib/rest/rest.service';
+import { RestService, Ingredient, IngredientAmount } from '../../lib/rest/rest.service';
 import { UntypedFormBuilder } from "@angular/forms";
 
 @Component({
@@ -37,7 +37,7 @@ export class IngredientEditorComponent implements OnInit {
     this.ingredient.IngredientID = 0;
     this.ingredient.RecipeID = 0;
     this.ingredient.Quantity = 0;
-    this.ingredient.Unit = '';
+    this.ingredient.UnitID = 0;
     this.submitted = false;
     this.ingredientDialog = true;
   }

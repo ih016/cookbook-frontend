@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../lib/auth/auth.guard';
+import { CallbackModule } from '../features/callback/callback.module';
+import { AuthGuard } from '@auth0/auth0-angular';
 import { CookbookComponent } from '../cookbook/cookbook.component';
 import { RecipesComponent } from '../recipes/recipes.component';
 import { SplashscreenComponent } from '../splashscreen/splashscreen.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: '',
     component: SplashscreenComponent,
+  },
+  {
+    path: 'callback',
+    component: CallbackModule,
   },
   {
     path: 'app',

@@ -7,17 +7,15 @@ export class Recipe {
   CreatedAt: Date = new Date();
   UpdatedAt: Date = new Date();
   DeletedAt: Date = new Date();
-  RecipeName: string = "";
-  Description: string = "";
-  method: string = "";
-  CookTime: number = 0;
-  DifficultyLevel: number = 0;
-  ServingCount: number = 0;
-  Ingredients: Array<Ingredient> = [];
-  IngredientAmounts: Array<IngredientAmount> = [];
-  Tags: Array<Tag> = [];
-  Categories: Array<string> = [];
-  ImageName: string = "";
+  RecipeName?: string;
+  Description?: string;
+  CookTime?: number;
+  DifficultyLevel?: number;
+  ServingCount?: number;
+  Ingredients?: Array<Ingredient>;
+  Categories?:  Array<Category>;
+  Tags?: Array<Tag>;
+  ImageName?: string;
 }
 
 export class Ingredient {
@@ -34,7 +32,7 @@ export class Instruction {
   UpdatedAt: Date = new Date();
   DeletedAt: Date = new Date();
   RecipeID: number = 0;
-  StepNumber: number = 0;
+  StepNumber?: number;
   Description: string = "";
 }
 
@@ -58,7 +56,13 @@ export class IngredientAmount {
   RecipeID: number = 0;
   IngredientID: number = 0;
   Quantity: number = 0;
-  Unit: string = "";
+  UnitID: number = 0;
+}
+
+export class Unit {
+  ID: number = 0;
+  FullName: string = "";
+  ShortName: string = "";
 }
 
 @Injectable({
@@ -116,6 +120,9 @@ export class RestService {
   }
   DeleteRecipe(item: Recipe) {
     return this.delete<Recipe>('api/v1/recipe', JSON.stringify(item))
+  }
+  GetInstructions(recipeID: number) {
+    return this.get<Instruction>(`api/v1/recipe/${recipeID}/instruction`)
   }
 
   // Ingredients

@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { AuthService } from '../lib/auth/auth.service';
-import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { LoginButtonComponent } from '../components/login-button/login-button.component';
 
 interface SplashFiles {
   filename: string
@@ -28,15 +27,8 @@ export class SplashscreenComponent {
   background: Object = { 'background-image': `url(/assets/images/splash/${this.images[this.imageNR].filename})`};
   Copyright: string = "";
 
-  constructor(private authService: AuthService, private oidcSecurityService: OidcSecurityService,) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
-      /*...*/
-    });
-  }
+  ngOnInit() {}
 
-  login() {
-    this.authService.login();
-  }
 }

@@ -8,9 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // REST AUTH
-import { AuthInterceptor } from 'angular-auth-oidc-client';
-import { AuthConfigModule } from './lib/auth/auth-config.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 // UI Components
 import { ButtonModule } from 'primeng/button';
@@ -37,7 +37,7 @@ import { AppComponent } from './app-component/app.component';
 import { SplashscreenComponent } from './splashscreen/splashscreen.component';
 import { LogoffComponent } from './logoff/logoff.component';
 import { CookbookComponent } from './cookbook/cookbook.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './home/home.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
@@ -47,8 +47,10 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { MealPlannerComponent } from './meal-planner/meal-planner.component';
 import { CreateIngredientComponent } from './create-ingredient/create-ingredient.component';
-import { IngredientEditorComponent } from './ingredient-editor/ingredient-editor.component';
+import { IngredientEditorComponent } from './features/ingredient-editor/ingredient-editor.component';
 import { ProfileComponent } from './profile/profile.component';
+import { LoginButtonComponent } from './components/login-button/login-button.component';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 
 
 @NgModule({
@@ -69,11 +71,19 @@ import { ProfileComponent } from './profile/profile.component';
     HomeComponent,
     LogoffComponent,
     ProfileComponent,
+    LoginButtonComponent,
+    LogoutButtonComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthConfigModule,
+    AuthModule.forRoot({
+      ...env.auth0,
+      httpInterceptor: {
+        allowedList: [`${env.backend}/api/v1/*`],
+      },
+    }),
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -99,9 +109,9 @@ import { ProfileComponent } from './profile/profile.component';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
