@@ -20,6 +20,10 @@ const routes: Routes = [
     component: SplashscreenComponent,
   },
   {
+    path: 'login',
+    component: SplashscreenComponent,
+  },
+  {
     path: 'callback',
     component: CallbackModule,
   },

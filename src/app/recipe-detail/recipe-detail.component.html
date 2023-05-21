@@ -25,7 +25,6 @@
         style="max-height: 487px; clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)">
     </div>
   </div>
-
   <div class="grid">
     <div class="col-12 lg:col-3">
       <div class="p-3 h-full">
@@ -38,13 +37,15 @@
             <div *ngFor="let ingredient of amounts">
               <tr>
                 <td class="name">
-                  {{ getIngredientName(ingredient.IngredientID) }}
+                  {{ names.get(ingredient.IngredientID) }}
+                </td>
+                <td class="whitespace">
                 </td>
                 <td class="amount">
                   {{ ingredient.Quantity }}
                 </td>
                 <td class="unit">
-                  {{ ingredient.UnitID }}
+                  {{ ingredient.Unit?.FullName }}
                 </td>
               </tr>
             </div>

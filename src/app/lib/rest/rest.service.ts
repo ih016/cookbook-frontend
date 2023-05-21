@@ -12,14 +12,14 @@ export class Recipe {
   CookTime?: number;
   DifficultyLevel?: number;
   ServingCount?: number;
-  Ingredients?: Array<Ingredient>;
+  Ingredients: Array<Ingredient> = [];
   Categories?:  Array<Category>;
   Tags?: Array<Tag>;
   ImageName?: string;
 }
 
 export class Ingredient {
-  id: number = 0;
+  ID: number = 0;
   CreatedAt: Date = new Date();
   UpdatedAt: Date = new Date();
   DeletedAt: Date = new Date();
@@ -57,6 +57,7 @@ export class IngredientAmount {
   IngredientID: number = 0;
   Quantity: number = 0;
   UnitID: number = 0;
+  Unit?: Unit;
 }
 
 export class Unit {
@@ -124,13 +125,16 @@ export class RestService {
   GetInstructions(recipeID: number) {
     return this.get<Instruction>(`api/v1/recipe/${recipeID}/instruction`)
   }
+  GetAmounts(recipeID: number) {
+    return this.get<IngredientAmount[]>(`api/v1/recipe/${recipeID}/ingredients`)
+  }
 
   // Ingredients
   GetAllIngredients() {
     return this.get<Ingredient[]>('api/v1/ingredient')
   }
   GetSingleIngredient(id: number) {
-    return this.get<Ingredient[]>(`api/v1/ingredient/${id}`)
+    return this.get<Ingredient>(`api/v1/ingredient/${id}`)
   }
   CreateIngredient(item: Ingredient) {
     return this.post<Ingredient>('api/v1/ingredient', JSON.stringify(item))

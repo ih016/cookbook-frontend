@@ -30,7 +30,7 @@ export class IngredientEditorComponent implements OnInit {
   }
 
   getIngredientName(data: IngredientAmount) {
-    return this.ingredients.find(x => x.id === data.IngredientID)?.IngredientName
+    return this.ingredients.find(x => x.ID === data.IngredientID)?.IngredientName
   }
 
   openNew() {
