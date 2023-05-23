@@ -23,7 +23,7 @@
       </td>
       <td>{{getIngredientName(ingredientamount)}}</td>
       <td>{{ingredientamount.Quantity}}</td>
-      <td>{{ingredientamount.Unit}}</td>
+      <td>{{unitNames.get(ingredientamount.Unit.ID)}}</td>
       <td style="text-align: center">
         <button pButton icon="pi pi-pencil" class="p-button-outlined p-button-rounded p-button-text" (click)="editIngredient(ingredientamount)"></button>
         <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-text" (click)="confirmDeleteIngredient(ingredientamount)"></button>
@@ -52,10 +52,10 @@
     </div>
 
     <label for="unit">Unit</label>
-    <input type="number" pInputNumber id="unit" [(ngModel)]="ingredient.UnitID"c lass="form-control" required minlength="4" #unit="ngModel"/>
-    <div *ngIf="unit.invalid && (unit.dirty || unit.touched)" class="alert">
+    <p-dropdown id="unitSelect" appendTo="body" [options]="units" optionLabel="FullName" optionValue="id" placeholder="Select unit" [(ngModel)]="ingredient.UnitID" #unitSelect="ngModel"></p-dropdown>
+    <div *ngIf="unitSelect.invalid && (unitSelect.dirty || unitSelect.touched)" class="alert">
     
-      <div *ngIf="unit.errors?.['required']">
+      <div *ngIf="unitSelect.errors?.['required']">
         Unit is required.
       </div>
     </div>
@@ -63,7 +63,7 @@
   <ng-template pTemplate="footer">
     <app-create-ingredient (createdIngredient)="getIngredients()"></app-create-ingredient>
     <button pButton label="Cancel" icon="pi pi-times" class="p-button-outlined p-button-text" (click)="hideDialog()"></button>
-    <button pButton label="Save" icon="pi pi-check" class="p-button-outlined p-button-text" (click)="saveIngredient()" [disabled]="ingredientSelect.invalid || amount.invalid || unit.invalid"></button>
+    <button pButton label="Save" icon="pi pi-check" class="p-button-outlined p-button-text" (click)="saveIngredient()" [disabled]="ingredientSelect.invalid || amount.invalid || unitSelect.invalid"></button>
   </ng-template>
 </p-dialog>
 

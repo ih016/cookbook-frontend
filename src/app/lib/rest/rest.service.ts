@@ -136,6 +136,9 @@ export class RestService {
   GetSingleIngredient(id: number) {
     return this.get<Ingredient>(`api/v1/ingredient/${id}`)
   }
+  GetUnits() {
+    return this.get<Unit[]>("api/v1/ingredient/unit")
+  }
   CreateIngredient(item: Ingredient) {
     return this.post<Ingredient>('api/v1/ingredient', JSON.stringify(item))
   }

@@ -1,6 +1,6 @@
 import { Component, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RestService, IngredientAmount, Recipe, Instruction } from '../lib/rest/rest.service';
+import { RestService, IngredientAmount, Recipe, Instruction, Ingredient } from '../lib/rest/rest.service';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 
@@ -18,11 +18,15 @@ export class RecipeEditComponent implements OnInit, OnChanges {
   api: string = environment.backend;
   imgUrl: string = "";
   amounts: Array<IngredientAmount> = [];
-  instructions: Array<Instruction> = [];
+  instructions: Instruction = new(Instruction);
+  names = new Map<number, string>();
+
 
   constructor(private restService: RestService, private messageService: MessageService, private router: Router, private activatedRoute: ActivatedRoute) {
     activatedRoute.params.subscribe(params => {
-      this.restService.GetSingleRecipe(params['id']).then((data) => { this.recipe = data; this.getImgURL(); });
+      this.restService.GetSingleRecipe(params['id']).then((data) => { this.recipe = data; this.getImgURL(); this.getIngredientNames(this.recipe.Ingredients); });
+      this.restService.GetInstructions(params['id']).then((data) => { this.instructions = data });
+      this.restService.GetAmounts(params['id']).then((data) => { this.amounts = data });
     })
   }
 
@@ -40,6 +44,13 @@ export class RecipeEditComponent implements OnInit, OnChanges {
     })
   }
 
+  getIngredientNames(ingredients: Array<Ingredient>) {
+    for (var ingredient of ingredients) {
+      this.names.set(ingredient.ID, ingredient.IngredientName);
+    };
+
+  }
+
   updateIngredientAmounts(ingredientamounts: IngredientAmount[]) {
     this.amounts = ingredientamounts;
   }
@@ -52,7 +63,7 @@ export class RecipeEditComponent implements OnInit, OnChanges {
     this.fileUpload = !this.fileUpload;
   }
   saveRecipeUpdate() {
-    if (this.amounts.length == 0 || this.instructions.length == 0) {
+    if (this.amounts.length == 0 || this.instructions.Description.length == 0) {
       this.confirmPopup = true;
     } else {
       this.uploadRecipe();

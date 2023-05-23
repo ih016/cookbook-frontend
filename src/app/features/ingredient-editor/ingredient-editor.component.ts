@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { RestService, Ingredient, IngredientAmount } from '../../lib/rest/rest.service';
+import { RestService, Ingredient, IngredientAmount, Unit } from '../../lib/rest/rest.service';
 import { UntypedFormBuilder } from "@angular/forms";
 
 @Component({
@@ -11,22 +11,44 @@ export class IngredientEditorComponent implements OnInit {
   @Input() ingredientamounts: IngredientAmount[] = []
   @Output() updateIngredientAmounts = new EventEmitter<IngredientAmount[]>();
 
-  submitted: boolean = false;
-  ingredient: IngredientAmount = new IngredientAmount();
-  ingredients: Ingredient[] = [];
+  // dialog states
   ingredientDialog: boolean = false;
   deleteIngredientDialog: boolean = false;
   deleteIngredientsDialog: boolean = false;
+  
+  submitted: boolean = false;
+  ingredient: IngredientAmount = new IngredientAmount();
+  ingredients: Ingredient[] = [];
   selectedIngredients: IngredientAmount[] = [];
+  units: Unit[] = [];
+  ingredientNames = new Map<number, string>();
+  unitNames = new Map<number, string>();
 
   constructor(public fb: UntypedFormBuilder, private restService: RestService) { }
 
   ngOnInit(): void {
     this.getIngredients()
+    this.getUnits()
   }
 
   getIngredients() {
-    this.restService.GetAllIngredients().then((data) => { this.ingredients = data; })
+    this.restService.GetAllIngredients().then((data) => { this.ingredients = data; this.getIngredientNames(data); })
+  }
+
+  getUnits() {
+    this.restService.GetUnits().then((data) => {
+      for (var unit of data) {
+        this.unitNames.set(unit.ID, unit.FullName);
+      };
+      this.units = data;
+    });
+  }
+
+  getIngredientNames(ingredients: Array<Ingredient>) {
+    for (var ingredient of ingredients) {
+      this.ingredientNames.set(ingredient.ID, ingredient.IngredientName);
+    };
+
   }
 
   getIngredientName(data: IngredientAmount) {
