@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
     { label: 'Mealplanner', routerLink: ['/app/planner'] },
     { separator: true },
     { label: 'Profile', routerLink: ['/app/profile'] },
+    { label: 'Logout', routerLink: [''] },
   ];
 
   bigMenuOptions: MenuItem[] = [
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit {
   userMenuItems: MenuItem[] = [
     { label: 'Profile', routerLink: ['/app/profile'] },
     { separator: true },
+    { label: 'Logout', routerLink: ['']},
   ];
 
   constructor(private router: Router) {

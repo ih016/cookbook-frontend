@@ -89,6 +89,7 @@ export class RestService {
     });
   }
   put<Type>(url: string, body: string): Promise<Type> {
+    console.log(body)
     return new Promise((success) => {
       this.http.put<Type>(`${this.baseURL}/${url}`, body).subscribe((response: Type) => {
         success(response);
@@ -127,6 +128,9 @@ export class RestService {
   }
   GetAmounts(recipeID: number) {
     return this.get<IngredientAmount[]>(`api/v1/recipe/${recipeID}/ingredients`)
+  }
+  UpdateAmounts(recipeID: number, amounts: IngredientAmount[]) {
+    return this.put<IngredientAmount[]>(`api/v1/recipe/${recipeID}/ingredients`, JSON.stringify(amounts))
   }
 
   // Ingredients

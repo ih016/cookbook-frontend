@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { LoginButtonComponent } from '../components/login-button/login-button.component';
+import { LoginButtonComponent } from '../../components/login-button/login-button.component';
 
 interface SplashFiles {
   filename: string

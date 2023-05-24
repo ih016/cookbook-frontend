@@ -1,0 +1,27 @@
+.footer {
+  z-index: 0;
+  width: 100%;
+  height: 55px;
+  box-shadow: 0px 1px 5px 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: white;
+}
+
+.footerItems {
+  display: block;
+}
+
+.menu {
+  margin-right: auto;
+}
+
+a {
+  margin-left: 5px;
+  font-weight: bold;
+  color: #2c3e50;
+
+  &.router-link-exact-active {
+    color: #42b983;
+  }
+}

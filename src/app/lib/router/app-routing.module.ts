@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CallbackModule } from '../features/callback/callback.module';
+import { CallbackModule } from '../../features/callback/callback.module';
 import { AuthGuard } from '@auth0/auth0-angular';
-import { CookbookComponent } from '../cookbook/cookbook.component';
-import { RecipesComponent } from '../recipes/recipes.component';
-import { SplashscreenComponent } from '../splashscreen/splashscreen.component';
-import { RecipeDetailComponent } from '../recipe-detail/recipe-detail.component';
-import { RecipeEditComponent } from '../recipe-edit/recipe-edit.component';
-import { IngredientsComponent } from '../ingredients/ingredients.component';
-import { ShoppingListComponent } from '../shopping-list/shopping-list.component';
-import { MealPlannerComponent } from '../meal-planner/meal-planner.component';
-import { HomeComponent } from '../home/home.component';
-import { LogoffComponent } from '../logoff/logoff.component';
-import { ProfileComponent } from '../profile/profile.component';
+import { CookbookComponent } from '../../cookbook/cookbook.component';
+import { RecipesComponent } from '../../screens/recipes/recipes.component';
+import { SplashscreenComponent } from '../../screens/splashscreen/splashscreen.component';
+import { RecipeDetailComponent } from '../../screens/recipe-detail/recipe-detail.component';
+import { RecipeEditComponent } from '../../screens/recipe-edit/recipe-edit.component';
+import { IngredientsComponent } from '../../screens/ingredients/ingredients.component';
+import { ShoppingListComponent } from '../../screens/shopping-list/shopping-list.component';
+import { MealPlannerComponent } from '../../screens/meal-planner/meal-planner.component';
+import { HomeComponent } from '../../screens/home/home.component';
+import { LogoffComponent } from '../../screens/logoff/logoff.component';
+import { ProfileComponent } from '../../screens/profile/profile.component';
 
 const routes: Routes = [
   {

@@ -15,9 +15,9 @@ export class IngredientEditorComponent implements OnInit {
   ingredientDialog: boolean = false;
   deleteIngredientDialog: boolean = false;
   deleteIngredientsDialog: boolean = false;
-  
   submitted: boolean = false;
-  ingredient: IngredientAmount = new IngredientAmount();
+
+  newIngredient: IngredientAmount = new IngredientAmount();
   ingredients: Ingredient[] = [];
   selectedIngredients: IngredientAmount[] = [];
   units: Unit[] = [];
@@ -55,22 +55,24 @@ export class IngredientEditorComponent implements OnInit {
     return this.ingredients.find(x => x.ID === data.IngredientID)?.IngredientName
   }
 
+  clearNewIngredient() {
+    this.newIngredient = new IngredientAmount;
+  }
+
   openNew() {
-    this.ingredient.IngredientID = 0;
-    this.ingredient.RecipeID = 0;
-    this.ingredient.Quantity = 0;
-    this.ingredient.UnitID = 0;
+    this.clearNewIngredient()
     this.submitted = false;
     this.ingredientDialog = true;
   }
 
   hideDialog() {
+    this.clearNewIngredient()
     this.ingredientDialog = false;
     this.submitted = false;
   }
 
   confirmDeleteIngredient(ingredientAmount: IngredientAmount) {
-    this.ingredient = ingredientAmount;
+    this.newIngredient = ingredientAmount;
     this.deleteIngredientDialog = true;
   }
 
@@ -79,26 +81,28 @@ export class IngredientEditorComponent implements OnInit {
   }
 
   editIngredient(ingredient: IngredientAmount) {
-    this.ingredient = { ...ingredient };
+    this.newIngredient = { ...ingredient };
     this.ingredientDialog = true;
   }
 
   saveIngredient() {
-    this.submitted = true;
     const i = this.ingredientamounts.findIndex(
-      (x: IngredientAmount) => x.IngredientID === this.ingredient.IngredientID,
-    );
-    if (i > -1) this.ingredientamounts[i] = this.ingredient;
-    else this.ingredientamounts.push(this.ingredient);
-
+      (x: IngredientAmount) => x.IngredientID === this.newIngredient.IngredientID,
+      );
+      console.log(i)
+    if (i > -1) this.ingredientamounts[i] = this.newIngredient;
+    else this.ingredientamounts.push(this.newIngredient);
+      
+    this.submitted = true;
     this.ingredientDialog = false;
-    this.ingredient = new IngredientAmount;
+    this.clearNewIngredient()
+    console.log(this.ingredientamounts)
   }
 
   deleteIngredient() {
-    this.updateIngredientAmounts.emit(this.ingredientamounts.filter((object: IngredientAmount) => object['IngredientID'] !== this.ingredient.IngredientID));
+    this.updateIngredientAmounts.emit(this.ingredientamounts.filter((object: IngredientAmount) => object['IngredientID'] !== this.newIngredient.IngredientID));
     this.deleteIngredientDialog = false;
-    this.ingredient = new IngredientAmount;
+    this.clearNewIngredient()
   }
 
   deleteSelectedIngredients() {

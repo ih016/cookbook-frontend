@@ -23,8 +23,8 @@
       </td>
       <td>{{getIngredientName(ingredientamount)}}</td>
       <td>{{ingredientamount.Quantity}}</td>
-      <td>{{unitNames.get(ingredientamount.Unit.ID)}}</td>
-      <td style="text-align: center">
+      <td>{{unitNames.get(ingredientamount.UnitID)}}</td>
+      <td style="text-align: left">
         <button pButton icon="pi pi-pencil" class="p-button-outlined p-button-rounded p-button-text" (click)="editIngredient(ingredientamount)"></button>
         <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-text" (click)="confirmDeleteIngredient(ingredientamount)"></button>
       </td>
@@ -34,7 +34,7 @@
 
 <p-dialog [(visible)]="ingredientDialog" [style]="{'width': '450px'}" header="Ingredient Details" [modal]="true" class="p-fluid">
     <label for="ingredientSelect">Ingredient</label>
-    <p-dropdown id="ingredientSelect" appendTo="body" [options]="ingredients" optionLabel="IngredientName" optionValue="id" placeholder="Select ingredient" [(ngModel)]="ingredient.IngredientID" #ingredientSelect="ngModel"></p-dropdown>
+    <p-dropdown id="ingredientSelect" appendTo="body" [options]="ingredients" optionLabel="IngredientName" optionValue="ID" placeholder="Select ingredient" [(ngModel)]="newIngredient.IngredientID" #ingredientSelect="ngModel"></p-dropdown>
     <div *ngIf="ingredientSelect.invalid && (ingredientSelect.dirty || ingredientSelect.touched)" class="alert">
     
       <div *ngIf="ingredientSelect.errors?.['required']">
@@ -43,7 +43,7 @@
     </div>
 
     <label for="amount">Amount</label>
-    <p-inputNumber id="amount" [showButtons]="true" [(ngModel)]="ingredient.Quantity" class="form-control" #amount="ngModel"></p-inputNumber>
+    <p-inputNumber id="amount" [showButtons]="true" [(ngModel)]="newIngredient.Quantity" class="form-control" #amount="ngModel"></p-inputNumber>
     <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="alert">
     
       <div *ngIf="amount.errors?.['required']">
@@ -52,7 +52,7 @@
     </div>
 
     <label for="unit">Unit</label>
-    <p-dropdown id="unitSelect" appendTo="body" [options]="units" optionLabel="FullName" optionValue="id" placeholder="Select unit" [(ngModel)]="ingredient.UnitID" #unitSelect="ngModel"></p-dropdown>
+    <p-dropdown id="unitSelect" appendTo="body" [options]="units" optionLabel="FullName" optionValue="ID" placeholder="Select unit" [(ngModel)]="newIngredient.UnitID" #unitSelect="ngModel"></p-dropdown>
     <div *ngIf="unitSelect.invalid && (unitSelect.dirty || unitSelect.touched)" class="alert">
     
       <div *ngIf="unitSelect.errors?.['required']">
@@ -70,7 +70,7 @@
 <p-dialog [(visible)]="deleteIngredientDialog" [style]="{width: '450px'}" header="Confirm" [modal]="true">
   <div class="confirmation-content">
     <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-    <span v-if="ingredient">Are you sure you want to delete <b>{{getIngredientName(ingredient)}}</b>?</span>
+    <span v-if="ingredient">Are you sure you want to delete <b>{{getIngredientName(newIngredient)}}</b>?</span>
   </div>
   <ng-template pTemplate="footer">
     <button pButton label="No" icon="pi pi-times" class="p-button-text" (click)="deleteIngredientDialog = false"></button>

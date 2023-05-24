@@ -1,6 +1,6 @@
 import { Component, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RestService, IngredientAmount, Recipe, Instruction, Ingredient } from '../lib/rest/rest.service';
+import { RestService, IngredientAmount, Recipe, Instruction, Ingredient } from '../../lib/rest/rest.service';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 
@@ -72,6 +72,7 @@ export class RecipeEditComponent implements OnInit, OnChanges {
   
   uploadRecipe() {
     this.confirmPopup = false;
+    this.restService.UpdateAmounts(this.recipe.ID, this.amounts)
     this.restService.UpdateRecipe(this.recipe)
     .then(() => this.saveSuccess(), () => this.saveFailed());
   }

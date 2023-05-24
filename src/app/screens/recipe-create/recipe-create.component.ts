@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService, Recipe } from '../lib/rest/rest.service';
+import { RestService, Recipe } from '../../lib/rest/rest.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 

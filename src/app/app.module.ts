@@ -1,7 +1,7 @@
 // Setup
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './router/app-routing.module';
+import { AppRoutingModule } from './lib/router/app-routing.module';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,23 +34,25 @@ import { CardModule } from 'primeng/card';
 
 // Components
 import { AppComponent } from './app-component/app.component';
-import { SplashscreenComponent } from './splashscreen/splashscreen.component';
-import { LogoffComponent } from './logoff/logoff.component';
+import { SplashscreenComponent } from './screens/splashscreen/splashscreen.component';
+import { LogoffComponent } from './screens/logoff/logoff.component';
 import { CookbookComponent } from './cookbook/cookbook.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './home/home.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { RecipeCreateComponent } from './recipe-create/recipe-create.component';
-import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
-import { IngredientsComponent } from './ingredients/ingredients.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { MealPlannerComponent } from './meal-planner/meal-planner.component';
-import { CreateIngredientComponent } from './create-ingredient/create-ingredient.component';
-import { IngredientEditorComponent } from './features/ingredient-editor/ingredient-editor.component';
-import { ProfileComponent } from './profile/profile.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HomeComponent } from './screens/home/home.component';
+import { RecipesComponent } from './screens/recipes/recipes.component';
+import { RecipeDetailComponent } from './screens/recipe-detail/recipe-detail.component';
+import { RecipeCreateComponent } from './screens/recipe-create/recipe-create.component';
+import { RecipeEditComponent } from './screens/recipe-edit/recipe-edit.component';
+import { IngredientsComponent } from './screens/ingredients/ingredients.component';
+import { ShoppingListComponent } from './screens/shopping-list/shopping-list.component';
+import { MealPlannerComponent } from './screens/meal-planner/meal-planner.component';
+import { CreateIngredientComponent } from './components/create-ingredient/create-ingredient.component';
+import { IngredientEditorComponent } from './components/ingredient-editor/ingredient-editor.component';
+import { ProfileComponent } from './screens/profile/profile.component';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+
 
 
 @NgModule({
@@ -58,6 +60,7 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
     AppComponent,
     RecipesComponent,
     HeaderComponent,
+    FooterComponent,
     SplashscreenComponent,
     CookbookComponent,
     RecipeDetailComponent,

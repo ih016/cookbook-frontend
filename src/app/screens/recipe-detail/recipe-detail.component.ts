@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Ingredient, IngredientAmount, Instruction, Recipe, RestService } from '../lib/rest/rest.service';
+import { Ingredient, IngredientAmount, Instruction, Recipe, RestService } from '../../lib/rest/rest.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
