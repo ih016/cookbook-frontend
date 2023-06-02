@@ -38,7 +38,6 @@ import { SplashscreenComponent } from './screens/splashscreen/splashscreen.compo
 import { LogoffComponent } from './screens/logoff/logoff.component';
 import { CookbookComponent } from './cookbook/cookbook.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './screens/home/home.component';
 import { RecipesComponent } from './screens/recipes/recipes.component';
 import { RecipeDetailComponent } from './screens/recipe-detail/recipe-detail.component';
@@ -60,7 +59,6 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
     AppComponent,
     RecipesComponent,
     HeaderComponent,
-    FooterComponent,
     SplashscreenComponent,
     CookbookComponent,
     RecipeDetailComponent,
