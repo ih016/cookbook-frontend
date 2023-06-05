@@ -13,24 +13,26 @@ import { environment as env } from '../environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 // UI Components
+import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { SplitButtonModule } from 'primeng/splitbutton';
+import { CardModule } from 'primeng/card';
+import { ChipModule } from 'primeng/chip';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
+import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { DropdownModule } from 'primeng/dropdown';
-import { ToastModule } from 'primeng/toast';
 import { MenuModule } from 'primeng/menu';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { ToastModule } from 'primeng/toast';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { TagModule } from 'primeng/tag';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { TableModule } from 'primeng/table';
-import { DialogModule } from 'primeng/dialog';
-import { EditorModule } from 'primeng/editor';
-import { ChipsModule } from 'primeng/chips';
-import { FileUploadModule } from 'primeng/fileupload';
-import { AvatarModule } from 'primeng/avatar';
-import { CardModule } from 'primeng/card';
 
 // Components
 import { AppComponent } from './app-component/app.component';
@@ -41,7 +43,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './screens/home/home.component';
 import { RecipesComponent } from './screens/recipes/recipes.component';
 import { RecipeDetailComponent } from './screens/recipe-detail/recipe-detail.component';
-import { RecipeCreateComponent } from './screens/recipe-create/recipe-create.component';
+import { RecipeCreateComponent } from './components/recipe-create/recipe-create.component';
 import { RecipeEditComponent } from './screens/recipe-edit/recipe-edit.component';
 import { IngredientsComponent } from './screens/ingredients/ingredients.component';
 import { ShoppingListComponent } from './screens/shopping-list/shopping-list.component';
@@ -84,28 +86,30 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
         allowedList: [`${env.backend}/api/v1/*`],
       },
     }),
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
+    AvatarModule,
     BrowserAnimationsModule,
     ButtonModule,
-    RadioButtonModule,
-    SplitButtonModule,
+    CardModule,
+    ChipModule,
+    DialogModule,
+    DropdownModule,
+    EditorModule,
+    FileUploadModule,
+    FormsModule,
+    HttpClientModule,
     InputTextModule,
     InputTextareaModule,
     InputNumberModule,
-    DropdownModule,
-    ToastModule,
     MenuModule,
+    MultiSelectModule,
+    ReactiveFormsModule,
+    RadioButtonModule,
+    SplitButtonModule,
+    TableModule,
+    TagModule,
     TabMenuModule,
     TieredMenuModule,
-    TableModule,
-    DialogModule,
-    EditorModule,
-    ChipsModule,
-    FileUploadModule,
-    AvatarModule,
-    CardModule,
+    ToastModule,
   ],
   providers: [
     {

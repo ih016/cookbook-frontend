@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService, Recipe } from '../../lib/rest/rest.service';
+import { RestService, Recipe, Instruction } from '../../lib/rest/rest.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
@@ -13,6 +13,7 @@ export class RecipeCreateComponent implements OnInit {
   submitted: boolean = false;
   recipe: Recipe = new Recipe();
   validationErrors: {} = {};
+  InstructionTemplate: Instruction = new(Instruction);
 
   constructor(private restService: RestService, private router: Router, private messageService: MessageService) { }
 
@@ -27,10 +28,18 @@ export class RecipeCreateComponent implements OnInit {
     this.visible = false
   }
   createRecipe() {
-    this.restService.CreateRecipe(this.recipe).then((data: Recipe) => this.onUploadSuccess(data.ID), this.onUploadError)
+    let id: number = 0
+    console.log(this.recipe)
+    this.restService.CreateRecipe(this.recipe).then(
+      (data: Recipe) => {
+        this.InstructionTemplate.RecipeID = data.ID;
+        this.restService.CreateInstructions(data.ID, this.InstructionTemplate);
+        this.onUploadSuccess(data.ID);
+      }, this.onUploadError)
   }
 
   onUploadSuccess(id: number) {
+   
     this.messageService.add({
       severity: 'success', summary: 'Success', detail: 'Recipe created', life: 3000,
     });

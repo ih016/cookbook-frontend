@@ -13,10 +13,31 @@
         <span class="block text-6xl font-bold mb-1">{{ recipe.RecipeName }}</span>
         <p class="mt-0 mb-4 text-700 line-height-3">{{ recipe.Description }}</p>
         <div class="p-grid p-formgrid p-fluid mt-0 mb-4 text-700 line-height-3">
-          <span class="p-col-1">
-            <i class="pi pi-clock p-mr-5"></i>
-            {{ recipe.CookTime }} Minutes
-          </span>
+          <div>
+            <span class="p-row-1">
+              <i class="pi pi-clock p-mr-5"></i>
+              {{ recipe.CookTime }} Minutes
+            </span>
+            <br>
+            <span class="p-row-1">
+              <i class="pi pi-user p-mr-5"></i>
+              {{ recipe.ServingCount }} persons
+            </span>
+          </div>
+          <div class="mt-8">
+            <span *ngFor="let category of recipe.Categories" class="p-row-1">
+              <p-chip label="{{category.CategoryName}}" styleClass="bg-blue-100" [style]="{'margin-right': '0.5rem'}"></p-chip>
+            </span>
+          </div>
+          <div class="mt-1">
+            <span *ngFor="let tag of recipe.Tags" class="p-row-1 mt-1">
+              <p-tag value="{{tag.TagName}}" [rounded]="true" [style]="{'margin-right': '0.5rem'}"></p-tag>
+            </span>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="p-grid p-formgrid p-fluid mt-0 mb-4 text-700 line-height-3">
         </div>
       </section>
     </div>

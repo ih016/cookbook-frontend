@@ -1,6 +1,6 @@
 import { Component, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RestService, IngredientAmount, Recipe, Instruction, Ingredient } from '../../lib/rest/rest.service';
+import { RestService, IngredientAmount, Recipe, Instruction, Ingredient, Category, Tag } from '../../lib/rest/rest.service';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 
@@ -20,6 +20,8 @@ export class RecipeEditComponent implements OnInit, OnChanges {
   amounts: Array<IngredientAmount> = [];
   instructions: Instruction = new(Instruction);
   names = new Map<number, string>();
+  categories: Category[] = [];
+  tags: Tag[] = [];
 
 
   constructor(private restService: RestService, private messageService: MessageService, private router: Router, private activatedRoute: ActivatedRoute) {
@@ -27,6 +29,12 @@ export class RecipeEditComponent implements OnInit, OnChanges {
       this.restService.GetSingleRecipe(params['id']).then((data) => { this.recipe = data; this.getImgURL(); this.getIngredientNames(this.recipe.Ingredients); });
       this.restService.GetInstructions(params['id']).then((data) => { this.instructions = data });
       this.restService.GetAmounts(params['id']).then((data) => { this.amounts = data });
+      this.restService.GetAllCategories().then((data) => this.categories = data, () => this.messageService.add({
+        severity: 'error', summary: 'category retrieval failed', detail: 'failed to retrieve list of categories', life: 3000,
+      }));
+      this.restService.GetAllTags().then((data) => this.tags = data, () => this.messageService.add({
+        severity: 'error', summary: 'tag retrieval failed', detail: 'failed to retrieve list of tags', life: 3000,
+      }));
     })
   }
 
@@ -55,6 +63,10 @@ export class RecipeEditComponent implements OnInit, OnChanges {
     this.amounts = ingredientamounts;
   }
 
+  updateCategories(categories: Category[]) {
+    
+  }
+
   cancelRecipeUpdate() {
     this.cancelPopup = true;
   }
@@ -72,8 +84,9 @@ export class RecipeEditComponent implements OnInit, OnChanges {
   
   uploadRecipe() {
     this.confirmPopup = false;
-    this.restService.UpdateAmounts(this.recipe.ID, this.amounts)
-    this.restService.UpdateRecipe(this.recipe)
+    this.restService.UpdateAmounts(this.recipe.ID, this.amounts);
+    this.restService.UpdateRecipe(this.recipe.ID, this.recipe)
+    this.restService.UpdateInstructions(this.recipe.ID, this.instructions)
     .then(() => this.saveSuccess(), () => this.saveFailed());
   }
 

@@ -4,51 +4,50 @@ import { environment } from 'src/environments/environment';
 
 export class Recipe {
   ID: number = 0;
-  CreatedAt: Date = new Date();
-  UpdatedAt: Date = new Date();
-  DeletedAt: Date = new Date();
+  CreatedAt?: Date;
+  UpdatedAt?: Date;
+  DeletedAt?: Date;
   RecipeName?: string;
   Description?: string;
   CookTime?: number;
   DifficultyLevel?: number;
   ServingCount?: number;
   Ingredients: Array<Ingredient> = [];
-  Categories?:  Array<Category>;
+  Categories:  Array<Category> =[];
   Tags?: Array<Tag>;
   ImageName?: string;
 }
 
 export class Ingredient {
   ID: number = 0;
-  CreatedAt: Date = new Date();
-  UpdatedAt: Date = new Date();
-  DeletedAt: Date = new Date();
+  CreatedAt?: Date;
+  UpdatedAt?: Date;
+  DeletedAt?: Date;
   IngredientName: string = "";
 }
 
 export class Instruction {
   id: number = 0;
-  CreatedAt: Date = new Date();
-  UpdatedAt: Date = new Date();
-  DeletedAt: Date = new Date();
+  CreatedAt?: Date;
+  UpdatedAt?: Date;
+  DeletedAt?: Date;
   RecipeID: number = 0;
-  StepNumber?: number;
   Description: string = "";
 }
 
 export class Tag {
   id: number = 0;
-  CreatedAt: Date = new Date();
-  UpdatedAt: Date = new Date();
-  DeletedAt: Date = new Date();
+  CreatedAt?: Date;
+  UpdatedAt?: Date;
+  DeletedAt?: Date;
   TagName: string = "";
 }
 
 export class Category {
   id: number = 0;
-  CreatedAt: Date = new Date();
-  UpdatedAt: Date = new Date();
-  DeletedAt: Date = new Date();
+  CreatedAt?: Date;
+  UpdatedAt?: Date;
+  DeletedAt?: Date;
   CategoryName: string = "";
 }
 
@@ -117,14 +116,20 @@ export class RestService {
   CreateRecipe(item: Recipe) {
     return this.post<Recipe>('api/v1/recipe', JSON.stringify(item))
   }
-  UpdateRecipe(item: Recipe) {
-    return this.put<Recipe>('api/v1/recipe', JSON.stringify(item))
+  UpdateRecipe(id: number, item: Recipe) {
+    return this.put<Recipe>(`api/v1/recipe/${id}`, JSON.stringify(item))
   }
   DeleteRecipe(item: Recipe) {
     return this.delete<Recipe>('api/v1/recipe', JSON.stringify(item))
   }
   GetInstructions(recipeID: number) {
     return this.get<Instruction>(`api/v1/recipe/${recipeID}/instruction`)
+  }
+  CreateInstructions(recipeID: number, instruction: Instruction) {
+    return this.post<Instruction>(`api/v1/recipe/${recipeID}/instruction`, JSON.stringify(instruction))
+  }
+  UpdateInstructions(recipeID: number, instruction: Instruction) {
+    return this.put<Instruction>(`api/v1/recipe/${recipeID}/instruction`, JSON.stringify(instruction))
   }
   GetAmounts(recipeID: number) {
     return this.get<IngredientAmount[]>(`api/v1/recipe/${recipeID}/ingredients`)
@@ -148,6 +153,16 @@ export class RestService {
   }
   DeleteIngredient(item: Ingredient) {
     return this.delete<Ingredient>('api/v1/ingredient', JSON.stringify(item))
+  }
+
+  // Tags
+  GetAllTags() {
+    return this.get<Tag[]>('api/v1/tag')
+  }
+
+  // Categories
+  GetAllCategories() {
+    return this.get<Category[]>('api/v1/category')
   }
 }
 

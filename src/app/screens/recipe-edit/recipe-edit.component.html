@@ -11,31 +11,26 @@
     <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
       <section class="container">
         <div class="field">
-          <label for="title">Recipe Name</label><br />
+          <label for="title">Name</label><br />
           <input pInputText id="title" type="text" class="p-inputtext-lg" placeholder="Recipe title" [(ngModel)]="recipe.RecipeName" />
         </div>
         <div class="field">
-          <label for="description">Recipe Description</label><br/>
+          <label for="description">Description</label><br/>
           <textarea pInputTextarea id="description" [(ngModel)]="recipe.Description"></textarea>
         </div>
         <div class="field">
-          <img src="assets/icons/pot.svg" class="p-mr-5" style="height: 20px; margin-right: 5px" alt="pot icon"/>
+          <i class="pi pi-clock p-mr-5" style="margin-right: 10px"></i>
           <p-inputNumber class="p-inputnumber-sm" placeholder="Cooking time" [showButtons]="true" suffix=" Minutes" [(ngModel)]="recipe.CookTime"></p-inputNumber>
         </div>
         <div class="field">
           <i class="pi pi-user p-mr-5" style="margin-right: 10px"></i>
           <p-inputNumber class="p-inputnumber-sm" placeholder="Servings" [showButtons]="true" suffix=" Persons" [(ngModel)]="recipe.ServingCount" ></p-inputNumber>
         </div>
-        <!-- <div class="field">
-        {{ recipe.tags }}
-          <p-chips [(ngModel)]="recipe.tags">
-            <ng-template let-item pTemplate="item">
-              <div>
-                <span>{{item.value.name}}</span>
-              </div>
-            </ng-template>
-          </p-chips>
-        </div> -->
+        <p-multiSelect [options]="categories" [(ngModel)]="recipe.Categories" defaultLabel="Select a Category"
+          optionLabel="CategoryName" display="chip"></p-multiSelect>
+        <br>
+        <p-multiSelect [options]="tags" [(ngModel)]="recipe.Tags" defaultLabel="Select a tag"
+          optionLabel="TagName" display="chip"></p-multiSelect>
       </section>
     </div>
     <div class="col-12 md:col-6 overflow-hidden coverImageContainer">
