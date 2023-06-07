@@ -27,6 +27,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { MenuModule } from 'primeng/menu';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { SidebarModule } from 'primeng/sidebar';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToastModule } from 'primeng/toast';
 import { TabMenuModule } from 'primeng/tabmenu';
@@ -41,7 +42,7 @@ import { LogoffComponent } from './screens/logoff/logoff.component';
 import { CookbookComponent } from './cookbook/cookbook.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './screens/home/home.component';
-import { RecipesComponent } from './screens/recipes/recipes.component';
+import { RecipesGridComponent } from './components/recipe-grid/recipe-grid.component';
 import { RecipeDetailComponent } from './screens/recipe-detail/recipe-detail.component';
 import { RecipeCreateComponent } from './components/recipe-create/recipe-create.component';
 import { RecipeEditComponent } from './screens/recipe-edit/recipe-edit.component';
@@ -53,13 +54,15 @@ import { IngredientEditorComponent } from './components/ingredient-editor/ingred
 import { ProfileComponent } from './screens/profile/profile.component';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+import { FilteringSidebarComponent } from './components/filtering-sidebar/filtering-sidebar.component';
+import { RecipeBrowserComponent } from './screens/recipe-browser/recipe-browser.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RecipesComponent,
+    RecipesGridComponent,
     HeaderComponent,
     SplashscreenComponent,
     CookbookComponent,
@@ -76,6 +79,8 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
     ProfileComponent,
     LoginButtonComponent,
     LogoutButtonComponent,
+    FilteringSidebarComponent,
+    RecipeBrowserComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,6 +109,7 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
     MultiSelectModule,
     ReactiveFormsModule,
     RadioButtonModule,
+    SidebarModule,
     SplitButtonModule,
     TableModule,
     TagModule,

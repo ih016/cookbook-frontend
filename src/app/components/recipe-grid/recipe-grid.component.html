@@ -1,0 +1,38 @@
+<div class="surface-ground px-4 py-4 md:px-6 lg:px-8">
+  <div class="text-3xl font-medium text-900 header">
+    <span class="title">Recipes</span>
+    <span class="buttons">
+      <app-recipe-create></app-recipe-create>
+    </span>
+  </div>
+  <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+  <div class="container">
+    <div class="grid">
+      <!-- <div class="card" *ngFor="let recipe of recipes" routerLink="/app/recipes/{{recipe.ID}}">
+        <img alt="Header image" src="{{cdn}}/img/{{recipe.ImageName}}.jpg" onerror="this.src='assets/images/placeholder.png';" style="max-height: 228.17px">
+        <span class="title">{{ recipe.RecipeName }}</span>
+      </div> -->
+      <p-card *ngFor="let recipe of recipes" header="{{recipe.RecipeName}}" routerLink="/app/recipes/{{recipe.ID}}">
+        <ng-template pTemplate="header">
+          <img alt="Header image" src="{{cdn}}/img/{{recipe.ImageName}}.jpg" onerror="this.src='assets/images/placeholder.png';"
+            style="height: 228.17px; object-fit: cover;">
+        </ng-template>
+        <p class="m-0">
+          {{recipe.Description}}
+        </p>
+        <ng-template pTemplate="footer">
+          <div>
+            <span *ngFor="let category of recipe.Categories" class="p-row-1">
+              <p-chip label="{{category.CategoryName}}" styleClass="bg-blue-100" [style]="{'margin-right': '0.5rem'}"></p-chip>
+            </span>
+          </div>
+          <div class="mt-1">
+            <span *ngFor="let tag of recipe.Tags" class="p-row-1 mt-1">
+              <p-tag value="{{tag.TagName}}" [rounded]="true" [style]="{'margin-right': '0.5rem'}"></p-tag>
+            </span>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>

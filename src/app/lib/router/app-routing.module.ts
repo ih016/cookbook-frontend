@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { CallbackModule } from '../../features/callback/callback.module';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { CookbookComponent } from '../../cookbook/cookbook.component';
-import { RecipesComponent } from '../../screens/recipes/recipes.component';
 import { SplashscreenComponent } from '../../screens/splashscreen/splashscreen.component';
 import { RecipeDetailComponent } from '../../screens/recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from '../../screens/recipe-edit/recipe-edit.component';
@@ -13,6 +12,7 @@ import { MealPlannerComponent } from '../../screens/meal-planner/meal-planner.co
 import { HomeComponent } from '../../screens/home/home.component';
 import { LogoffComponent } from '../../screens/logoff/logoff.component';
 import { ProfileComponent } from '../../screens/profile/profile.component';
+import { RecipeBrowserComponent } from 'src/app/screens/recipe-browser/recipe-browser.component';
 
 const routes: Routes = [
   {
@@ -38,7 +38,7 @@ const routes: Routes = [
       },
       {
         path: 'recipes',
-        component: RecipesComponent,
+        component: RecipeBrowserComponent,
       },
       {
         path: 'recipes/:id',
