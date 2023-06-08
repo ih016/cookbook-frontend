@@ -1,4 +1,4 @@
-import { Component, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RestService, IngredientAmount, Recipe, Instruction, Ingredient, Category, Tag } from '../../lib/rest/rest.service';
 import { MessageService } from 'primeng/api';
@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './recipe-edit.component.html',
   styleUrls: ['./recipe-edit.component.scss']
 })
-export class RecipeEditComponent implements OnInit, OnChanges {
+export class RecipeEditComponent implements OnInit {
 
   recipe: Recipe = new Recipe;
   cancelPopup: boolean = false;
@@ -39,10 +39,6 @@ export class RecipeEditComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    // This is intentionally empty
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
     // This is intentionally empty
   }
 
