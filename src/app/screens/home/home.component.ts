@@ -11,11 +11,8 @@ import { AuthService } from '@auth0/auth0-angular';
 export class HomeComponent implements OnInit {
   allRecipes: Recipe[] = [];
 
-  constructor(private restService: RestService, private messageService: MessageService, public authService: AuthService) {
-    // This is intentionally empty
-  }
+  constructor(private restService: RestService, private messageService: MessageService, public authService: AuthService) {}
 
-  
   welcomeText: string = ""
 
   ngOnInit(): void {
@@ -24,6 +21,7 @@ export class HomeComponent implements OnInit {
     }, () => {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Unable to retrieve recipes' });
     })
+    this.welcome()
   }
 
   welcome() {
