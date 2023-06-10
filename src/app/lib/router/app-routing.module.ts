@@ -66,10 +66,6 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'loggedout',
-    component: LogoffComponent,
-  },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

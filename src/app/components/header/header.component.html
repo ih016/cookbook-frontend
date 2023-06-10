@@ -16,12 +16,12 @@
         <img src="assets/images/logos/cb_large.png" alt="Logo Image" class="logo">
       </div>
       <div class="flex align-items-end menu">
-        <p-tabMenu [model]="bigMenuOptions"></p-tabMenu>
+        <p-tabMenu [scrollable]="true" [model]="bigMenuOptions" class="tabmenu"></p-tabMenu>
       </div>
-      <div class="flex align-items-center userMenu">
-        <p-tieredMenu #userMenu id="user_menu" [model]="userMenuItems" [popup]="true"></p-tieredMenu>
-        <p-avatar icon="pi pi-user" styleClass="mr-2" size="large" shape="circle" aria-haspopup="true"
+      <div *ngIf="authenticationService.user$ | async as profile" class="flex align-items-center userMenu">
+        <p-avatar class="avatar" image="{{profile.picture}}" styleClass="mr-2" size="large" shape="circle" aria-haspopup="true"
           aria-controls="user_menu" (click)="userMenu.toggle($event)"></p-avatar>
+        <p-tieredMenu #userMenu id="user_menu" [model]="userMenuItems" [popup]="true"></p-tieredMenu>
       </div>
     </div>
   </div>

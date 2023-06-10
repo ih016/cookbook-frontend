@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,13 @@ import { Router } from '@angular/router';
 
 export class HeaderComponent implements OnInit {
 
+  constructor(private router: Router, protected authenticationService: AuthService) {
+  }
+
+  ngOnInit(): void {
+    // This is intentionally empty
+  }
+
   mobileMenuOptions: MenuItem[] = [
     { label: 'Recipes', routerLink: ['/app/recipes'] },
     { label: 'Ingredients', routerLink: ['/app/ingredients'] },
@@ -17,7 +25,7 @@ export class HeaderComponent implements OnInit {
     { label: 'Mealplanner', routerLink: ['/app/planner'] },
     { separator: true },
     { label: 'Profile', routerLink: ['/app/profile'] },
-    { label: 'Logout', routerLink: [''] },
+    { label: 'Logout', command: (onclick) => { this.authenticationService.logout() } },
   ];
 
   bigMenuOptions: MenuItem[] = [
@@ -29,14 +37,7 @@ export class HeaderComponent implements OnInit {
   userMenuItems: MenuItem[] = [
     { label: 'Profile', routerLink: ['/app/profile'] },
     { separator: true },
-    { label: 'Logout', routerLink: ['']},
+    { label: 'Logout', command: (onclick) => {this.authenticationService.logout()} },
   ];
-
-  constructor(private router: Router) {
-  }
-
-  ngOnInit(): void {
-    // This is intentionally empty
-  }
 
 }

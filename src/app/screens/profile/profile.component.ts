@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-profile',
@@ -8,14 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() {}
+  constructor(protected authenticationService: AuthService) {}
 
   ngOnInit(): void {
     // This is intentionally empty
-  }
-
-  getDate(time: number) {
-    return new Date(time)
   }
 
 }

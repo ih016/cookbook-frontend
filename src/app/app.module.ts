@@ -39,7 +39,6 @@ import { TableModule } from 'primeng/table';
 // Components
 import { AppComponent } from './app-component/app.component';
 import { SplashscreenComponent } from './screens/splashscreen/splashscreen.component';
-import { LogoffComponent } from './screens/logoff/logoff.component';
 import { CookbookComponent } from './cookbook/cookbook.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './screens/home/home.component';
@@ -54,7 +53,6 @@ import { CreateIngredientComponent } from './components/create-ingredient/create
 import { IngredientEditorComponent } from './components/ingredient-editor/ingredient-editor.component';
 import { ProfileComponent } from './screens/profile/profile.component';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
-import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { FilteringSidebarComponent } from './components/filtering-sidebar/filtering-sidebar.component';
 import { RecipeBrowserComponent } from './screens/recipe-browser/recipe-browser.component';
 import { LatestRecipesComponent } from './components/latest-recipes/latest-recipes.component';
@@ -77,10 +75,8 @@ import { LatestRecipesComponent } from './components/latest-recipes/latest-recip
     IngredientEditorComponent,
     RecipeCreateComponent,
     HomeComponent,
-    LogoffComponent,
     ProfileComponent,
     LoginButtonComponent,
-    LogoutButtonComponent,
     FilteringSidebarComponent,
     RecipeBrowserComponent,
     LatestRecipesComponent,
