@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="title flex flex-row justify-content-center">
+    <p class="font-semibold text-2xl">Latest recipes</p>
+  </div>
+  <div class="carousel flex flex-row">
+    <p-carousel [value]="inputRecipes" [numVisible]="3" [numScroll]="3" [circular]="true" [responsiveOptions]="responsiveOptions" autoPlayInterval="3000">
+      <ng-template let-recipe pTemplate="item">
+        <div class="border-1 surface-border border-round m-2 text-center py-1 px-1" routerLink="/app/recipes/{{recipe.ID}}">
+          <div class="mb-3">
+            <img src="{{cdn}}/img/{{recipe.ImageName}}.jpg" [alt]="recipe.RecipeName"
+              class="w-6 shadow-2" />
+          </div>
+          <div>
+            <h4 class="mb-1">{{ recipe.RecipeName }}</h4>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>

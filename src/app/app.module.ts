@@ -16,6 +16,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { CarouselModule } from 'primeng/carousel';
 import { ChipModule } from 'primeng/chip';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
@@ -56,6 +57,7 @@ import { LoginButtonComponent } from './components/login-button/login-button.com
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { FilteringSidebarComponent } from './components/filtering-sidebar/filtering-sidebar.component';
 import { RecipeBrowserComponent } from './screens/recipe-browser/recipe-browser.component';
+import { LatestRecipesComponent } from './components/latest-recipes/latest-recipes.component';
 
 
 
@@ -81,6 +83,7 @@ import { RecipeBrowserComponent } from './screens/recipe-browser/recipe-browser.
     LogoutButtonComponent,
     FilteringSidebarComponent,
     RecipeBrowserComponent,
+    LatestRecipesComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,6 +98,7 @@ import { RecipeBrowserComponent } from './screens/recipe-browser/recipe-browser.
     BrowserAnimationsModule,
     ButtonModule,
     CardModule,
+    CarouselModule,
     ChipModule,
     DialogModule,
     DropdownModule,

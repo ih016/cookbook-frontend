@@ -1,3 +1,9 @@
-<div class="empty">
-  It's very empty here...
+<div class="">
+  <div class="flex flex-row justify-content-start mx-8">
+    <h1 class="ml-3" *ngIf="authService.user$ | async as profile">{{welcomeText}} 
+      {{profile.nickname?.charAt(0)?.toUpperCase()}}{{profile.nickname?.slice(1)}}</h1>
+  </div>
+  <div class="flex flex-row justify-content-center mx-8">
+    <app-latest-recipes [inputRecipes]="allRecipes" class=""></app-latest-recipes>
+  </div>
 </div>
