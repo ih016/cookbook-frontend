@@ -1,11 +1,19 @@
-<div class="surface-ground px-4 py-4 md:px-6 lg:px-8">
-  <div class="text-3xl font-medium text-900 header">
-    <span class="title">Recipes</span>
-    <span class="buttons">
-      <app-recipe-create></app-recipe-create>
-    </span>
+<div class="px-4 py-4 md:px-6 lg:px-8">
+  <div class="text-3xl font-medium text-900 header flex flex-row">
+    <div class="flex justify-content-start">
+      <span class="title">Recipes</span>
+      <span class="buttons">
+        <app-recipe-create></app-recipe-create>
+      </span>
+    </div>
+    <!-- <div class="flex flex-grow-1 justify-content-end">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText [(ngModel)]="searchText" />
+      </span>
+    </div> -->
   </div>
-  <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+  <hr class="my-3 mx-0 border-top-1 border-none surface-border flex flex-row" />
   <div class="container">
     <div class="grid" *ngIf="recipes.length; else noThings">
       <p-card *ngFor="let recipe of recipes" header="{{recipe.RecipeName}}" routerLink="/app/recipes/{{recipe.ID}}" class="card">

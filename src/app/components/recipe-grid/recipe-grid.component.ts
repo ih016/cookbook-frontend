@@ -12,6 +12,8 @@ export class RecipesGridComponent implements OnInit {
 
   @Input() recipes: Recipe[] = []
 
+  searchText?: String
+
   api: string = environment.backend
   cdn: string = environment.cdn
 

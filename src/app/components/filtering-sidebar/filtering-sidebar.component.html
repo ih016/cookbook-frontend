@@ -1,20 +1,35 @@
 <div class="hide-mobile">
-  <span class="text-3xl">Filters</span>
+  <span class="text-3xl">{{title}}</span>
   <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
-  <p>Category</p>
-  <p-dropdown [style]="{'width': '95%'}" [showClear]="true" [options]="categories" [(ngModel)]="selectedCategory" optionLabel="CategoryName" 
-    placeholder="Select a Category" (onChange)="invokeFilterLogic()"></p-dropdown>
-  <br>
-  <p>Tag</p>
-  <p-dropdown [style]="{'width': '95%'}" [showClear]="true"  [options]="tags" [(ngModel)]="selectedTag" optionLabel="TagName"
-    placeholder="Select a Tag" (onChange)="invokeFilterLogic()"></p-dropdown>
+  <!-- <p>Search</p> -->
+  <div class="input">
+    <label htmlFor="search">Search</label>
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input type="text" id="search" placeholder="Searchterm" pInputText [(ngModel)]="searchText" (input)="invokeFilterLogic()" />
+    </span>
+  </div>
+  <div class="input">
+    <span class="p-label input">
+      <label htmlFor="category">Category</label>
+      <p-dropdown [style]="{'width': '95%'}" id="category" [showClear]="true" [options]="categories" [(ngModel)]="selectedCategory" optionLabel="CategoryName" 
+        placeholder="Select a Category" (onChange)="invokeFilterLogic()"></p-dropdown>
+    </span>
+  </div>
+  <div class="input">
+    <span class="p-label input">
+      <label htmlFor="tag">Tag</label>
+      <p-dropdown [style]="{'width': '95%'}" id="tag" [showClear]="true"  [options]="tags" [(ngModel)]="selectedTag" optionLabel="TagName"
+        placeholder="Select a Tag" (onChange)="invokeFilterLogic()"></p-dropdown>
+    </span>
+  </div>
 </div>
 
 <div class="show-mobile">
   <button type="button" class="p-button-text" pButton icon="pi pi-bars" label="Filters" (click)="filtersVisible = true" 
     aria-haspopup="true" aria-controls="overlay_menu" style="margin-top: -5px;"></button>
   <p-sidebar [(visible)]="filtersVisible" class="h-auto">
-    <span class="text-3xl">Filters</span>
+    <span class="text-3xl">{{title}}</span>
     <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
     <p>Category</p>
     <p-dropdown [style]="{'width': '95%'}" [showClear]="true" [options]="categories" [(ngModel)]="selectedCategory"

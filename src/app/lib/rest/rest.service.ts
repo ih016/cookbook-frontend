@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 
 export class Recipe {
   ID: number = 0;
-  CreatedAt?: Date;
+  CreatedAt: Date = new(Date);
   UpdatedAt?: Date;
   DeletedAt?: Date;
   RecipeName?: string;
