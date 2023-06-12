@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { LoginButtonComponent } from '../../components/login-button/login-button.component';
+import { environment } from 'src/environments/environment';
 
 interface SplashFiles {
   filename: string
@@ -14,7 +14,8 @@ interface SplashFiles {
 })
 export class SplashscreenComponent {
 
-  loginValid: boolean = true
+  cdn: string = environment.cdn
+
   images: Array<SplashFiles> = [
     { filename: '1.jpg', copyright: 'Background by <a href="https://unsplash.com/@toddquackenbush?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Todd Quackenbush</a> on <a href="https://unsplash.com">Unsplash</a>'},
     { filename: '2.jpg', copyright: 'Background by <a href="https://unsplash.com/@jaywennington?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jay Wennington</a> on <a href="https://unsplash.com">Unsplash</a>' },
@@ -24,8 +25,8 @@ export class SplashscreenComponent {
     { filename: '6.jpg', copyright: 'Background by <a href="https://unsplash.com/@webvilla?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Webvilla</a> on <a href="https://unsplash.com">Unsplash</a>' },
   ];
   imageNR: number = Math.floor(Math.random() * this.images.length);
-  background: Object = { 'background-image': `url(/assets/images/splash/${this.images[this.imageNR].filename})`};
-  Copyright: string = "";
+  background: Object = { 'background-image': `url(${this.cdn}/splash/${this.images[this.imageNR].filename})`};
+  Copyright?: string;
 
   constructor() { }
 
