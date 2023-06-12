@@ -1,6 +1,6 @@
 export const environment = {
   baseURL: 'https://gourmedy.com',
-  backend: 'https://cookbook-backend.hulsbus.be',
+  backend: 'https://api.gourmedy.com',
   cdn: 'https://cbhbe.ams3.cdn.digitaloceanspaces.com',
   production: true,
   auth0: {

@@ -1,6 +1,6 @@
 export const environment = {
   baseURL: 'http://localhost:4200',
-  backend: 'https://cookbook-backend.hulsbus.be',
+  backend: 'http://localhost:8080',
   cdn: 'https://cbhbe.ams3.cdn.digitaloceanspaces.com',
   production: false,
   auth0: {

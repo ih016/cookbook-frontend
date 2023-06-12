@@ -6,12 +6,6 @@
         <app-recipe-create></app-recipe-create>
       </span>
     </div>
-    <!-- <div class="flex flex-grow-1 justify-content-end">
-      <span class="p-input-icon-left">
-        <i class="pi pi-search"></i>
-        <input type="text" pInputText [(ngModel)]="searchText" />
-      </span>
-    </div> -->
   </div>
   <hr class="my-3 mx-0 border-top-1 border-none surface-border flex flex-row" />
   <div class="container">
@@ -20,6 +14,12 @@
         <ng-template pTemplate="header">
           <img alt="Header image" src="{{cdn}}/img/{{recipe.ImageName}}.jpg" onerror="this.src='assets/images/placeholder.png';"
             style="height: 228.17px; object-fit: cover;">
+        </ng-template>
+        <ng-template pTemplate="subtitle">
+          <span class="p-row-1">
+            <i class="pi pi-clock p-mr-5"></i>
+            {{ recipe.CookTime }} Minutes
+          </span>
         </ng-template>
         <p class="m-0">
           {{recipe.Description}}
