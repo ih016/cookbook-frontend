@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     // This is intentionally empty
   }
+
+  logo: string = `${environment.cdn}/logo/logo_blk.svg`
 
   mobileMenuOptions: MenuItem[] = [
     { label: 'Recipes', routerLink: ['/app/recipes'] },

@@ -57,6 +57,7 @@ import { FilteringSidebarComponent } from './components/filtering-sidebar/filter
 import { RecipeBrowserComponent } from './screens/recipe-browser/recipe-browser.component';
 import { LatestRecipesComponent } from './components/latest-recipes/latest-recipes.component';
 import { IngredientListComponent } from './components/ingredient-list/ingredient-list.component';
+import { SplashscreenContentComponent } from './components/splashscreen-content/splashscreen-content.component';
 
 
 
@@ -82,6 +83,7 @@ import { IngredientListComponent } from './components/ingredient-list/ingredient
     RecipeBrowserComponent,
     LatestRecipesComponent,
     IngredientListComponent,
+    SplashscreenContentComponent,
   ],
   imports: [
     BrowserModule,

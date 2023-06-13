@@ -1,24 +1,8 @@
 <div class="background" [ngStyle]="background">
-  <div class="flex flex-row justify-content-center align-content-center">
-    <span class="text-white text-center">
-      <h1>Welcome to Gourmedy</h1>
-      <h4>This site is currently invite only.</h4>
-    </span>
+  <div class="flex flex-column justify-content-center align-items-center align-content-normal flex-grow-1 flex-shrink-1 sp">
+    <app-splashscreen-content class=""></app-splashscreen-content>
   </div>
-  <div class="flex flex-row">
-    <div class="surface-card p-4 shadow-2 border-round splash">
-      <div class="text-center mb-5">
-        <img src="assets/images/logos/cb_large.png" alt="Logo Image" height="130" class="mb-3 logo">
-        <div class="text-900 text-3xl font-medium mb-3">
-          Login
-        </div>
-      </div>
-      <div>
-        <app-login-button></app-login-button>
-      </div>
-    </div>
-  </div>
-  <div class="flex flex-row">
-    <div class="attribute" [innerHTML]="images[imageNR].copyright"></div>
-  </div>
+  <div class="attribute" [innerHTML]="images[imageNR].copyright"></div>
 </div>
+
+

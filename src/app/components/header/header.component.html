@@ -2,7 +2,7 @@
   <div class="show-mobile">
     <div class="flex">
       <div class="flex align-self-center" [routerLink]="['/app/home']">
-        <img src="assets/images/logos/cb_large.png" alt="Logo Image" class="logo">
+        <img src={{logo}} alt="Logo Image" class="p-2 logo">
       </div>
       <div class="flex align-self-center mobileMenu">
         <button type="button" class="p-button-text" pButton icon="pi pi-bars" label="Menu" (click)="mobileMenu.toggle($event)" aria-haspopup="true" aria-controls="overlay_menu" style="margin-top: -5px;"></button>
@@ -13,7 +13,7 @@
   <div class="hide-mobile">
     <div class="flex">
       <div class="flex" [routerLink]="['/app/home']">
-        <img src="assets/images/logos/cb_large.png" alt="Logo Image" class="logo">
+        <img src={{logo}} alt="Logo Image" class=" p-2 logo">
       </div>
       <div class="flex align-items-end menu">
         <p-tabMenu [scrollable]="true" [model]="bigMenuOptions" class="tabmenu"></p-tabMenu>
