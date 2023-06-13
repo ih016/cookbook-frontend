@@ -34,7 +34,7 @@
 
 <p-dialog [(visible)]="ingredientDialog" [style]="{'width': '450px'}" header="Ingredient Details" [modal]="true" class="p-fluid">
     <label for="ingredientSelect">Ingredient</label>
-    <p-dropdown id="ingredientSelect" appendTo="body" [options]="ingredients" optionLabel="IngredientName" optionValue="ID" placeholder="Select ingredient" [(ngModel)]="newIngredient.IngredientID" #ingredientSelect="ngModel"></p-dropdown>
+    <p-dropdown id="ingredientSelect" appendTo="body" [options]="ingredients" optionLabel="IngredientName" optionValue="ID" placeholder="Select ingredient" [editable]="true" [(ngModel)]="newIngredient.IngredientID" #ingredientSelect="ngModel"></p-dropdown>
     <div *ngIf="ingredientSelect.invalid && (ingredientSelect.dirty || ingredientSelect.touched)" class="alert">
     
       <div *ngIf="ingredientSelect.errors?.['required']">
@@ -52,7 +52,7 @@
     </div>
 
     <label for="unit">Unit</label>
-    <p-dropdown id="unitSelect" appendTo="body" [options]="units" optionLabel="FullName" optionValue="ID" placeholder="Select unit" [(ngModel)]="newIngredient.UnitID" #unitSelect="ngModel"></p-dropdown>
+    <p-dropdown id="unitSelect" appendTo="body" [options]="units" optionLabel="FullName" optionValue="ID" placeholder="Select unit" [editable]="true" [(ngModel)]="newIngredient.UnitID" #unitSelect="ngModel"></p-dropdown>
     <div *ngIf="unitSelect.invalid && (unitSelect.dirty || unitSelect.touched)" class="alert">
     
       <div *ngIf="unitSelect.errors?.['required']">
