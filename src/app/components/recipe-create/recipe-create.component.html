@@ -3,10 +3,10 @@
   <div class="p-fluid">
     <div class="p-field">
       <label for="recipeTitle">Title</label>
-      <input pInputTextarea #recipeTitle="ngModel" class="form-control" required type="text" id="recipeTitle" type="text" [(ngModel)]="recipe.RecipeName" />
+      <input pInputTextarea #recipeTitle="ngModel" class="form-control" required type="text" id="recipeTitle" type="text" [(ngModel)]="recipe.RecipeName" autofocus/>
       <div *ngIf="recipeTitle.invalid && (recipeTitle.dirty || recipeTitle.touched)" class="alert">
       
-        <div *ngIf="recipeTitle.errors?.['required']">
+        <div *ngIf="recipeTitle.errors?.['required']" class="mb-2">
           Title is required.
         </div>
       </div>
@@ -15,10 +15,10 @@
     <div class="p-field">
       <label for="recipeDescription">Description</label>
       <br />
-      <textarea pInputTextarea #recipeDescription="ngModel" class="form-control" required id="recipeDescription" type="text" [(ngModel)]="recipe.Description"></textarea>
+      <textarea pInputTextarea #recipeDescription="ngModel" class="form-control" required id="recipeDescription" type="text"  maxlength="280" [(ngModel)]="recipe.Description"></textarea>
       <div *ngIf="recipeDescription.invalid && (recipeDescription.dirty || recipeDescription.touched)" class="alert">
       
-        <div *ngIf="recipeDescription.errors?.['required']">
+        <div *ngIf="recipeDescription.errors?.['required']" class="mb-2">
           Description is required.
         </div>
       </div>
@@ -29,7 +29,7 @@
       <p-inputNumber #recipeCookTime="ngModel" class="form-control"  id="recipeCookTime" [(ngModel)]="recipe.CookTime" mode="decimal" [min]="0" [showButtons]="true"></p-inputNumber>
       <div *ngIf="recipeCookTime.invalid && (recipeCookTime.dirty || recipeCookTime.touched)" class="alert">
       
-        <div *ngIf="recipeCookTime.errors?.['required']">
+        <div *ngIf="recipeCookTime.errors?.['required']" class="mb-2">
           Cook time is required.
         </div>
       </div>
@@ -40,7 +40,7 @@
       <p-inputNumber #recipePersons="ngModel" class="form-control" id="recipePersons" [(ngModel)]="recipe.ServingCount" mode="decimal" [min]="0" [showButtons]="true"></p-inputNumber>
       <div *ngIf="recipePersons.invalid && (recipePersons.dirty || recipePersons.touched)" class="alert">
       
-        <div *ngIf="recipePersons.errors?.['required']">
+        <div *ngIf="recipePersons.errors?.['required']" class="mb-2">
           Amount of persons is required.
         </div>
       </div>

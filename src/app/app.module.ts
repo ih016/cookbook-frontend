@@ -56,6 +56,7 @@ import { LoginButtonComponent } from './components/login-button/login-button.com
 import { FilteringSidebarComponent } from './components/filtering-sidebar/filtering-sidebar.component';
 import { RecipeBrowserComponent } from './screens/recipe-browser/recipe-browser.component';
 import { LatestRecipesComponent } from './components/latest-recipes/latest-recipes.component';
+import { IngredientListComponent } from './components/ingredient-list/ingredient-list.component';
 
 
 
@@ -80,6 +81,7 @@ import { LatestRecipesComponent } from './components/latest-recipes/latest-recip
     FilteringSidebarComponent,
     RecipeBrowserComponent,
     LatestRecipesComponent,
+    IngredientListComponent,
   ],
   imports: [
     BrowserModule,
