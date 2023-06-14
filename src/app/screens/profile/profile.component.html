@@ -5,7 +5,7 @@
         <p>Name: {{profile.name}}</p>
         <p>Email: {{ profile.email}}</p>
         <p>Email verified: {{profile.email_verified}}</p>
-        {{profile | json}}
+        <p>Roles: {{profile['cookbookroles']}}</p>
       </div>
     </p-card>
   </div>

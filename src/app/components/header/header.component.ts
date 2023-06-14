@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService, User } from '@auth0/auth0-angular';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -16,16 +16,21 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // This is intentionally empty
+    // this.authenticationService.user$.subscribe({
+    //   next(profile) {
+    //     console.log(profile?['cookbookroles']:String)
+    //   }
+    // })
   }
 
+  admin: boolean = false
   logo: string = `${environment.cdn}/logo/logo_blk.svg`
 
   mobileMenuOptions: MenuItem[] = [
     { label: 'Recipes', routerLink: ['/app/recipes'] },
     { label: 'Ingredients', routerLink: ['/app/ingredients'] },
-    { label: 'Shopping Lists', routerLink: ['/app/shopping'] },
-    { label: 'Mealplanner', routerLink: ['/app/planner'] },
+    { label: 'Shopping Lists', routerLink: ['/app/shopping'], visible: this.admin },
+    { label: 'Mealplanner', routerLink: ['/app/planner'], visible: this.admin },
     { separator: true },
     { label: 'Profile', routerLink: ['/app/profile'] },
     { label: 'Logout', command: (onclick) => { this.authenticationService.logout() } },
@@ -34,13 +39,12 @@ export class HeaderComponent implements OnInit {
   bigMenuOptions: MenuItem[] = [
     { label: 'Recipes', routerLink: ['/app/recipes'] },
     { label: 'Ingredients', routerLink: ['/app/ingredients'] },
-    { label: 'Shopping Lists', routerLink: ['/app/shopping'] },
-    { label: 'Mealplanner', routerLink: ['/app/planner'] },
+    { label: 'Shopping Lists', routerLink: ['/app/shopping'], visible: this.admin },
+    { label: 'Mealplanner', routerLink: ['/app/planner'], visible: this.admin },
   ];
   userMenuItems: MenuItem[] = [
     { label: 'Profile', routerLink: ['/app/profile'] },
     { separator: true },
     { label: 'Logout', command: (onclick) => {this.authenticationService.logout()} },
   ];
-
 }
