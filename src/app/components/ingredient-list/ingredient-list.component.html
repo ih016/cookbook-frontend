@@ -3,7 +3,7 @@
     <div class="text-900 font-medium text-xl mb-2">Ingredients</div>
     <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
     <div *ngFor="let ingredient of amounts">
-      <div class="flex flex-row flex-grow-1">
+      <div class="flex flex-row flex-grow-1 mb-2">
         <div class="flex flex-column flex-grow-1">
           {{ names.get(ingredient.IngredientID) }}
         </div>

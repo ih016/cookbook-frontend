@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="grid grid-nogutter surface-section text-800">
-    <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
+    <div class="col-12 md:col-6 pl-4 pt-4text-center md:text-left flex align-items-center ">
       <section>
         <span class="block text-6xl font-bold mb-1">{{ recipe.RecipeName }}</span>
         <p class="mt-0 mb-4 text-700 line-height-3">{{ recipe.Description }}</p>
@@ -47,9 +47,9 @@
     </div>
   </div>
   <div class="grid">
-    <app-ingredient-list [amounts]="amounts" [ingredients]="recipe.Ingredients" class="col-12 lg:col-5"></app-ingredient-list>
+    <app-ingredient-list [amounts]="amounts" [ingredients]="recipe.Ingredients" class="col-12 lg:col-4 xl:col-3"></app-ingredient-list>
 
-    <div class="col-12 lg:col-7">
+    <div class="col-12 lg:col-8 xl:col-9">
       <div class="p-3 h-full">
         <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
           <div class="text-900 font-medium text-xl mb-2">Method</div>

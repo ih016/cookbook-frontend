@@ -1,5 +1,6 @@
 [![Sonar scan](https://github.com/ihulsbus/cookbook-frontend/actions/workflows/sonar-scan.yml/badge.svg?branch=master)](https://github.com/ihulsbus/cookbook-frontend/actions/workflows/sonar-scan.yml)
 # Cookbook Frontend
+This project is now live at https://gourmedy.com
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
