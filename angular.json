@@ -81,10 +81,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "cookbook-frontend:build:production"
+              "buildTarget": "cookbook-frontend:build:production"
             },
             "development": {
-              "browserTarget": "cookbook-frontend:build:development"
+              "buildTarget": "cookbook-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -92,7 +92,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cookbook-frontend:build"
+            "buildTarget": "cookbook-frontend:build"
           }
         },
         "test": {
