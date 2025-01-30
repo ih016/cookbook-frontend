@@ -59,10 +59,6 @@ import { RecipeBrowserComponent } from './screens/recipe-browser/recipe-browser.
 import { LatestRecipesComponent } from './components/latest-recipes/latest-recipes.component';
 import { IngredientListComponent } from './components/ingredient-list/ingredient-list.component';
 import { SplashscreenContentComponent } from './components/splashscreen-content/splashscreen-content.component';
-import { AuthService } from './lib/auth/auth.service';
-import { access } from 'fs';
-
-
 
 @NgModule({
   declarations: [
