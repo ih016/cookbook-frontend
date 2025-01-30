@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Recipe, RestService } from '../../lib/rest/rest.service';
+import { Recipe, MetadataSearchResponse } from '../../lib/api-client';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -11,8 +11,14 @@ import { environment } from 'src/environments/environment';
 export class RecipesGridComponent implements OnInit {
 
   @Input() recipes: Recipe[] = []
+  @Input() recipeMetadata: MetadataSearchResponse[] = []
 
   searchText?: String
+  combinedRecipes = this.recipes.map((recipe) => ({
+    ...recipe,
+    related: this.recipeMetadata.find((metadata) => metadata.recipe_id === recipe.id),
+    ImageName: ""
+  }));
 
   api: string = environment.backend
   cdn: string = environment.cdn
@@ -20,6 +26,5 @@ export class RecipesGridComponent implements OnInit {
   constructor(public router: Router) { }
 
   ngOnInit(): void {
-    // intentionally left empty
   }
 }

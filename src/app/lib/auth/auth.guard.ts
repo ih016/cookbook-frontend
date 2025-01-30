@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { AuthService } from './auth.service';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
+  constructor(private oidcSecurityService: OidcSecurityService, private router: Router) {}
 
-  constructor(public authService: AuthService, public router: Router) { }
-
-  canActivate(): Promise<boolean> {
-    return new Promise((success) => {
-      this.authService.checkIfIsAuthenticated().then((isAuthenticated: boolean) => {
+  canActivate(): Observable<boolean> {
+    return this.oidcSecurityService.isAuthenticated$.pipe(
+      map((isAuthenticated) => {
         if (!isAuthenticated) {
-          this.router.navigate(['']);
-          success(false);
+          this.oidcSecurityService.authorize(); // Redirect to Keycloak login
+          return false;
         }
-        success(true);
+        return true;
       })
-    })
+    );
   }
 }

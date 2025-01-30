@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService } from '../../lib/auth/auth.service';
+import { Observable } from 'rxjs';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-profile',
@@ -7,11 +9,12 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  user$!: Observable<User | null>;
 
-  constructor(protected authenticationService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    // This is intentionally empty
+    this.user$ = this.authService.getUserData();
   }
 
 }

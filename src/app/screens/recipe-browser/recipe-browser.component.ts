@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe, RestService } from '../../lib/rest/rest.service';
+// import { Recipe, RestService } from '../../lib/rest/rest.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { RecipeService, Recipe, MetadataService, MetadataSearchRequest, MetadataSearchResponse } from '../../lib/api-client';
 
 @Component({
   selector: 'app-recipe-browser',
@@ -12,16 +13,23 @@ export class RecipeBrowserComponent implements OnInit {
 
   allRecipes: Recipe[] = [];
   filteredRecipes: Recipe[] = [];
+  recipeMetadata: MetadataSearchResponse[] = [];
   api: string = environment.backend
   cdn: string = environment.cdn
 
-  constructor(public router: Router, private restService: RestService) { }
+  constructor(public router: Router, private recipeService: RecipeService, private metadataService: MetadataService) { }
 
   ngOnInit(): void {
-    this.restService.GetAllRecipes().then((data) => { 
-      this.filteredRecipes.push(...data);
-      this.allRecipes.push(...data);
-    })
+    this.recipeService.getAllRecipes().subscribe((data) => {
+      this.filteredRecipes = data;
+      this.allRecipes = data;
+    });
+    for (var recipe of this.allRecipes) {
+      var searchRequest: MetadataSearchRequest = {recipe_id: recipe.id}
+      this.metadataService.searchMetadata(searchRequest).subscribe((data) => {
+        this.recipeMetadata.push(data);
+      })
+    }
   }
 
   passRecipes(r: Recipe[]) {

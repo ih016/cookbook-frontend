@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe, RestService } from '../../lib/rest/rest.service';
 import { MessageService } from 'primeng/api';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService } from '../../lib/auth/auth.service';
+import { Observable } from 'rxjs';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-home',
@@ -10,12 +12,14 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class HomeComponent implements OnInit {
   allRecipes: Recipe[] = [];
+  user$!: Observable<User | null>;
 
-  constructor(private restService: RestService, private messageService: MessageService, public authService: AuthService) {}
+  constructor(private restService: RestService, private messageService: MessageService, private authService: AuthService) {}
 
   welcomeText: string = ""
 
   ngOnInit(): void {
+    this.user$ = this.authService.getUserData();
     this.restService.GetAllRecipes().then((data) => {
       this.allRecipes = data ;
     }, () => {

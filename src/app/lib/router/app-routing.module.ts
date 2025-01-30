@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CallbackModule } from '../../features/callback/callback.module';
-import { AuthGuard } from '@auth0/auth0-angular';
+import { AuthGuard } from '../auth/auth.guard';
 import { CookbookComponent } from '../../cookbook/cookbook.component';
 import { SplashscreenComponent } from '../../screens/splashscreen/splashscreen.component';
 import { RecipeDetailComponent } from '../../screens/recipe-detail/recipe-detail.component';

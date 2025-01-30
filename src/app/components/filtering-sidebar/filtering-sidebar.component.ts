@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Recipe, Tag, Category, RestService } from '../../lib/rest/rest.service';
+import { Recipe, Category, Tag, TagService, CategoryService } from '../../lib/api-client';
+import { RestService } from '../../lib/rest/rest.service';
 import { FilterService } from 'primeng/api';
 
 @Component({
@@ -12,15 +13,17 @@ export class FilteringSidebarComponent implements OnInit {
   @Input() inputRecipes: Recipe[] = [];
   @Output() outputRecipes = new EventEmitter<Recipe[]>();
 
-  constructor(private restServce: RestService, protected filterService: FilterService) { };
+  constructor(private tagService: TagService, private categoryService: CategoryService, private filterService: FilterService) { };
 
   ngOnInit(): void {
-    this.restServce.GetAllTags().then((data) => { 
-      this.tags.push(...data);
+    this.tagService.getAllTags().subscribe((data) => {
+      this.tags = data;
+      console.log(data);
     });
 
-    this.restServce.GetAllCategories().then((data) => {
-      this.categories.push(...data);
+    this.categoryService.getAllCategory().subscribe((data) => {
+      this.categories = data
+      console.log(data);
     });
   }
 
@@ -51,49 +54,49 @@ export class FilteringSidebarComponent implements OnInit {
   categoryFiltered(recipes: Recipe[]): Recipe[] {
     let result: Recipe[] = [];
 
-    if (this.selectedCategory === undefined || this.selectedCategory === null) {
-      return recipes;
-    };
+    // if (this.selectedCategory === undefined || this.selectedCategory === null) {
+    //   return recipes;
+    // };
 
-    recipes.find((recipe) => {
-      if (recipe.Categories.some((category) => {
-        return category.CategoryName === this.selectedCategory?.CategoryName;
-      })) {
-        result.push(recipe);
-      };
-    });
+    // recipes.find((recipe) => {
+    //   if (Categories.some((category) => {
+    //     return category.CategoryName === this.selectedCategory?.CategoryName;
+    //   })) {
+    //     result.push(recipe);
+    //   };
+    // });
 
-    return result;
+    return recipes;
   }
 
   tagsFiltered(recipes: Recipe[]): Recipe[] {
     let result: Recipe[] = [];
 
-    if (this.selectedTag === undefined || this.selectedTag === null) {
-      return recipes;
-    };
+    // if (this.selectedTag === undefined || this.selectedTag === null) {
+    //   return recipes;
+    // };
 
-    recipes.find((recipe) => {
-      if (recipe.Tags?.some((tag) => {
-        return tag.TagName === this.selectedTag?.TagName;
-      })) {
-        result.push(recipe);
-      };
-    });
+    // recipes.find((recipe) => {
+    //   if (recipe.Tags?.some((tag) => {
+    //     return tag.TagName === this.selectedTag?.TagName;
+    //   })) {
+    //     result.push(recipe);
+    //   };
+    // });
 
-    return result;
+    return recipes;
   }
 
   textFiltered(recipes: Recipe[]): Recipe[] {
     let result: Recipe[] = [];
 
-    recipes.find((recipe) => {
-      if (this.filterService.filters.contains(recipe.RecipeName, this.searchText) || this.filterService.filters.contains(recipe.Description, this.searchText)) {
-        result.push(recipe)
-      };
+    // recipes.find((recipe) => {
+    //   if (this.filterService.filters.contains(recipe.RecipeName, this.searchText) || this.filterService.filters.contains(recipe.Description, this.searchText)) {
+    //     result.push(recipe)
+    //   };
 
-    });
+    // });
 
-    return result;
+    return recipes;
   }
 }

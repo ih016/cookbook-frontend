@@ -76,6 +76,7 @@ export class RestService {
   get<Type>(url: string): Promise<Type> {
     return new Promise((success) => {
       this.http.get<Type>(`${this.baseURL}/${url}`).subscribe((response: Type) => {
+        console.log('response body:', response)
         success(response);
       })
     });
@@ -95,9 +96,9 @@ export class RestService {
       })
     });
   }
-  delete<Type>(url: string, body: string): Promise<Type> {
+  delete<Type>(url: string): Promise<Type> {
     return new Promise((success) => {
-      this.http.delete<Type>(`${this.baseURL}/${url}`, {body: body}).subscribe((response: Type) => {
+      this.http.delete<Type>(`${this.baseURL}/${url}`).subscribe((response: Type) => {
         success(response);
       })
     });
@@ -105,25 +106,34 @@ export class RestService {
 
   // Recipes
   GetAllRecipes() {
-    return this.get<Recipe[]>('api/v1/recipe')
+    return this.get<Recipe[]>('api/v2/recipe')
   }
   GetSingleRecipe(id: number) {
-    return this.get<Recipe>(`api/v1/recipe/${id}`)
-  }
-  GetCoverImage(id: number) {
-    return this.get<File>(`api/v1/recipe/${id}/cover`)
+    return this.get<Recipe>(`api/v2/recipe/${id}`)
   }
   CreateRecipe(item: Recipe) {
-    return this.post<Recipe>('api/v1/recipe', JSON.stringify(item))
+    return this.post<Recipe>('api/v2/recipe', JSON.stringify(item))
   }
   UpdateRecipe(id: number, item: Recipe) {
-    return this.put<Recipe>(`api/v1/recipe/${id}`, JSON.stringify(item))
+    return this.put<Recipe>(`api/v2/recipe/${id}`, JSON.stringify(item))
   }
-  DeleteRecipe(item: Recipe) {
-    return this.delete<Recipe>('api/v1/recipe', JSON.stringify(item))
+  DeleteRecipe(id: number) {
+    return this.delete<Recipe>(`api/v2/recipe/${id}`)
   }
+
+
+  GetCoverImage(id: number) { // delete
+    return this.get<File>(`api/v2/images/${id}`)
+  }
+
+  // Images
+  GetAllImages() {
+    return this.get
+  }
+
+  // Instructions
   GetInstructions(recipeID: number) {
-    return this.get<Instruction>(`api/v1/recipe/${recipeID}/instruction`)
+    return this.get<Instruction>(`api/v1/instructions/${recipeID}/instruction`)
   }
   CreateInstructions(recipeID: number, instruction: Instruction) {
     return this.post<Instruction>(`api/v1/recipe/${recipeID}/instruction`, JSON.stringify(instruction))
@@ -131,6 +141,8 @@ export class RestService {
   UpdateInstructions(recipeID: number, instruction: Instruction) {
     return this.put<Instruction>(`api/v1/recipe/${recipeID}/instruction`, JSON.stringify(instruction))
   }
+
+  // Amounts
   GetAmounts(recipeID: number) {
     return this.get<IngredientAmount[]>(`api/v1/recipe/${recipeID}/ingredients`)
   }
@@ -145,14 +157,16 @@ export class RestService {
   GetSingleIngredient(id: number) {
     return this.get<Ingredient>(`api/v1/ingredient/${id}`)
   }
-  GetUnits() {
-    return this.get<Unit[]>("api/v1/ingredient/unit")
-  }
   CreateIngredient(item: Ingredient) {
     return this.post<Ingredient>('api/v1/ingredient', JSON.stringify(item))
   }
-  DeleteIngredient(item: Ingredient) {
-    return this.delete<Ingredient>('api/v1/ingredient', JSON.stringify(item))
+  DeleteIngredient(id: number) {
+    return this.delete<Ingredient>(`api/v1/ingredient/${id}`)
+  }
+
+  // Units
+  GetUnits() {
+    return this.get<Unit[]>("api/v1/ingredient/unit")
   }
 
   // Tags

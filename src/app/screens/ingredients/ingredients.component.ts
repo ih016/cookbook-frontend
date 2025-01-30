@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Ingredient, RestService } from '../../lib/rest/rest.service';
+import { IngredientService, Ingredient } from '../../lib/api-client';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -7,7 +7,7 @@ import { MessageService } from 'primeng/api';
   templateUrl: './ingredients.component.html',
 })
 export class IngredientsComponent implements OnInit {
-  ingredient: Ingredient = new Ingredient();
+  ingredient: Ingredient = {};
   ingredients: Ingredient[] = [];
   loading: boolean = true;
   filters: object = {};
@@ -15,7 +15,7 @@ export class IngredientsComponent implements OnInit {
   deleteIngredientsDialog: boolean = false;
   selectedIngredients: Ingredient[] = [];
 
-  constructor(private restService: RestService, public messageService: MessageService) { }
+  constructor(private ingredientService: IngredientService, public messageService: MessageService) { }
 
   ngOnInit(): void {
     this.getIngredients()
@@ -26,7 +26,9 @@ export class IngredientsComponent implements OnInit {
   } 
 
   getIngredients() {
-    this.restService.GetAllIngredients().then((data) => { this.ingredients = data; this.loading = false })
+    this.ingredientService.getAllIngredient().subscribe((data) => {
+      this.ingredients = data;
+    });
   }
 
   clearFilter(table: any) {
@@ -42,13 +44,30 @@ export class IngredientsComponent implements OnInit {
     this.deleteIngredientsDialog = true;
   }
   deleteIngredient() {
-    this.restService.DeleteIngredient(this.ingredient).then(() => this.updateSuccess()).catch(() => this.updateFailed());
-    this.deleteIngredientDialog = false;
-    this.getIngredients()
+    this.ingredientService.deleteIngredient(this.ingredient.id!).subscribe({
+      next: () => { 
+        this.updateSuccess()
+        this.deleteIngredientDialog = false;
+        this.getIngredients()
+      },
+      error: () => {
+        this.updateFailed()
+      }
+    });
   }
+  
   deleteIngredients() {
     for (let ingredient of this.selectedIngredients) {
-      this.restService.DeleteIngredient(ingredient).then(() => this.updateSuccess()).catch(() => this.updateFailed());
+      this.ingredientService.deleteIngredient(ingredient.id!).subscribe({
+        next: () => {
+          this.updateSuccess()
+          this.deleteIngredientDialog = false;
+          this.getIngredients()
+        },
+        error: () => {
+          this.updateFailed()
+        }
+      });
     }
     this.deleteIngredientsDialog = false;
     this.getIngredients()

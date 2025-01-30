@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService } from '../../lib/auth/auth.service';
 
 @Component({
   selector: 'app-login-button',
@@ -14,11 +14,12 @@ export class LoginButtonComponent implements OnInit {
   }
 
   loginWithRedirect(): void {
-    this.auth.loginWithRedirect({
-      appState: {
-        target: '/app/home',
-      }
-    });
+    // this.auth.loginWithRedirect({
+    //   appState: {
+    //     target: '/app/home',
+    //   }
+    // });
+    this.auth.login();
   }
 
 }

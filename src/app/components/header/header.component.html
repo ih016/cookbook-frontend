@@ -18,7 +18,7 @@
       <div class="flex align-items-end menu">
         <p-tabMenu [scrollable]="true" [model]="bigMenuOptions" class="tabmenu"></p-tabMenu>
       </div>
-      <div *ngIf="authenticationService.user$ | async as profile" class="flex align-items-center userMenu">
+      <div *ngIf="user$ | async as profile" class="flex align-items-center userMenu">
         <p-avatar class="avatar" image="{{profile.picture}}" styleClass="mr-2" size="large" shape="circle" aria-haspopup="true"
           aria-controls="user_menu" (click)="userMenu.toggle($event)"></p-avatar>
         <p-tieredMenu #userMenu id="user_menu" [model]="userMenuItems" [popup]="true"></p-tieredMenu>

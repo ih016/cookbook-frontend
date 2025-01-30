@@ -2,15 +2,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './lib/router/app-routing.module';
-
+import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // REST AUTH
-import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ApiModule } from './lib/api-client';
+import { AuthInterceptor } from './lib/auth/auth.interceptor';
 
 // UI Components
 import { AvatarModule } from 'primeng/avatar';
@@ -58,6 +59,8 @@ import { RecipeBrowserComponent } from './screens/recipe-browser/recipe-browser.
 import { LatestRecipesComponent } from './components/latest-recipes/latest-recipes.component';
 import { IngredientListComponent } from './components/ingredient-list/ingredient-list.component';
 import { SplashscreenContentComponent } from './components/splashscreen-content/splashscreen-content.component';
+import { AuthService } from './lib/auth/auth.service';
+import { access } from 'fs';
 
 
 
@@ -89,9 +92,20 @@ import { SplashscreenContentComponent } from './components/splashscreen-content/
     BrowserModule,
     AppRoutingModule,
     AuthModule.forRoot({
-      ...env.auth0,
-      httpInterceptor: {
-        allowedList: [`${env.backend}/api/v1/*`],
+      config: {
+        authority: `${env.oidc.domain}`,
+        redirectUrl: `${env.baseURL}/oidc/callback`,
+        postLoginRoute: '/app/home',
+        secureRoutes: [env.backend],
+        postLogoutRedirectUri: '/loggedout',
+        clientId: `${env.oidc.clientId}`,
+        scope: 'openid profile email offline_access',
+        responseType: 'code',
+        silentRenew: true,
+        silentRenewUrl: `${env.baseURL}/oidc/silent-renew`,
+        useRefreshToken: true,
+        renewTimeBeforeTokenExpiresInSeconds: 60,
+        logLevel: LogLevel.Debug,
       },
     }),
     AvatarModule,
@@ -120,11 +134,12 @@ import { SplashscreenContentComponent } from './components/splashscreen-content/
     TabMenuModule,
     TieredMenuModule,
     ToastModule,
+    ApiModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthHttpInterceptor,
+      useClass: AuthInterceptor,
       multi: true,
     },
   ],
