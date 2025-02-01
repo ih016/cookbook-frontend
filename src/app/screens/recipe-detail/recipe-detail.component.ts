@@ -9,17 +9,17 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-recipe-detail',
-  standalone: true,
-  templateUrl: './recipe-detail.component.html',
-  styleUrls: ['./recipe-detail.component.scss'],
-  imports: [
-    CommonModule,
-    RouterLink,
-    IngredientListComponent,
-    TagModule,
-    ChipModule,
-  ]
+    selector: 'app-recipe-detail',
+    standalone: true,
+    templateUrl: './recipe-detail.component.html',
+    styleUrls: ['./recipe-detail.component.scss'],
+    imports: [
+        CommonModule,
+        RouterLink,
+        IngredientListComponent,
+        TagModule,
+        ChipModule,
+    ]
 })
 export class RecipeDetailComponent implements OnInit {
   recipe: Recipe = new Recipe();
@@ -44,7 +44,7 @@ export class RecipeDetailComponent implements OnInit {
     for (var ingredient of ingredients) {
       this.names.set(ingredient.ID, ingredient.IngredientName);
     };
-    
+
   }
 
   getImgURL() {

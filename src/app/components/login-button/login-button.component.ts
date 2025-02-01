@@ -3,13 +3,13 @@ import { AuthService } from '../../lib/auth/auth.service';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
-  selector: 'app-login-button',
-  standalone: true,
-  templateUrl: './login-button.component.html',
-  styleUrls: ['./login-button.component.scss'],
-  imports: [
-    ButtonModule,
-  ]
+    selector: 'app-login-button',
+    standalone: true,
+    templateUrl: './login-button.component.html',
+    styleUrls: ['./login-button.component.scss'],
+    imports: [
+        ButtonModule,
+    ]
 })
 export class LoginButtonComponent implements OnInit {
 

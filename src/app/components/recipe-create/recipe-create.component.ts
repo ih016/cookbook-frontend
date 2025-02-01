@@ -8,15 +8,15 @@ import { FormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 
 @Component({
-  selector: 'app-recipe-create',
-  standalone: true,
-  templateUrl: './recipe-create.component.html',
-  imports: [
-    CommonModule,
-    DialogModule,
-    FormsModule,
-    InputNumberModule,
-  ]
+    selector: 'app-recipe-create',
+    standalone: true,
+    templateUrl: './recipe-create.component.html',
+    imports: [
+        CommonModule,
+        DialogModule,
+        FormsModule,
+        InputNumberModule,
+    ]
 })
 export class RecipeCreateComponent implements OnInit {
 

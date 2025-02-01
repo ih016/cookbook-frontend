@@ -11,19 +11,19 @@ import { ChipModule } from 'primeng/chip';
 import { TagModule } from 'primeng/tag';
 
 @Component({
-  selector: 'app-recipe-grid',
-  standalone: true,
-  templateUrl: './recipe-grid.component.html',
-  styleUrls: ['./recipe-grid.component.scss'],
-  imports: [
-    JsonPipe,
-    CardModule,
-    ChipModule,
-    CommonModule,
-    RecipeCreateComponent,
-    RouterLink,
-    TagModule,
-  ]
+    selector: 'app-recipe-grid',
+    standalone: true,
+    templateUrl: './recipe-grid.component.html',
+    styleUrls: ['./recipe-grid.component.scss'],
+    imports: [
+        JsonPipe,
+        CardModule,
+        ChipModule,
+        CommonModule,
+        RecipeCreateComponent,
+        RouterLink,
+        TagModule,
+    ]
 })
 export class RecipesGridComponent implements OnInit {
 

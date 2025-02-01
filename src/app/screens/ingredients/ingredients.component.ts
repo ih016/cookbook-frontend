@@ -7,15 +7,15 @@ import { DialogModule } from 'primeng/dialog';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-ingredients',
-  standalone: true,
-  templateUrl: './ingredients.component.html',
-  imports: [
-    CreateIngredientComponent,
-    TableModule,
-    DialogModule,
-    CommonModule,
-  ]
+    selector: 'app-ingredients',
+    standalone: true,
+    templateUrl: './ingredients.component.html',
+    imports: [
+        CreateIngredientComponent,
+        TableModule,
+        DialogModule,
+        CommonModule,
+    ]
 })
 export class IngredientsComponent implements OnInit {
   ingredient: Ingredient = {};
@@ -34,7 +34,7 @@ export class IngredientsComponent implements OnInit {
 
   getEventValue($event: any): string {
     return $event.target.value;
-  } 
+  }
 
   getIngredients() {
     this.ingredientService.getAllIngredient().subscribe((data) => {
@@ -56,7 +56,7 @@ export class IngredientsComponent implements OnInit {
   }
   deleteIngredient() {
     this.ingredientService.deleteIngredient(this.ingredient.id!).subscribe({
-      next: () => { 
+      next: () => {
         this.updateSuccess()
         this.deleteIngredientDialog = false;
         this.getIngredients()
@@ -66,7 +66,7 @@ export class IngredientsComponent implements OnInit {
       }
     });
   }
-  
+
   deleteIngredients() {
     for (let ingredient of this.selectedIngredients) {
       this.ingredientService.deleteIngredient(ingredient.id!).subscribe({

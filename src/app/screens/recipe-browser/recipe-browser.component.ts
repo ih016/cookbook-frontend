@@ -7,14 +7,14 @@ import { RecipesGridComponent } from 'src/app/components/recipe-grid/recipe-grid
 import { FilteringSidebarComponent } from 'src/app/components/filtering-sidebar/filtering-sidebar.component';
 
 @Component({
-  selector: 'app-recipe-browser',
-  standalone: true,
-  templateUrl: './recipe-browser.component.html',
-  styleUrls: ['./recipe-browser.component.scss'],
-  imports: [
-    RecipesGridComponent,
-    FilteringSidebarComponent,
-  ]
+    selector: 'app-recipe-browser',
+    standalone: true,
+    templateUrl: './recipe-browser.component.html',
+    styleUrls: ['./recipe-browser.component.scss'],
+    imports: [
+        RecipesGridComponent,
+        FilteringSidebarComponent,
+    ]
 })
 export class RecipeBrowserComponent implements OnInit {
 

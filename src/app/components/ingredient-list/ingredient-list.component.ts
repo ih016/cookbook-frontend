@@ -3,13 +3,13 @@ import { Ingredient, IngredientAmount } from 'src/app/lib/rest/rest.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-ingredient-list',
-  standalone: true,
-  templateUrl: './ingredient-list.component.html',
-  styleUrls: ['./ingredient-list.component.scss'],
-  imports: [
-    CommonModule,
-  ]
+    selector: 'app-ingredient-list',
+    standalone: true,
+    templateUrl: './ingredient-list.component.html',
+    styleUrls: ['./ingredient-list.component.scss'],
+    imports: [
+        CommonModule,
+    ]
 })
 export class IngredientListComponent implements OnInit, OnChanges {
 

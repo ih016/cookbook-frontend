@@ -8,14 +8,14 @@ import { LatestRecipesComponent } from 'src/app/components/latest-recipes/latest
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  imports: [
-    CommonModule,
-    LatestRecipesComponent,
-  ]
+    selector: 'app-home',
+    standalone: true,
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    imports: [
+        CommonModule,
+        LatestRecipesComponent,
+    ]
 })
 export class HomeComponent implements OnInit {
   allRecipes: Recipe[] = [];

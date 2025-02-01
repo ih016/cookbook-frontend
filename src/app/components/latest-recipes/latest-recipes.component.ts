@@ -5,14 +5,14 @@ import { CarouselModule } from 'primeng/carousel';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-latest-recipes',
-  standalone: true,
-  templateUrl: './latest-recipes.component.html',
-  styleUrls: ['./latest-recipes.component.scss'],
-  imports: [
-    CarouselModule,
-    RouterLink,
-  ]
+    selector: 'app-latest-recipes',
+    standalone: true,
+    templateUrl: './latest-recipes.component.html',
+    styleUrls: ['./latest-recipes.component.scss'],
+    imports: [
+        CarouselModule,
+        RouterLink,
+    ]
 })
 export class LatestRecipesComponent implements OnInit, OnChanges {
 

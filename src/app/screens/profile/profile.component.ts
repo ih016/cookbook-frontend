@@ -6,14 +6,14 @@ import { CardModule } from 'primeng/card';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
-  imports: [
-    CardModule,
-    CommonModule,
-  ]
+    selector: 'app-profile',
+    standalone: true,
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.scss'],
+    imports: [
+        CardModule,
+        CommonModule,
+    ]
 })
 export class ProfileComponent implements OnInit {
   user$!: Observable<User | null>;

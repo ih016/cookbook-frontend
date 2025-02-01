@@ -9,15 +9,15 @@ interface SplashFiles {
 }
 
 @Component({
-  selector: 'app-splashscreen',
-  standalone: true,
-  templateUrl: './splashscreen.component.html',
-  styleUrls: ['./splashscreen.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  imports: [
-    CommonModule,
-    SplashscreenContentComponent,
-  ]
+    selector: 'app-splashscreen',
+    standalone: true,
+    templateUrl: './splashscreen.component.html',
+    styleUrls: ['./splashscreen.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        CommonModule,
+        SplashscreenContentComponent,
+    ]
 })
 export class SplashscreenComponent {
 

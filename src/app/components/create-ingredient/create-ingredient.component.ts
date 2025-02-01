@@ -6,14 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-create-ingredient',
-  standalone: true,
-  templateUrl: './create-ingredient.component.html',
-  imports: [
-    CommonModule,
-    DialogModule,
-    FormsModule,
-  ]
+    selector: 'app-create-ingredient',
+    standalone: true,
+    templateUrl: './create-ingredient.component.html',
+    imports: [
+        CommonModule,
+        DialogModule,
+        FormsModule,
+    ]
 })
 export class CreateIngredientComponent implements OnInit {
 

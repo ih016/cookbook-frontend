@@ -5,12 +5,12 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  templateUrl: './app.component.html',
-  imports: [
-    RouterOutlet,
-  ]
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    imports: [
+        RouterOutlet,
+    ]
 })
 export class AppComponent implements OnInit {
   title = 'app-root';

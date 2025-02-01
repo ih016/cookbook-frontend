@@ -13,20 +13,20 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-recipe-edit',
-  standalone: true,
-  templateUrl: './recipe-edit.component.html',
-  styleUrls: ['./recipe-edit.component.scss'],
-  imports: [
-    CommonModule,
-    DialogModule,
-    FormsModule,
-    FileUploadModule,
-    IngredientEditorComponent,
-    InputNumberModule,
-    RouterLink,
-    MultiSelectModule,
-  ]
+    selector: 'app-recipe-edit',
+    standalone: true,
+    templateUrl: './recipe-edit.component.html',
+    styleUrls: ['./recipe-edit.component.scss'],
+    imports: [
+        CommonModule,
+        DialogModule,
+        FormsModule,
+        FileUploadModule,
+        IngredientEditorComponent,
+        InputNumberModule,
+        RouterLink,
+        MultiSelectModule,
+    ]
 })
 export class RecipeEditComponent implements OnInit {
 
@@ -79,7 +79,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   updateCategories(categories: Category[]) {
-    
+
   }
 
   cancelRecipeUpdate() {
@@ -96,7 +96,7 @@ export class RecipeEditComponent implements OnInit {
       this.uploadRecipe();
     }
   }
-  
+
   uploadRecipe() {
     this.confirmPopup = false;
     this.restService.UpdateAmounts(this.recipe.ID, this.amounts);

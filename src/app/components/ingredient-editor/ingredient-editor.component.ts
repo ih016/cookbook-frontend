@@ -10,18 +10,18 @@ import { FormsModule } from '@angular/forms';
 import { CreateIngredientComponent } from '../create-ingredient/create-ingredient.component';
 
 @Component({
-  selector: 'app-ingredient-editor',
-  standalone: true,
-  templateUrl: './ingredient-editor.component.html',
-  imports: [
-    CommonModule,
-    FormsModule,
-    TableModule,
-    DialogModule,
-    DropdownModule,
-    InputNumberModule,
-    CreateIngredientComponent,
-  ]
+    selector: 'app-ingredient-editor',
+    standalone: true,
+    templateUrl: './ingredient-editor.component.html',
+    imports: [
+        CommonModule,
+        FormsModule,
+        TableModule,
+        DialogModule,
+        DropdownModule,
+        InputNumberModule,
+        CreateIngredientComponent,
+    ]
 })
 export class IngredientEditorComponent implements OnInit {
 

@@ -12,18 +12,18 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-  imports: [
-    CommonModule,
-    RouterLink,
-    MenuModule,
-    TabMenuModule,
-    AvatarModule,
-    TieredMenuModule,
-  ]
+    selector: 'app-header',
+    standalone: true,
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    imports: [
+        CommonModule,
+        RouterLink,
+        MenuModule,
+        TabMenuModule,
+        AvatarModule,
+        TieredMenuModule,
+    ]
 })
 
 export class HeaderComponent implements OnInit {

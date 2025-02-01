@@ -5,16 +5,15 @@ import { ToastModule } from 'primeng/toast';
 import { RouterOutlet } from '@angular/router'
 
 @Component({
-  selector: 'app-cookbook',
-  standalone: true,
-  templateUrl: './cookbook.component.html',
-  styleUrls: ['./cookbook.component.scss'],
-  providers: [MessageService],
-  imports: [
-    HeaderComponent,
-    ToastModule,
-    RouterOutlet,
-  ]
+    selector: 'app-cookbook',
+    templateUrl: './cookbook.component.html',
+    styleUrls: ['./cookbook.component.scss'],
+    providers: [MessageService],
+    imports: [
+        HeaderComponent,
+        ToastModule,
+        RouterOutlet,
+    ]
 })
 export class CookbookComponent implements OnInit {
 
