@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
-import { AuthService } from '../lib/auth/auth.service'
+import { AuthService } from './lib/auth/auth.service';
+import { User } from './models/user';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-import { User } from '../models/user';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   templateUrl: './app.component.html',
-  
+  imports: [
+    RouterOutlet,
+  ]
 })
 export class AppComponent implements OnInit {
-  title = 'cookbook-frontend';
+  title = 'app-root';
   isAuthenticated = false;
   user: User | null = null;
 
-  constructor(private primengConfig: PrimeNGConfig, private authService: AuthService, private oidcSecurityService: OidcSecurityService) { }
+  constructor(private authService: AuthService, private oidcSecurityService: OidcSecurityService) { }
 
   ngOnInit() {
-    this.primengConfig.ripple = true;
+    // this.primengConfig.ripple = true;
     this.authService.initializeAuthentication().subscribe(({ isAuthenticated }) => {
       this.isAuthenticated = isAuthenticated;
       if (isAuthenticated) {

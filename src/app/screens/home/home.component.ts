@@ -4,11 +4,18 @@ import { MessageService } from 'primeng/api';
 import { AuthService } from '../../lib/auth/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
+import { LatestRecipesComponent } from 'src/app/components/latest-recipes/latest-recipes.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  imports: [
+    CommonModule,
+    LatestRecipesComponent,
+  ]
 })
 export class HomeComponent implements OnInit {
   allRecipes: Recipe[] = [];

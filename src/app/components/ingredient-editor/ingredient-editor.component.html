@@ -36,7 +36,7 @@
     <label for="ingredientSelect">Ingredient</label>
     <p-dropdown id="ingredientSelect" appendTo="body" [options]="ingredients" optionLabel="IngredientName" optionValue="ID" placeholder="Select ingredient" [editable]="true" [(ngModel)]="newIngredient.IngredientID" #ingredientSelect="ngModel"></p-dropdown>
     <div *ngIf="ingredientSelect.invalid && (ingredientSelect.dirty || ingredientSelect.touched)" class="alert">
-    
+
       <div *ngIf="ingredientSelect.errors?.['required']">
         Ingredient is required.
       </div>
@@ -45,7 +45,7 @@
     <label for="amount">Amount</label>
     <p-inputNumber id="amount" [showButtons]="true" [(ngModel)]="newIngredient.Quantity" class="form-control" #amount="ngModel"></p-inputNumber>
     <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="alert">
-    
+
       <div *ngIf="amount.errors?.['required']">
         Amount is required.
       </div>
@@ -54,7 +54,7 @@
     <label for="unit">Unit</label>
     <p-dropdown id="unitSelect" appendTo="body" [options]="units" optionLabel="FullName" optionValue="ID" placeholder="Select unit" [editable]="true" [(ngModel)]="newIngredient.UnitID" #unitSelect="ngModel"></p-dropdown>
     <div *ngIf="unitSelect.invalid && (unitSelect.dirty || unitSelect.touched)" class="alert">
-    
+
       <div *ngIf="unitSelect.errors?.['required']">
         Unit is required.
       </div>

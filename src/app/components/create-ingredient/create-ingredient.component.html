@@ -10,7 +10,7 @@
         <input id="name" type="text" pInputText [(ngModel)]="ingredient.IngredientName" class="form-control" required minlength="4" #name="ngModel" autofocus />
       </div>
       <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
-      
+
         <div *ngIf="name.errors?.['required']">
           Name is required.
         </div>

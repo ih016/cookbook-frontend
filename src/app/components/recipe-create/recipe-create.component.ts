@@ -2,10 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { RestService, Recipe, Instruction } from '../../lib/rest/rest.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @Component({
   selector: 'app-recipe-create',
+  standalone: true,
   templateUrl: './recipe-create.component.html',
+  imports: [
+    CommonModule,
+    DialogModule,
+    FormsModule,
+    InputNumberModule,
+  ]
 })
 export class RecipeCreateComponent implements OnInit {
 
@@ -39,7 +50,7 @@ export class RecipeCreateComponent implements OnInit {
   }
 
   onUploadSuccess(id: number) {
-   
+
     this.messageService.add({
       severity: 'success', summary: 'Success', detail: 'Recipe created', life: 3000,
     });

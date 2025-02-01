@@ -1,10 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { IngredientService, Ingredient } from '../../lib/api-client';
 import { MessageService } from 'primeng/api';
+import { CreateIngredientComponent } from 'src/app/components/create-ingredient/create-ingredient.component';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ingredients',
+  standalone: true,
   templateUrl: './ingredients.component.html',
+  imports: [
+    CreateIngredientComponent,
+    TableModule,
+    DialogModule,
+    CommonModule,
+  ]
 })
 export class IngredientsComponent implements OnInit {
   ingredient: Ingredient = {};

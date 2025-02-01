@@ -1,10 +1,27 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RestService, Ingredient, IngredientAmount, Unit } from '../../lib/rest/rest.service';
 import { UntypedFormBuilder } from "@angular/forms";
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { CreateIngredientComponent } from '../create-ingredient/create-ingredient.component';
 
 @Component({
   selector: 'app-ingredient-editor',
+  standalone: true,
   templateUrl: './ingredient-editor.component.html',
+  imports: [
+    CommonModule,
+    FormsModule,
+    TableModule,
+    DialogModule,
+    DropdownModule,
+    InputNumberModule,
+    CreateIngredientComponent,
+  ]
 })
 export class IngredientEditorComponent implements OnInit {
 
@@ -92,7 +109,7 @@ export class IngredientEditorComponent implements OnInit {
       console.log(i)
     if (i > -1) this.ingredientamounts[i] = this.newIngredient;
     else this.ingredientamounts.push(this.newIngredient);
-      
+
     this.submitted = true;
     this.ingredientDialog = false;
     this.clearNewIngredient()

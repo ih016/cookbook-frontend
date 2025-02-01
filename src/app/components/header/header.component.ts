@@ -4,11 +4,26 @@ import { AuthService } from '../../lib/auth/auth.service';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
+import { RouterLink } from '@angular/router';
+import { MenuModule } from 'primeng/menu';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { AvatarModule } from 'primeng/avatar';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  imports: [
+    CommonModule,
+    RouterLink,
+    MenuModule,
+    TabMenuModule,
+    AvatarModule,
+    TieredMenuModule,
+  ]
 })
 
 export class HeaderComponent implements OnInit {

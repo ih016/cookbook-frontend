@@ -1,12 +1,21 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Recipe, Category, Tag, TagService, CategoryService } from '../../lib/api-client';
-import { RestService } from '../../lib/rest/rest.service';
+// import { RestService } from '../../lib/rest/rest.service';
 import { FilterService } from 'primeng/api';
+import { DropdownModule } from 'primeng/dropdown';
+import { SidebarModule } from 'primeng/sidebar';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-filtering-sidebar',
+  standalone: true,
   templateUrl: './filtering-sidebar.component.html',
-  styleUrls: ['./filtering-sidebar.component.scss']
+  styleUrls: ['./filtering-sidebar.component.scss'],
+  imports: [
+    DropdownModule,
+    FormsModule,
+    SidebarModule,
+  ]
 })
 export class FilteringSidebarComponent implements OnInit {
 

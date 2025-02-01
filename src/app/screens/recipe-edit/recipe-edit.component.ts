@@ -3,11 +3,30 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { RestService, IngredientAmount, Recipe, Instruction, Ingredient, Category, Tag } from '../../lib/rest/rest.service';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
+import { IngredientEditorComponent } from 'src/app/components/ingredient-editor/ingredient-editor.component';
+import { CommonModule } from '@angular/common';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { FormsModule } from '@angular/forms';
+import { DialogModule } from 'primeng/dialog';
+import { FileUploadModule } from 'primeng/fileupload';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-edit',
+  standalone: true,
   templateUrl: './recipe-edit.component.html',
-  styleUrls: ['./recipe-edit.component.scss']
+  styleUrls: ['./recipe-edit.component.scss'],
+  imports: [
+    CommonModule,
+    DialogModule,
+    FormsModule,
+    FileUploadModule,
+    IngredientEditorComponent,
+    InputNumberModule,
+    RouterLink,
+    MultiSelectModule,
+  ]
 })
 export class RecipeEditComponent implements OnInit {
 

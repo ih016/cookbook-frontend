@@ -1,13 +1,18 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Recipe } from '../../lib/rest/rest.service';
 import { environment } from 'src/environments/environment';
-
-
+import { CarouselModule } from 'primeng/carousel';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-latest-recipes',
+  standalone: true,
   templateUrl: './latest-recipes.component.html',
-  styleUrls: ['./latest-recipes.component.scss']
+  styleUrls: ['./latest-recipes.component.scss'],
+  imports: [
+    CarouselModule,
+    RouterLink,
+  ]
 })
 export class LatestRecipesComponent implements OnInit, OnChanges {
 

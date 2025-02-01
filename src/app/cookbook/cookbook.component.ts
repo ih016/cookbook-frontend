@@ -1,11 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { HeaderComponent } from '../components/header/header.component';
+import { ToastModule } from 'primeng/toast';
+import { RouterOutlet } from '@angular/router'
 
 @Component({
   selector: 'app-cookbook',
+  standalone: true,
   templateUrl: './cookbook.component.html',
   styleUrls: ['./cookbook.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService],
+  imports: [
+    HeaderComponent,
+    ToastModule,
+    RouterOutlet,
+  ]
 })
 export class CookbookComponent implements OnInit {
 

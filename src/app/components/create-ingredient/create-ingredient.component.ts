@@ -1,10 +1,19 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Ingredient, RestService } from '../../lib/rest/rest.service';
 import { MessageService } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-ingredient',
+  standalone: true,
   templateUrl: './create-ingredient.component.html',
+  imports: [
+    CommonModule,
+    DialogModule,
+    FormsModule,
+  ]
 })
 export class CreateIngredientComponent implements OnInit {
 
@@ -20,7 +29,7 @@ export class CreateIngredientComponent implements OnInit {
   ngOnInit(): void {
     // This is intentionally empty
   }
-  
+
   openDialog() {
     this.visible = true;
   }
@@ -37,7 +46,7 @@ export class CreateIngredientComponent implements OnInit {
     .catch((data) => this.createFailed(data));
     this.ingredient.IngredientName = ""
   }
-  
+
   createSuccess(data: Ingredient) {
     this.messageService.add({ severity: 'success', summary: 'Created Ingredient', detail: data.IngredientName });
     this.createdIngredient.emit(true);
