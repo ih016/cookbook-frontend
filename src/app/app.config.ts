@@ -9,7 +9,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './lib/auth/auth.interceptor';
 import { ApiModule } from './lib/api-client';
 import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 
@@ -17,7 +17,7 @@ import Aura from '@primeng/themes/aura';
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
         provideAnimationsAsync(),
         providePrimeNG({
             ripple: true,
@@ -41,6 +41,7 @@ export const appConfig: ApplicationConfig = {
                     silentRenewUrl: `${env.baseURL}/oidc/silent-renew`,
                     useRefreshToken: true,
                     renewTimeBeforeTokenExpiresInSeconds: 60,
+                    ignoreNonceAfterRefresh: true,
                     logLevel: LogLevel.Debug,
                 },
             }),

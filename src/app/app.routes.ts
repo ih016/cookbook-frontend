@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { CallbackModule } from './features/callback/callback.module';
-import { AuthGuard } from './lib/auth/auth.guard';
 import { CookbookComponent } from './cookbook/cookbook.component';
 import { SplashscreenComponent } from './screens/splashscreen/splashscreen.component';
 import { RecipeDetailComponent } from './screens/recipe-detail/recipe-detail.component';
@@ -13,20 +11,13 @@ import { HomeComponent } from './screens/home/home.component';
 // import { LogoffComponent } from '../../screens/logoff/logoff.component';
 import { ProfileComponent } from './screens/profile/profile.component';
 import { RecipeBrowserComponent } from 'src/app/screens/recipe-browser/recipe-browser.component';
+import { AuthGuard } from './lib/auth/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
     component: SplashscreenComponent,
   },
-  {
-    path: 'login',
-    component: SplashscreenComponent,
-  },
-  // {
-  //   path: 'callback',
-  //   component: CallbackModule,
-  // },
   {
     path: 'app',
     component: CookbookComponent,

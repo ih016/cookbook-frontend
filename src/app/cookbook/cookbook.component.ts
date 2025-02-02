@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { HeaderComponent } from '../components/header/header.component';
 import { ToastModule } from 'primeng/toast';
@@ -15,14 +15,8 @@ import { RouterOutlet } from '@angular/router'
         RouterOutlet,
     ]
 })
-export class CookbookComponent implements OnInit {
+export class CookbookComponent {
 
-  constructor() {
-    // This is intentionally empty
-  }
-
-  ngOnInit(): void {
-     // This is intentionally empty
-  }
+  constructor() {}
 
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../lib/auth/auth.service';
+import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
     selector: 'app-login-button',
@@ -11,20 +11,12 @@ import { ButtonModule } from 'primeng/button';
         ButtonModule,
     ]
 })
-export class LoginButtonComponent implements OnInit {
+export class LoginButtonComponent {
 
-  constructor(public auth: AuthService) { }
-
-  ngOnInit(): void {
-  }
+  constructor(private oidcSecurityService: OidcSecurityService) { }
 
   loginWithRedirect(): void {
-    // this.auth.loginWithRedirect({
-    //   appState: {
-    //     target: '/app/home',
-    //   }
-    // });
-    this.auth.login();
+    this.oidcSecurityService.authorize()
   }
 
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, CanActivate } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -7,17 +7,20 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard  {
-  constructor(private oidcSecurityService: OidcSecurityService, private router: Router) {}
+export class AuthGuard implements CanActivate {
+  constructor(
+    private oidcSecurityService: OidcSecurityService,
+    private router: Router
+  ) { }
 
   canActivate(): Observable<boolean> {
-    return this.oidcSecurityService.isAuthenticated$.pipe(
-      map((isAuthenticated) => {
+    return this.oidcSecurityService.checkAuth().pipe(
+      map(({ isAuthenticated }) => {
         if (!isAuthenticated) {
-          this.oidcSecurityService.authorize(); // Redirect to Keycloak login
-          return false;
+          // Redirect to the home page or show an appropriate message
+          this.router.navigate(['/']);
         }
-        return true;
+        return isAuthenticated;
       })
     );
   }

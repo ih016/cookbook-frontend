@@ -11,39 +11,6 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   constructor(private oidcSecurityService: OidcSecurityService) {}
 
-  // Initialize authentication and handle the callback
-  initializeAuthentication(): Observable<{ isAuthenticated: boolean }> {
-    return this.oidcSecurityService.checkAuth().pipe(
-      tap(({ isAuthenticated }) => {
-        console.log('checkAuth completed, isAuthenticated:', isAuthenticated);
-
-        if (!isAuthenticated) {
-          console.warn('User is not authenticated. Trying silent renew...');
-          this.oidcSecurityService.forceRefreshSession().subscribe({
-            next: () => console.log('Silent renew successful'),
-            error: (err) => console.error('Silent renew failed', err),
-          });
-        }
-      })
-    );
-  }
-
-  startSilentRenew() {
-    this.oidcSecurityService.checkAuthIncludingServer().subscribe(({ isAuthenticated }) => {
-      console.log('Silent renew completed, user authenticated:', isAuthenticated);
-    });
-  }
-
-  // Login
-  login(): void {
-    this.oidcSecurityService.authorize();
-  }
-
-  // Logout
-  logout(): void {
-    this.oidcSecurityService.logoff();
-  }
-
   // Retrieve user data
   getUserData(): Observable<User | null> {
     return this.oidcSecurityService.userData$.pipe(

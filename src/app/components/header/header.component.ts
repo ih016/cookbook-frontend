@@ -10,6 +10,8 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { AvatarModule } from 'primeng/avatar';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { CommonModule } from '@angular/common';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+
 
 @Component({
     selector: 'app-header',
@@ -29,7 +31,7 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent implements OnInit {
   user$!: Observable<User | null>;
 
-  constructor(protected authService: AuthService) {
+  constructor(protected authService: AuthService, private oidcSecurityService: OidcSecurityService) {
   }
 
   ngOnInit(): void {
@@ -47,7 +49,7 @@ export class HeaderComponent implements OnInit {
     { label: 'Mealplanner', routerLink: ['/app/planner'], visible: this.admin },
     { separator: true },
     { label: 'Profile', routerLink: ['/app/profile'] },
-    { label: 'Logout', command: (onclick) => { this.authService.logout() } },
+    { label: 'Logout', command: (onclick) => { this.oidcSecurityService.logoff(); } },
   ];
 
   bigMenuOptions: MenuItem[] = [
@@ -59,6 +61,6 @@ export class HeaderComponent implements OnInit {
   userMenuItems: MenuItem[] = [
     { label: 'Profile', routerLink: ['/app/profile'] },
     { separator: true },
-    { label: 'Logout', command: (onclick) => {this.authService.logout()} },
+    { label: 'Logout', command: (onclick) => { this.oidcSecurityService.logoff(); } },
   ];
 }
