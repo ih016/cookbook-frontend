@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { RouterLink } from '@angular/router';
 import { MenuModule } from 'primeng/menu';
-import { TabMenuModule } from 'primeng/tabmenu';
 import { AvatarModule } from 'primeng/avatar';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { CommonModule } from '@angular/common';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
-
+import { TabsModule } from 'primeng/tabs';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -22,7 +22,7 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
         CommonModule,
         RouterLink,
         MenuModule,
-        TabMenuModule,
+        TabsModule,
         AvatarModule,
         TieredMenuModule,
     ]
@@ -31,15 +31,7 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 export class HeaderComponent implements OnInit {
   user$!: Observable<User | null>;
 
-  constructor(protected authService: AuthService, private oidcSecurityService: OidcSecurityService) {
-  }
-
-  ngOnInit(): void {
-    this.user$ = this.authService.getUserData();
-    console.log(this.user$)
-  }
-
-  admin: boolean = false
+  admin: boolean = true
   logo: string = `${environment.cdn}/logo/logo_blk.svg`
 
   mobileMenuOptions: MenuItem[] = [
@@ -51,8 +43,8 @@ export class HeaderComponent implements OnInit {
     { label: 'Profile', routerLink: ['/app/profile'] },
     { label: 'Logout', command: (onclick) => { this.oidcSecurityService.logoff(); } },
   ];
-
   bigMenuOptions: MenuItem[] = [
+    { label: 'Home', routerLink: ['/app/home'] },
     { label: 'Recipes', routerLink: ['/app/recipes'] },
     { label: 'Ingredients', routerLink: ['/app/ingredients'] },
     { label: 'Shopping Lists', routerLink: ['/app/shopping'], visible: this.admin },
@@ -63,4 +55,33 @@ export class HeaderComponent implements OnInit {
     { separator: true },
     { label: 'Logout', command: (onclick) => { this.oidcSecurityService.logoff(); } },
   ];
+
+  activeTabIndex = 0;
+
+  constructor(protected authService: AuthService, private oidcSecurityService: OidcSecurityService, private router: Router) {
+  }
+
+  ngOnInit(): void {
+    this.setActiveTabFromUrl(this.router.url);
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.setActiveTabFromUrl(event.urlAfterRedirects);
+      }
+    });
+
+    this.user$ = this.authService.getUserData();
+  }
+
+  setActiveTabFromUrl(url: string): void {
+    const matchingIndex = this.bigMenuOptions.findIndex(tab => url.startsWith(tab.routerLink));
+    // If no matching tab is found, you can default to the first tab (index 0)
+    this.activeTabIndex = matchingIndex !== -1 ? matchingIndex : 0;
+  }
+
+  onTabChange(index: number): void {
+    this.activeTabIndex = index;
+    this.router.navigate([this.bigMenuOptions[index].routerLink]);
+  }
+
 }

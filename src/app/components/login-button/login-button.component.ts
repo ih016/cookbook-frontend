@@ -14,8 +14,10 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 export class LoginButtonComponent {
 
   constructor(private oidcSecurityService: OidcSecurityService) { }
+  loading = false;
 
   loginWithRedirect(): void {
+    this.loading = true;
     this.oidcSecurityService.authorize()
   }
 

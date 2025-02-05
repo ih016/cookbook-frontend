@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe, RestService } from '../../lib/rest/rest.service';
+import { RecipeService, Recipe } from 'src/app/lib/api-client';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../lib/auth/auth.service';
 import { Observable } from 'rxjs';
@@ -21,18 +21,19 @@ export class HomeComponent implements OnInit {
   allRecipes: Recipe[] = [];
   user$!: Observable<User | null>;
 
-  constructor(private restService: RestService, private messageService: MessageService, private authService: AuthService) {}
+  constructor(private restService: RecipeService, private messageService: MessageService, private authService: AuthService) {}
 
   welcomeText: string = ""
 
   ngOnInit(): void {
     this.user$ = this.authService.getUserData();
-    this.restService.GetAllRecipes().then((data) => {
-      this.allRecipes = data ;
-    }, () => {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Unable to retrieve recipes' });
-    })
-    this.welcome()
+    this.restService.getAllRecipes().subscribe((data) => {
+      this.allRecipes = data;
+    });
+    // , () => {
+    //   this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Unable to retrieve recipes' });
+    // });
+    this.welcome();
   }
 
   welcome() {

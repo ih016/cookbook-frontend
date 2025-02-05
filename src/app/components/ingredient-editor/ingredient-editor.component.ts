@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { RestService, Ingredient, IngredientAmount, Unit } from '../../lib/rest/rest.service';
+import { Ingredient, IngredientService, Unit, UnitService } from '../../lib/api-client';
 import { UntypedFormBuilder } from "@angular/forms";
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
@@ -8,6 +8,14 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CreateIngredientComponent } from '../create-ingredient/create-ingredient.component';
+
+class IngredientAmount {
+  RecipeID: string = "";
+  IngredientID: string = "";
+  Quantity: number = 0;
+  UnitID: string = "";
+  Unit?: Unit;
+}
 
 @Component({
     selector: 'app-ingredient-editor',
@@ -38,10 +46,10 @@ export class IngredientEditorComponent implements OnInit {
   ingredients: Ingredient[] = [];
   selectedIngredients: IngredientAmount[] = [];
   units: Unit[] = [];
-  ingredientNames = new Map<number, string>();
-  unitNames = new Map<number, string>();
+  ingredientNames = new Map<string, string>();
+  unitNames = new Map<string, string>();
 
-  constructor(public fb: UntypedFormBuilder, private restService: RestService) { }
+  constructor(public fb: UntypedFormBuilder, private ingredientService: IngredientService, private unitService: UnitService) {}
 
   ngOnInit(): void {
     this.getIngredients()
@@ -49,13 +57,13 @@ export class IngredientEditorComponent implements OnInit {
   }
 
   getIngredients() {
-    this.restService.GetAllIngredients().then((data) => { this.ingredients = data; this.getIngredientNames(data); })
+    this.ingredientService.getAllIngredient().subscribe((data) => { this.ingredients = data; this.getIngredientNames(data); })
   }
 
   getUnits() {
-    this.restService.GetUnits().then((data) => {
+    this.unitService.getAlUnits().subscribe((data) => {
       for (var unit of data) {
-        this.unitNames.set(unit.ID, unit.FullName);
+        this.unitNames.set(unit.id!, unit.full_name!);
       };
       this.units = data;
     });
@@ -63,13 +71,13 @@ export class IngredientEditorComponent implements OnInit {
 
   getIngredientNames(ingredients: Array<Ingredient>) {
     for (var ingredient of ingredients) {
-      this.ingredientNames.set(ingredient.ID, ingredient.IngredientName);
+      this.ingredientNames.set(ingredient.id!, ingredient.name!);
     };
 
   }
 
   getIngredientName(data: IngredientAmount) {
-    return this.ingredients.find(x => x.ID === data.IngredientID)?.IngredientName
+    return this.ingredients.find(x => x.id === data.IngredientID)?.name
   }
 
   clearNewIngredient() {
@@ -106,14 +114,12 @@ export class IngredientEditorComponent implements OnInit {
     const i = this.ingredientamounts.findIndex(
       (x: IngredientAmount) => x.IngredientID === this.newIngredient.IngredientID,
       );
-      console.log(i)
     if (i > -1) this.ingredientamounts[i] = this.newIngredient;
     else this.ingredientamounts.push(this.newIngredient);
 
     this.submitted = true;
     this.ingredientDialog = false;
     this.clearNewIngredient()
-    console.log(this.ingredientamounts)
   }
 
   deleteIngredient() {

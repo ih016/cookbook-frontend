@@ -7,7 +7,7 @@
     <div class="p-fluid">
       <div class="p-field">
         <label for="name">Ingredient Name</label>
-        <input id="name" type="text" pInputText [(ngModel)]="ingredient.IngredientName" class="form-control" required minlength="4" #name="ngModel" autofocus />
+        <input id="name" type="text" pInputText [(ngModel)]="ingredient.name" class="form-control" required minlength="4" #name="ngModel" autofocus />
       </div>
       <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
 

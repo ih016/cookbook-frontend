@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Recipe, Category, Tag, TagService, CategoryService } from '../../lib/api-client';
-// import { RestService } from '../../lib/rest/rest.service';
+// import { RestService } from '../../lib/api-client/rest.service';
 import { FilterService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { SidebarModule } from 'primeng/sidebar';
@@ -27,12 +27,10 @@ export class FilteringSidebarComponent implements OnInit {
   ngOnInit(): void {
     this.tagService.getAllTags().subscribe((data) => {
       this.tags = data;
-      console.log(data);
     });
 
     this.categoryService.getAllCategory().subscribe((data) => {
       this.categories = data
-      console.log(data);
     });
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RestService, IngredientAmount, Recipe, Instruction, Ingredient, Category, Tag } from '../../lib/rest/rest.service';
+import { RestService, IngredientAmount, Recipe, Instruction, Ingredient, Category, Tag } from '../../lib/api-client/rest.service';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { IngredientEditorComponent } from 'src/app/components/ingredient-editor/ingredient-editor.component';

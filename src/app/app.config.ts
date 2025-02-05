@@ -12,8 +12,7 @@ import { AuthModule, LogLevel } from 'angular-auth-oidc-client';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
-
-import Aura from '@primeng/themes/aura';
+import { Noir } from './themePreset';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -22,7 +21,12 @@ export const appConfig: ApplicationConfig = {
         providePrimeNG({
             ripple: true,
             theme: {
-                preset: Aura,
+              preset: Noir,
+                options: {
+                  prefix: 'p',
+                  darkModeSelector: false || 'none',
+                  cssLayer: false
+                }
             }
         }),
         importProvidersFrom(
@@ -42,7 +46,7 @@ export const appConfig: ApplicationConfig = {
                     useRefreshToken: true,
                     renewTimeBeforeTokenExpiresInSeconds: 60,
                     ignoreNonceAfterRefresh: true,
-                    logLevel: LogLevel.Debug,
+                    logLevel: LogLevel.Warn,
                 },
             }),
             ApiModule

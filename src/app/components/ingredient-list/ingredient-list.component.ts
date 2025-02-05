@@ -1,6 +1,15 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Ingredient, IngredientAmount } from 'src/app/lib/rest/rest.service';
+import { Ingredient, Unit } from 'src/app/lib/api-client';
 import { CommonModule } from '@angular/common';
+
+class IngredientAmount {
+  RecipeID: string = "";
+  IngredientID: string = "";
+  Quantity: number = 0;
+  UnitID: string = "";
+  Unit?: Unit;
+}
+
 
 @Component({
     selector: 'app-ingredient-list',
@@ -16,7 +25,7 @@ export class IngredientListComponent implements OnInit, OnChanges {
   @Input() ingredients: Ingredient[] = []
   @Input() amounts: IngredientAmount[] = []
 
-  names = new Map<number, string>();
+  names = new Map<string, string>();
 
   constructor() { }
 
@@ -32,7 +41,7 @@ export class IngredientListComponent implements OnInit, OnChanges {
 
   getIngredientNames(ingredients: Array<Ingredient>) {
     for (var ingredient of ingredients) {
-      this.names.set(ingredient.ID, ingredient.IngredientName);
+      this.names.set(ingredient.id!, ingredient.name!);
     };
 
   }

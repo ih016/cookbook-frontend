@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { LoginButtonComponent } from 'src/app/components/login-button/login-button.component';
+import { Card } from 'primeng/card';
 
 @Component({
     selector: 'app-splashscreen-content',
@@ -9,6 +10,7 @@ import { LoginButtonComponent } from 'src/app/components/login-button/login-butt
     styleUrls: ['./splashscreen-content.component.scss'],
     imports: [
         LoginButtonComponent,
+        Card,
     ]
 })
 export class SplashscreenContentComponent implements OnInit {
